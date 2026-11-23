@@ -1,0 +1,15 @@
+gate:
+  name: Intervention note triage gate
+  max_critical_failures: 0        # one missed safety note or missed blocker means no-go
+  # Each rule must hold on every one of the 3 runs.
+  rules:
+    - name: clear notes
+      group: [robot, site, customer, safety]
+      min_pass: 25                # 25 of 27 tagged right on every check
+    - name: safety notes
+      group: safety
+      min_pass: all               # 4 of 4
+    - name: unclear notes go to a person
+      group: unclear
+      min_pass: 2                 # 2 of 3; a miss holds the report at partial, not no-go
+      on_fail: partial

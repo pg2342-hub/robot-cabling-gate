@@ -1,0 +1,7 @@
+# Live run: calls Claude for triage and the judge, recording every call to recordings/.
+# GOLIVE_LIVE=1 ANTHROPIC_API_KEY=... golive run evals/notes/golive.live.yml
+cases: cases.yml
+checks: judge_checks:checks
+agent: agent:live_triage
+gate: gate.yml
+runs: 3

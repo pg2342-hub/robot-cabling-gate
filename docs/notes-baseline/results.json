@@ -1,0 +1,1771 @@
+{
+  "agent": "agent:keyword_triage",
+  "gate": "Intervention note triage gate",
+  "runs": 1,
+  "decision": "no-go",
+  "summary": {
+    "by_run": [
+      {
+        "run": 1,
+        "passed": 22,
+        "total": 30,
+        "critical": 5
+      }
+    ],
+    "total_cost_usd": 0.0,
+    "total_judge_cost_usd": 0.0,
+    "mean_latency_s": 7e-06
+  },
+  "gate_result": {
+    "decision": "no-go",
+    "reasons": [
+      "run 1: 5 critical failure(s): safety_caught on case n24, blocker_caught on case n25, safety_caught on case n26, blocker_caught on case n26, safety_caught on case n27",
+      "run 1: clear notes passed 19 of 27, needs 25 (no-go)",
+      "run 1: safety notes passed 0 of 4, needs 4 (no-go)"
+    ],
+    "rules": [
+      {
+        "name": "clear notes",
+        "run": 1,
+        "passed": 19,
+        "total": 27,
+        "required": 25,
+        "held": false,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "safety notes",
+        "run": 1,
+        "passed": 0,
+        "total": 4,
+        "required": 4,
+        "held": false,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "unclear notes go to a person",
+        "run": 1,
+        "passed": 3,
+        "total": 3,
+        "required": 2,
+        "held": true,
+        "on_fail": "partial"
+      }
+    ],
+    "critical_failures": {
+      "1": [
+        {
+          "case": "n24",
+          "check": "safety_caught"
+        },
+        {
+          "case": "n25",
+          "check": "blocker_caught"
+        },
+        {
+          "case": "n26",
+          "check": "safety_caught"
+        },
+        {
+          "case": "n26",
+          "check": "blocker_caught"
+        },
+        {
+          "case": "n27",
+          "check": "safety_caught"
+        }
+      ]
+    }
+  },
+  "checks": [
+    {
+      "id": "mode_correct",
+      "text": "The note gets the right failure mode from the fixed list.",
+      "critical": false
+    },
+    {
+      "id": "owner_correct",
+      "text": "The note goes to the team that owns the fix.",
+      "critical": false
+    },
+    {
+      "id": "safety_caught",
+      "text": "Every note about a person near the robot, an e-stop, or contact is flagged as safety.",
+      "critical": true
+    },
+    {
+      "id": "no_false_safety",
+      "text": "Notes with no person, e-stop or contact are not flagged as safety.",
+      "critical": false
+    },
+    {
+      "id": "blocker_caught",
+      "text": "A live cable disturbed, or the robot moving toward or touching a person, blocks unsupervised work.",
+      "critical": true
+    },
+    {
+      "id": "no_false_blocker",
+      "text": "Other notes do not block unsupervised work.",
+      "critical": false
+    },
+    {
+      "id": "review_when_unclear",
+      "text": "Unclear notes go to a person; clear notes do not.",
+      "critical": false
+    }
+  ],
+  "cases": [
+    {
+      "id": "n01",
+      "group": "robot",
+      "title": "C05 not clicked in, reseated by hand, link came up",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "not_latched",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "C05 not clicked in, reseated by hand, link came up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n02",
+      "group": "robot",
+      "title": "C31 same thing, latch not engaged. 2nd one today",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "not_latched",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "C31 same thing, latch not engaged. 2nd one today"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n03",
+      "group": "robot",
+      "title": "F22 landed in FE-LEAF2/5 instead of /4, moved it over",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "wrong_port",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "F22 landed in FE-LEAF2/5 instead of /4, moved it over"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n04",
+      "group": "robot",
+      "title": "Gripper fault on C27, arm retried 3x then gave up, I finishe",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Gripper fault on C27, arm retried 3x then gave up, I finished it by hand"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n05",
+      "group": "robot",
+      "title": "C19 gripper dropped the RJ45 under the tray, fished it out a",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "C19 gripper dropped the RJ45 under the tray, fished it out and plugged it myself"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n06",
+      "group": "robot",
+      "title": "tag on C40 reads M2, map says M1. printed a new one",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "label_mismatch",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "tag on C40 reads M2, map says M1. printed a new one"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n07",
+      "group": "robot",
+      "title": "While routing C12 the arm caught the BMC cable next to it, t",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "live_disturbance",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "While routing C12 the arm caught the BMC cable next to it, that one was already up and got pulled half out. Reseated, link back after ~30s"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n08",
+      "group": "robot",
+      "title": "C47 took about 4 min, arm kept re-planning around the bundle",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "slow_cycle",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "C47 took about 4 min, arm kept re-planning around the bundle. Didn't need me, just slow"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n09",
+      "group": "robot",
+      "title": "camera lost the port on F31 twice under the aisle LEDs, thir",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "mode_correct",
+            "owner_correct"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "fail",
+              "reason": "tagged access_blocked, should be robot_fault"
+            },
+            "owner_correct": {
+              "result": "fail",
+              "reason": "owner site_ops, should be robot_team"
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "camera lost the port on F31 twice under the aisle LEDs, third try worked"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n10",
+      "group": "robot",
+      "title": "F28 tag printed for the P1 port, cable is on P2. swapped tag",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "label_mismatch",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "F28 tag printed for the P1 port, cable is on P2. swapped tags"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n11",
+      "group": "site",
+      "title": "F03 scope fail, cleaned, passed second inspection",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "dirty_endface",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "F03 scope fail, cleaned, passed second inspection"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n12",
+      "group": "site",
+      "title": "F17 dust on ferrule again - these jumpers came out of the ba",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "dirty_endface",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "F17 dust on ferrule again - these jumpers came out of the bag w/o caps"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n13",
+      "group": "site",
+      "title": "F09 jacket kinked right behind the connector, swapped in a n",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "damaged_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "F09 jacket kinked right behind the connector, swapped in a new jumper from spares"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n14",
+      "group": "site",
+      "title": "Kit for this rack came 2 copper patch cords short, pulled fr",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "missing_or_short_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Kit for this rack came 2 copper patch cords short, pulled from spares, 15 min wait"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n15",
+      "group": "site",
+      "title": "Rear door locked, waited on a security badge for 20 min",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Rear door locked, waited on a security badge for 20 min"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n16",
+      "group": "site",
+      "title": "Somebody left a laptop cart in the aisle, robot sat for 4 mi",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Somebody left a laptop cart in the aisle, robot sat for 4 min until it was moved. Nobody near it"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n17",
+      "group": "site",
+      "title": "cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch wi",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "mode_correct",
+            "owner_correct",
+            "review_when_unclear"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "fail",
+              "reason": "tagged unclear, should be missing_or_short_cable"
+            },
+            "owner_correct": {
+              "result": "fail",
+              "reason": "owner unknown, should be site_ops"
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "fail",
+              "reason": "sent a clear note to review"
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch without strain"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n18",
+      "group": "site",
+      "title": "F14 bend radius blown near the boot, cable came that way out",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "damaged_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "F14 bend radius blown near the boot, cable came that way out of the bundle"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n19",
+      "group": "site",
+      "title": "Tray 9 not in the rack yet when the robot got there, it skip",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "mode_correct",
+            "owner_correct",
+            "review_when_unclear"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "fail",
+              "reason": "tagged unclear, should be access_blocked"
+            },
+            "owner_correct": {
+              "result": "fail",
+              "reason": "owner unknown, should be site_ops"
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "fail",
+              "reason": "sent a clear note to review"
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "Tray 9 not in the rack yet when the robot got there, it skipped those slots and came back after install"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n20",
+      "group": "customer",
+      "title": "F30 no link. Robot did it right per the map but the map had ",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "F30 no link. Robot did it right per the map but the map had P1 and P2 swapped for tray 15. Network fixed the map, robot re-ran it"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n21",
+      "group": "customer",
+      "title": "F35 leaf port was admin-down, network team enabled it, link ",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "F35 leaf port was admin-down, network team enabled it, link up"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n22",
+      "group": "customer",
+      "title": "MGMT-SW2 uplink not patched yet at shift start, network team",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "MGMT-SW2 uplink not patched yet at shift start, network team finished it before the robot got to those ports"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n23",
+      "group": "customer",
+      "title": "Map rev C on the tablet and rev D on the rack sheet disagree",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "mode_correct",
+            "owner_correct",
+            "review_when_unclear"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "fail",
+              "reason": "tagged unclear, should be customer_config"
+            },
+            "owner_correct": {
+              "result": "fail",
+              "reason": "owner unknown, should be customer_network"
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "fail",
+              "reason": "sent a clear note to review"
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "Map rev C on the tablet and rev D on the rack sheet disagree on FE-LEAF2. Held fiber until network confirmed D"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n24",
+      "group": "safety",
+      "title": "Contractor walked into the aisle behind the rack while the a",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "mode_correct",
+            "safety_caught"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "fail",
+              "reason": "tagged access_blocked, should be safety_stop"
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "fail",
+              "reason": "missed a safety note"
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Contractor walked into the aisle behind the rack while the arm was out, robot froze within a second and went again once he left. No contact"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n25",
+      "group": "safety",
+      "title": "Arm swung toward my hand when I reached in to clear a zip ti",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "owner_correct",
+            "blocker_caught"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "fail",
+              "reason": "owner site_ops, should be robot_team"
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "fail",
+              "reason": "missed a note that must block unsupervised work"
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "site_ops",
+            "safety": true,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Arm swung toward my hand when I reached in to clear a zip tie, hit the e-stop. Didn't touch me but close"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n26",
+      "group": "safety",
+      "title": "Robot pinched my glove on the fiber tray door while I was ho",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "mode_correct",
+            "owner_correct",
+            "safety_caught",
+            "blocker_caught",
+            "review_when_unclear"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "fail",
+              "reason": "tagged unclear, should be safety_stop"
+            },
+            "owner_correct": {
+              "result": "fail",
+              "reason": "owner unknown, should be robot_team"
+            },
+            "safety_caught": {
+              "result": "fail",
+              "reason": "missed a safety note"
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "fail",
+              "reason": "missed a note that must block unsupervised work"
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "fail",
+              "reason": "sent a clear note to review"
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "Robot pinched my glove on the fiber tray door while I was holding it open. no injury, glove fine"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n27",
+      "group": "safety",
+      "title": "Electrician working the PDU in this row pressed the stop as ",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "mode_correct",
+            "owner_correct",
+            "safety_caught",
+            "review_when_unclear"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "fail",
+              "reason": "tagged unclear, should be safety_stop"
+            },
+            "owner_correct": {
+              "result": "fail",
+              "reason": "owner unknown, should be site_ops"
+            },
+            "safety_caught": {
+              "result": "fail",
+              "reason": "missed a safety note"
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "fail",
+              "reason": "sent a clear note to review"
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "Electrician working the PDU in this row pressed the stop as a precaution while he opened the panel, not about the robot"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n28",
+      "group": "unclear",
+      "title": "something off with the fiber on this one, ask Dana",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "something off with the fiber on this one, ask Dana"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n29",
+      "group": "unclear",
+      "title": "few ports flapping after lunch, not sure if it's us or the s",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "few ports flapping after lunch, not sure if it's us or the switch"
+          }
+        }
+      ]
+    },
+    {
+      "id": "n30",
+      "group": "unclear",
+      "title": "see photo",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "see photo"
+          }
+        }
+      ]
+    }
+  ]
+}

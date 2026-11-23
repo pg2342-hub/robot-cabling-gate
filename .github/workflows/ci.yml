@@ -1,0 +1,59 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -e ".[dev]"
+      - run: ruff check . && ruff format --check .
+      - run: pytest -q
+      - name: Committed data matches the simulator and the graded shifts
+        run: |
+          python scripts/make_data.py
+          python scripts/run_shifts.py
+          git diff --exit-code data evals
+
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e .
+      - name: Shift gate on the last pilot shift (golive-gate Action)
+        uses: pg2342-hub/golive-gate@58ed3c0ca0a91145e2cfcd33fcd7a570dafedd20
+        env:
+          PYTHONPATH: ${{ github.workspace }}
+        with:
+          config: evals/shift/golive.yml
+          strict: "true"
+      - name: Stage timeline across all 15 shifts
+        run: python scripts/run_shifts.py | tee -a "$GITHUB_STEP_SUMMARY"
+      - name: The notes gate must block the keyword tagger, the update gate must block invented numbers
+        run: |
+          for cfg in evals/notes/golive.baseline.yml evals/summary/golive.baseline.yml; do
+            golive run "$cfg" --out /tmp/baseline && rc=0 || rc=$?
+            echo "$cfg exit code: $rc"
+            if [ "$rc" != "1" ]; then echo "expected no-go (exit 1) for $cfg" && exit 1; fi
+          done
+      - name: Recorded Claude runs (note triage, weekly update)
+        run: |
+          if [ ! -s recordings/notes_agent.jsonl ]; then
+            echo "No recorded live run yet: run the 'Record a live run' workflow." | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          golive run evals/notes/golive.yml --strict --out reports/notes
+          golive run evals/summary/golive.yml --strict --out reports/summary
+          cat reports/notes/report.md reports/summary/report.md >> "$GITHUB_STEP_SUMMARY"

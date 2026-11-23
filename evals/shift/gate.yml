@@ -1,0 +1,11 @@
+gate:
+  name: Robot cabling shift gate
+  max_critical_failures: 0        # one knocked-loose live cable means no-go
+  rules:
+    - name: copper management connections
+      group: copper
+      min_pass: 53                # 53 of 54 right the first time, or the shift is no-go
+    - name: front-end fiber connections
+      group: fiber
+      min_pass: 35                # 35 of 36; a miss here keeps fiber supervised (partial), copper can go on
+      on_fail: partial

@@ -1,0 +1,34 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Robot cabling go-live gate</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"><style>
+:root{--fg:#000;--bg:#fff;--mute:#555;--line:#ddd}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:26px;margin:0 0 6px}h2{font-size:18px;margin:36px 0 8px}p{margin:8px 0}
+a{color:#000}.mute{color:var(--mute)}.tag{display:inline-block;border:1px solid #000;padding:0 6px;font-size:12px;
+font-weight:600}.tag.go{background:#000;color:#fff}.tag.partial{border-style:dashed}
+.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;white-space:nowrap}
+td.w{white-space:normal}th{font-weight:600}.card{border:1px solid #000;padding:12px 14px;margin:10px 0}
+.card h3{font-size:15px;margin:0 0 4px}
+</style></head><body><main>
+<h1>Robot cabling go-live gate</h1>
+<p class="mute">Simulated data. A supervised pilot where a robot cables one rack per shift (54 copper management
+and 36 front-end fiber connections) for 15 shifts.</p>
+<p>When can the robot work without a tech watching? Each shift is graded connection by connection: right port,
+latched, link up, label, clean fiber end face, fiber receive power, cycle time, nobody stepping in, and no
+live cable disturbed. The gate says GO only when 53 of 54 copper and 35 of 36 fiber connections are right the
+first time with no live cable (one already linked up, on this rack or a neighbor) disturbed. Misses the
+customer's network team fixed are reported but not counted against the robot. Ten GO shifts in a row, with no
+tech note that blocks unsupervised work, moves the robot to unsupervised shifts; a fiber-only miss lets copper
+go first. Built on <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>. <a href="https://github.com/pg2342-hub/robot-cabling-gate">Code
+on GitHub</a>.</p>
+<h2>Stage timeline</h2>
+<p>A PARTIAL shift is a fiber-only miss, so the copper streak kept going: copper reaches 10 in a row first, which is why the plan can promote copper alone at the readout while fiber stays supervised. After shift 15 the GO streak reaches 10, so the robot works unsupervised from shift 16. <span class="mute">Blocking notes from hand labels (no recorded Claude triage yet).</span></p>
+<div class="wrap"><table><tr><th>Shift</th><th>Rack</th><th>Gate</th><th>Copper first pass</th>
+<th>Fiber first pass</th><th>Robot interventions</th><th>Blocking note</th><th>GO streak</th>
+<th>Customer misses</th><th>Copper streak</th><th>Next shift</th></tr>
+<tr><td><a href='shifts/01/'>Shift 1</a></td><td>R01</td><td><span class="tag ">NO-GO</span></td><td>50 of 54</td><td>33 of 36</td><td>7</td><td>yes</td><td>0</td><td></td><td>0</td><td>supervised</td></tr><tr><td><a href='shifts/02/'>Shift 2</a></td><td>R02</td><td><span class="tag ">NO-GO</span></td><td>52 of 54</td><td>35 of 36</td><td>3</td><td></td><td>0</td><td>1</td><td>0</td><td>supervised</td></tr><tr><td><a href='shifts/03/'>Shift 3</a></td><td>R03</td><td><span class="tag ">NO-GO</span></td><td>52 of 54</td><td>35 of 36</td><td>2</td><td>yes</td><td>0</td><td></td><td>0</td><td>supervised</td></tr><tr><td><a href='shifts/04/'>Shift 4</a></td><td>R04</td><td><span class="tag ">NO-GO</span></td><td>52 of 54</td><td>36 of 36</td><td>2</td><td>yes</td><td>0</td><td></td><td>0</td><td>supervised</td></tr><tr><td><a href='shifts/05/'>Shift 5</a></td><td>R05</td><td><span class="tag partial">PARTIAL</span></td><td>53 of 54</td><td>34 of 36</td><td>3</td><td></td><td>0</td><td></td><td>1</td><td>supervised</td></tr><tr><td><a href='shifts/06/'>Shift 6</a></td><td>R06</td><td><span class="tag go">GO</span></td><td>54 of 54</td><td>35 of 36</td><td>1</td><td></td><td>1</td><td></td><td>2</td><td>supervised</td></tr><tr><td><a href='shifts/07/'>Shift 7</a></td><td>R07</td><td><span class="tag go">GO</span></td><td>53 of 54</td><td>36 of 36</td><td>1</td><td></td><td>2</td><td></td><td>3</td><td>supervised</td></tr><tr><td><a href='shifts/08/'>Shift 8</a></td><td>R08</td><td><span class="tag go">GO</span></td><td>54 of 54</td><td>36 of 36</td><td>0</td><td></td><td>3</td><td>1</td><td>4</td><td>supervised</td></tr><tr><td><a href='shifts/09/'>Shift 9</a></td><td>R09</td><td><span class="tag go">GO</span></td><td>53 of 54</td><td>36 of 36</td><td>0</td><td></td><td>4</td><td></td><td>5</td><td>supervised</td></tr><tr><td><a href='shifts/10/'>Shift 10</a></td><td>R10</td><td><span class="tag go">GO</span></td><td>54 of 54</td><td>36 of 36</td><td>0</td><td></td><td>5</td><td></td><td>6</td><td>supervised</td></tr><tr><td><a href='shifts/11/'>Shift 11</a></td><td>R11</td><td><span class="tag go">GO</span></td><td>53 of 54</td><td>35 of 36</td><td>2</td><td></td><td>6</td><td></td><td>7</td><td>supervised</td></tr><tr><td><a href='shifts/12/'>Shift 12</a></td><td>R12</td><td><span class="tag go">GO</span></td><td>54 of 54</td><td>36 of 36</td><td>0</td><td></td><td>7</td><td></td><td>8</td><td>supervised</td></tr><tr><td><a href='shifts/13/'>Shift 13</a></td><td>R13</td><td><span class="tag go">GO</span></td><td>53 of 54</td><td>36 of 36</td><td>1</td><td></td><td>8</td><td></td><td>9</td><td>supervised</td></tr><tr><td><a href='shifts/14/'>Shift 14</a></td><td>R14</td><td><span class="tag go">GO</span></td><td>54 of 54</td><td>35 of 36</td><td>1</td><td></td><td>9</td><td></td><td>10</td><td>copper unsupervised, fiber supervised</td></tr><tr><td><a href='shifts/15/'>Shift 15</a></td><td>R15</td><td><span class="tag go">GO</span></td><td>54 of 54</td><td>36 of 36</td><td>0</td><td></td><td>10</td><td></td><td>11</td><td>unsupervised</td></tr></table></div>
+<h2>Weekly update to the customer</h2>
+<p class='mute'>Claude live run pending. The rule checks run in CI today.</p>
+<h2>Tech note triage</h2>
+<p class='mute'>Claude live run pending. The rule checks and the keyword baseline below run in CI today.</p><p>The same gate blocks a keyword tagger: <span class="tag ">NO-GO</span>. It misses safety notes that never say “e-stop” (<a href='notes-baseline/'>see why</a>).</p>
+</main></body></html>

@@ -1,0 +1,6 @@
+# Live run: GOLIVE_LIVE=1 ANTHROPIC_API_KEY=... golive run evals/summary/golive.live.yml
+cases: cases.yml
+checks: judge_checks:checks
+agent: agent:live_summary
+gate: gate.yml
+runs: 1

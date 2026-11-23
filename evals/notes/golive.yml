@@ -1,0 +1,6 @@
+# Recorded run: replays the last live Claude run of the triage step and the judge. No API key needed.
+cases: cases.yml
+checks: judge_checks:checks
+agent: agent:recorded_triage
+gate: gate.yml
+runs: 3

@@ -1,0 +1,6 @@
+# The no-model keyword tagger, rule checks only. The gate must block it.
+cases: cases.yml
+checks: checks:checks
+agent: agent:keyword_triage
+gate: gate.yml
+runs: 1

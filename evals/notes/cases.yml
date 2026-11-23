@@ -1,0 +1,391 @@
+# 30 constructed tech notes from the supervised shifts, each with its correct tags (see cabling/triage_guide.md).
+- id: n01
+  group: robot
+  title: C05 not clicked in, reseated by hand, link came up
+  input:
+    shift: 1
+    rack: R01
+    note: C05 not clicked in, reseated by hand, link came up
+  expected:
+    failure_mode: not_latched
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n02
+  group: robot
+  title: C31 same thing, latch not engaged. 2nd one today
+  input:
+    shift: 1
+    rack: R01
+    note: C31 same thing, latch not engaged. 2nd one today
+  expected:
+    failure_mode: not_latched
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n03
+  group: robot
+  title: F22 landed in FE-LEAF2/5 instead of /4, moved it over
+  input:
+    shift: 1
+    rack: R01
+    note: F22 landed in FE-LEAF2/5 instead of /4, moved it over
+  expected:
+    failure_mode: wrong_port
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n04
+  group: robot
+  title: Gripper fault on C27, arm retried 3x then gave up, I finishe
+  input:
+    shift: 2
+    rack: R02
+    note: Gripper fault on C27, arm retried 3x then gave up, I finished it by hand
+  expected:
+    failure_mode: robot_fault
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n05
+  group: robot
+  title: C19 gripper dropped the RJ45 under the tray, fished it out a
+  input:
+    shift: 4
+    rack: R04
+    note: C19 gripper dropped the RJ45 under the tray, fished it out and plugged it myself
+  expected:
+    failure_mode: robot_fault
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n06
+  group: robot
+  title: tag on C40 reads M2, map says M1. printed a new one
+  input:
+    shift: 1
+    rack: R01
+    note: tag on C40 reads M2, map says M1. printed a new one
+  expected:
+    failure_mode: label_mismatch
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n07
+  group: robot
+  title: While routing C12 the arm caught the BMC cable next to it, t
+  input:
+    shift: 1
+    rack: R01
+    note: While routing C12 the arm caught the BMC cable next to it, that one was already up and got pulled half out. Reseated, link back after ~30s
+  expected:
+    failure_mode: live_disturbance
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: true
+    needs_review: false
+- id: n08
+  group: robot
+  title: C47 took about 4 min, arm kept re-planning around the bundle
+  input:
+    shift: 9
+    rack: R09
+    note: C47 took about 4 min, arm kept re-planning around the bundle. Didn't need me, just slow
+  expected:
+    failure_mode: slow_cycle
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n09
+  group: robot
+  title: camera lost the port on F31 twice under the aisle LEDs, thir
+  input:
+    shift: 6
+    rack: R06
+    note: camera lost the port on F31 twice under the aisle LEDs, third try worked
+  expected:
+    failure_mode: robot_fault
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n10
+  group: robot
+  title: F28 tag printed for the P1 port, cable is on P2. swapped tag
+  input:
+    shift: 5
+    rack: R05
+    note: F28 tag printed for the P1 port, cable is on P2. swapped tags
+  expected:
+    failure_mode: label_mismatch
+    owner: robot_team
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n11
+  group: site
+  title: F03 scope fail, cleaned, passed second inspection
+  input:
+    shift: 1
+    rack: R01
+    note: F03 scope fail, cleaned, passed second inspection
+  expected:
+    failure_mode: dirty_endface
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n12
+  group: site
+  title: F17 dust on ferrule again - these jumpers came out of the ba
+  input:
+    shift: 1
+    rack: R01
+    note: F17 dust on ferrule again - these jumpers came out of the bag w/o caps
+  expected:
+    failure_mode: dirty_endface
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n13
+  group: site
+  title: F09 jacket kinked right behind the connector, swapped in a n
+  input:
+    shift: 2
+    rack: R02
+    note: F09 jacket kinked right behind the connector, swapped in a new jumper from spares
+  expected:
+    failure_mode: damaged_cable
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n14
+  group: site
+  title: Kit for this rack came 2 copper patch cords short, pulled fr
+  input:
+    shift: 3
+    rack: R03
+    note: Kit for this rack came 2 copper patch cords short, pulled from spares, 15 min wait
+  expected:
+    failure_mode: missing_or_short_cable
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n15
+  group: site
+  title: Rear door locked, waited on a security badge for 20 min
+  input:
+    shift: 6
+    rack: R06
+    note: Rear door locked, waited on a security badge for 20 min
+  expected:
+    failure_mode: access_blocked
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n16
+  group: site
+  title: Somebody left a laptop cart in the aisle, robot sat for 4 mi
+  input:
+    shift: 8
+    rack: R08
+    note: Somebody left a laptop cart in the aisle, robot sat for 4 min until it was moved. Nobody near it
+  expected:
+    failure_mode: access_blocked
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n17
+  group: site
+  title: cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch wi
+  input:
+    shift: 5
+    rack: R05
+    note: cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch without strain
+  expected:
+    failure_mode: missing_or_short_cable
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n18
+  group: site
+  title: F14 bend radius blown near the boot, cable came that way out
+  input:
+    shift: 6
+    rack: R06
+    note: F14 bend radius blown near the boot, cable came that way out of the bundle
+  expected:
+    failure_mode: damaged_cable
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n19
+  group: site
+  title: Tray 9 not in the rack yet when the robot got there, it skip
+  input:
+    shift: 8
+    rack: R08
+    note: Tray 9 not in the rack yet when the robot got there, it skipped those slots and came back after install
+  expected:
+    failure_mode: access_blocked
+    owner: site_ops
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n20
+  group: customer
+  title: 'F30 no link. Robot did it right per the map but the map had '
+  input:
+    shift: 2
+    rack: R02
+    note: F30 no link. Robot did it right per the map but the map had P1 and P2 swapped for tray 15. Network fixed the map, robot re-ran it
+  expected:
+    failure_mode: customer_config
+    owner: customer_network
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n21
+  group: customer
+  title: 'F35 leaf port was admin-down, network team enabled it, link '
+  input:
+    shift: 8
+    rack: R08
+    note: F35 leaf port was admin-down, network team enabled it, link up
+  expected:
+    failure_mode: customer_config
+    owner: customer_network
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n22
+  group: customer
+  title: MGMT-SW2 uplink not patched yet at shift start, network team
+  input:
+    shift: 3
+    rack: R03
+    note: MGMT-SW2 uplink not patched yet at shift start, network team finished it before the robot got to those ports
+  expected:
+    failure_mode: customer_config
+    owner: customer_network
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n23
+  group: customer
+  title: Map rev C on the tablet and rev D on the rack sheet disagree
+  input:
+    shift: 4
+    rack: R04
+    note: Map rev C on the tablet and rev D on the rack sheet disagree on FE-LEAF2. Held fiber until network confirmed D
+  expected:
+    failure_mode: customer_config
+    owner: customer_network
+    safety: false
+    blocks_unsupervised: false
+    needs_review: false
+- id: n24
+  group: safety
+  title: Contractor walked into the aisle behind the rack while the a
+  input:
+    shift: 2
+    rack: R02
+    note: Contractor walked into the aisle behind the rack while the arm was out, robot froze within a second and went again once he left. No contact
+  expected:
+    failure_mode: safety_stop
+    owner: site_ops
+    safety: true
+    blocks_unsupervised: false
+    needs_review: false
+- id: n25
+  group: safety
+  title: Arm swung toward my hand when I reached in to clear a zip ti
+  input:
+    shift: 3
+    rack: R03
+    note: Arm swung toward my hand when I reached in to clear a zip tie, hit the e-stop. Didn't touch me but close
+  expected:
+    failure_mode: safety_stop
+    owner: robot_team
+    safety: true
+    blocks_unsupervised: true
+    needs_review: false
+- id: n26
+  group: safety
+  title: Robot pinched my glove on the fiber tray door while I was ho
+  input:
+    shift: 4
+    rack: R04
+    note: Robot pinched my glove on the fiber tray door while I was holding it open. no injury, glove fine
+  expected:
+    failure_mode: safety_stop
+    owner: robot_team
+    safety: true
+    blocks_unsupervised: true
+    needs_review: false
+- id: n27
+  group: safety
+  title: 'Electrician working the PDU in this row pressed the stop as '
+  input:
+    shift: 12
+    rack: R12
+    note: Electrician working the PDU in this row pressed the stop as a precaution while he opened the panel, not about the robot
+  expected:
+    failure_mode: safety_stop
+    owner: site_ops
+    safety: true
+    blocks_unsupervised: false
+    needs_review: false
+- id: n28
+  group: unclear
+  title: something off with the fiber on this one, ask Dana
+  input:
+    shift: 9
+    rack: R09
+    note: something off with the fiber on this one, ask Dana
+  expected:
+    failure_mode: unclear
+    owner: unknown
+    safety: false
+    blocks_unsupervised: false
+    needs_review: true
+- id: n29
+  group: unclear
+  title: few ports flapping after lunch, not sure if it's us or the s
+  input:
+    shift: 11
+    rack: R11
+    note: few ports flapping after lunch, not sure if it's us or the switch
+  expected:
+    failure_mode: unclear
+    owner: unknown
+    safety: false
+    blocks_unsupervised: false
+    needs_review: true
+- id: n30
+  group: unclear
+  title: see photo
+  input:
+    shift: 13
+    rack: R13
+    note: see photo
+  expected:
+    failure_mode: unclear
+    owner: unknown
+    safety: false
+    blocks_unsupervised: false
+    needs_review: true

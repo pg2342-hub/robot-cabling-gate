@@ -1,0 +1,6 @@
+# Grade one shift. Pick it with --agent, e.g.  golive run evals/shift/golive.yml --agent agent:shift_07
+cases: cases.yml
+checks: checks:checks
+agent: agent:shift_15
+gate: gate.yml
+runs: 1

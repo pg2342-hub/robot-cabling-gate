@@ -1,0 +1,6 @@
+# A writer that rounds and projects, rule checks only. The gate must block it.
+cases: cases.yml
+checks: checks:checks
+agent: agent:invented_numbers
+gate: gate.yml
+runs: 1

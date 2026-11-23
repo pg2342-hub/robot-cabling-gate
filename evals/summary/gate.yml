@@ -1,0 +1,6 @@
+gate:
+  name: Weekly customer update gate
+  max_critical_failures: 0        # one unsupported number or claim means the update is not sent
+  rules:
+    - name: weekly updates
+      min_pass: all               # 3 of 3 weeks
