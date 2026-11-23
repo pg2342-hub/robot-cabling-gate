@@ -1,0 +1,5431 @@
+{
+  "agent": "agent:live_triage",
+  "gate": "Intervention note triage gate",
+  "runs": 3,
+  "decision": "no-go",
+  "summary": {
+    "by_run": [
+      {
+        "run": 1,
+        "passed": 26,
+        "total": 30,
+        "critical": 0
+      },
+      {
+        "run": 2,
+        "passed": 27,
+        "total": 30,
+        "critical": 0
+      },
+      {
+        "run": 3,
+        "passed": 29,
+        "total": 30,
+        "critical": 0
+      }
+    ],
+    "total_cost_usd": 0.737976,
+    "total_judge_cost_usd": 0.416812,
+    "mean_latency_s": 1.81448
+  },
+  "gate_result": {
+    "decision": "no-go",
+    "reasons": [
+      "run 1: clear notes passed 24 of 27, needs 25 (no-go)"
+    ],
+    "rules": [
+      {
+        "name": "clear notes",
+        "run": 1,
+        "passed": 24,
+        "total": 27,
+        "required": 25,
+        "held": false,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "safety notes",
+        "run": 1,
+        "passed": 4,
+        "total": 4,
+        "required": 4,
+        "held": true,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "unclear notes go to a person",
+        "run": 1,
+        "passed": 2,
+        "total": 3,
+        "required": 2,
+        "held": true,
+        "on_fail": "partial"
+      },
+      {
+        "name": "clear notes",
+        "run": 2,
+        "passed": 25,
+        "total": 27,
+        "required": 25,
+        "held": true,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "safety notes",
+        "run": 2,
+        "passed": 4,
+        "total": 4,
+        "required": 4,
+        "held": true,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "unclear notes go to a person",
+        "run": 2,
+        "passed": 2,
+        "total": 3,
+        "required": 2,
+        "held": true,
+        "on_fail": "partial"
+      },
+      {
+        "name": "clear notes",
+        "run": 3,
+        "passed": 27,
+        "total": 27,
+        "required": 25,
+        "held": true,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "safety notes",
+        "run": 3,
+        "passed": 4,
+        "total": 4,
+        "required": 4,
+        "held": true,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "unclear notes go to a person",
+        "run": 3,
+        "passed": 2,
+        "total": 3,
+        "required": 2,
+        "held": true,
+        "on_fail": "partial"
+      }
+    ],
+    "critical_failures": {}
+  },
+  "checks": [
+    {
+      "id": "mode_correct",
+      "text": "The note gets the right failure mode from the fixed list.",
+      "critical": false
+    },
+    {
+      "id": "owner_correct",
+      "text": "The note goes to the team that owns the fix.",
+      "critical": false
+    },
+    {
+      "id": "safety_caught",
+      "text": "Every note about a person near the robot, an e-stop, or contact is flagged as safety.",
+      "critical": true
+    },
+    {
+      "id": "no_false_safety",
+      "text": "Notes with no person, e-stop or contact are not flagged as safety.",
+      "critical": false
+    },
+    {
+      "id": "blocker_caught",
+      "text": "A live cable disturbed, or the robot moving toward or touching a person, blocks unsupervised work.",
+      "critical": true
+    },
+    {
+      "id": "no_false_blocker",
+      "text": "Other notes do not block unsupervised work.",
+      "critical": false
+    },
+    {
+      "id": "review_when_unclear",
+      "text": "Unclear notes go to a person; clear notes do not.",
+      "critical": false
+    },
+    {
+      "id": "summary_faithful",
+      "text": "The summary is one sentence that restates the tech note: what happened and, if the note says, what was done. It fails if it adds a cause, number, fix, actor or outcome that the note does not state or clearly imply, or if it contradicts the note. Plain paraphrase, expanding shorthand the note clearly means (a slot name such as C19 is the connection being made; the map is the customer's port map) and naming the rack are fine.",
+      "critical": false
+    }
+  ],
+  "cases": [
+    {
+      "id": "n01",
+      "group": "robot",
+      "title": "C05 not clicked in, reseated by hand, link came up",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.1923,
+          "cost_usd": 0.00786,
+          "judge_cost_usd": 0.005772,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It faithfully paraphrases the note in one sentence, names rack R01, and adds nothing unstated (the tech reseating by hand is clearly implied)."
+            }
+          },
+          "output": {
+            "failure_mode": "not_latched",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, cable C05 was not fully clicked in, so the tech reseated it by hand and the link came up.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00786,
+              "latency_s": 1.358
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.459,
+          "cost_usd": 0.00792,
+          "judge_cost_usd": 0.007744,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is a single sentence that faithfully paraphrases the note; attributing the connection to the robot and the reseat to the tech is clearly implied by the supervised-robot context."
+            }
+          },
+          "output": {
+            "failure_mode": "not_latched",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, cable C05 was not fully clicked in by the robot; the tech reseated it by hand and the link came up.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00792,
+              "latency_s": 1.459
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4149,
+          "cost_usd": 0.00792,
+          "judge_cost_usd": 0.005664,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that restates the note faithfully; naming the rack is allowed, and saying the robot made the connection and the tech reseated it is clearly implied by the context."
+            }
+          },
+          "output": {
+            "failure_mode": "not_latched",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, cable C05 was not fully clicked in by the robot; the tech reseated it by hand and the link came up.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00792,
+              "latency_s": 1.415
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n02",
+      "group": "robot",
+      "title": "C31 same thing, latch not engaged. 2nd one today",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.6048,
+          "cost_usd": 0.007604,
+          "judge_cost_usd": 0.003044,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that restates the note: C31's latch was not engaged and this was the second case today. It names the rack and adds no cause, fix, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "not_latched",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the connector at C31 was not latched, the second such case today.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007604,
+              "latency_s": 1.605
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.647,
+          "cost_usd": 0.007604,
+          "judge_cost_usd": 0.002944,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that restates the note faithfully: C31's latch was not engaged and it was the second case today, with the rack named and nothing added."
+            }
+          },
+          "output": {
+            "failure_mode": "not_latched",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the connector at C31 was not latched, the second such case today.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007604,
+              "latency_s": 1.647
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.6189,
+          "cost_usd": 0.007644,
+          "judge_cost_usd": 0.003052,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The summary is one sentence that restates the note (C31 latch not engaged, second today) and names rack R01, without adding a cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "not_latched",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the connector at C31 was not latched, the second such case reported today.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007644,
+              "latency_s": 1.619
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n03",
+      "group": "robot",
+      "title": "F22 landed in FE-LEAF2/5 instead of /4, moved it over",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4277,
+          "cost_usd": 0.008252,
+          "judge_cost_usd": 0.006012,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that restates the note faithfully: F22 landed in /5 instead of /4 and was moved to the intended port. Attributing the landing to the robot is clearly implied by the context, and it adds no unstated cause or actor for the fix."
+            }
+          },
+          "output": {
+            "failure_mode": "wrong_port",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the robot landed cable F22 in port FE-LEAF2/5 instead of FE-LEAF2/4, and it was moved to the correct port.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008252,
+              "latency_s": 1.428
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.7217,
+          "cost_usd": 0.008252,
+          "judge_cost_usd": 0.005932,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence restates the misland and the move to /4 without adding anything the note doesn't state or clearly imply. The robot as actor follows from the context, and /4 as the correct port follows from \"instead of /4\"."
+            }
+          },
+          "output": {
+            "failure_mode": "wrong_port",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the robot landed cable F22 in port FE-LEAF2/5 instead of FE-LEAF2/4, and it was moved to the correct port.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008252,
+              "latency_s": 1.721
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4372,
+          "cost_usd": 0.008252,
+          "judge_cost_usd": 0.006212,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The summary is a faithful one-sentence paraphrase; attributing the landing to the robot is clearly implied by the robot-cabling context, and \"moved to the correct port\" restates \"moved it over\" without adding a cause, actor, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "wrong_port",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the robot landed cable F22 in port FE-LEAF2/5 instead of FE-LEAF2/4, and it was moved to the correct port.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008252,
+              "latency_s": 1.437
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n04",
+      "group": "robot",
+      "title": "Gripper fault on C27, arm retried 3x then gave up, I finishe",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.109,
+          "cost_usd": 0.00806,
+          "judge_cost_usd": 0.00498,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully paraphrases the gripper fault on C27, the three retries before giving up, and the tech finishing by hand, adding nothing beyond naming rack R02."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R02, the robot had a gripper fault on cable C27 and stopped after three retries, and the tech finished the connection by hand.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00806,
+              "latency_s": 2.109
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.7376,
+          "cost_usd": 0.00808,
+          "judge_cost_usd": 0.004704,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully paraphrases the note (gripper fault on C27, three retries, gave up, tech finished by hand) and only adds the allowed rack name."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R02, the robot had a gripper fault on cable C27 and retried three times before stopping, and the technician finished the connection by hand.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00808,
+              "latency_s": 1.737
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8341,
+          "cost_usd": 0.00814,
+          "judge_cost_usd": 0.004836,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence faithfully restates the gripper fault on C27, the three retries, the arm giving up and the tech finishing by hand, naming only rack R02 and adding nothing the note doesn't state."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R02, the robot's gripper faulted on cable C27 and the arm retried three times before giving up, so the tech finished the connection by hand.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00814,
+              "latency_s": 1.834
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n05",
+      "group": "robot",
+      "title": "C19 gripper dropped the RJ45 under the tray, fished it out a",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.905,
+          "cost_usd": 0.008228,
+          "judge_cost_usd": 0.00372,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note (the gripper dropped the RJ45 for C19 under the tray, and the tech fished it out and plugged it in by hand), names the rack, and adds nothing unsupported."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R04, the robot's gripper dropped an RJ45 cable for C19 under the tray, and the tech retrieved it and plugged it in by hand.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008228,
+              "latency_s": 1.905
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.6189,
+          "cost_usd": 0.008228,
+          "judge_cost_usd": 0.00366,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note (the gripper dropped the C19 RJ45 under the tray and the tech retrieved and plugged it by hand), names the rack, and adds nothing unsupported."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R04 the robot's gripper dropped the RJ45 cable for C19 under the tray, and the tech retrieved it and plugged it in by hand.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008228,
+              "latency_s": 1.619
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8748,
+          "cost_usd": 0.008228,
+          "judge_cost_usd": 0.0036,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that paraphrases the note faithfully: the gripper dropped the RJ45 for C19 under the tray, and the tech fished it out and plugged it in by hand, with no added causes or outcomes."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R04, the robot's gripper dropped an RJ45 cable for C19 under the tray, and the tech retrieved it and plugged it in by hand.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008228,
+              "latency_s": 1.875
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n06",
+      "group": "robot",
+      "title": "tag on C40 reads M2, map says M1. printed a new one",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.3111,
+          "cost_usd": 0.007888,
+          "judge_cost_usd": 0.005656,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence faithfully restates the mismatch (tag M2 vs. map M1 on C40) and the tech printing a new label, adding nothing the note doesn't state or clearly imply."
+            }
+          },
+          "output": {
+            "failure_mode": "label_mismatch",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the label on cable C40 read M2 while the port map said M1, and the tech printed a new label.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007888,
+              "latency_s": 1.311
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.1696,
+          "cost_usd": 0.007888,
+          "judge_cost_usd": 0.006136,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence faithfully paraphrases the tag/map mismatch on C40 and the reprinted label, naming rack R01 and adding nothing the note doesn't state or clearly imply."
+            }
+          },
+          "output": {
+            "failure_mode": "label_mismatch",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the label on cable C40 read M2 while the port map says M1, and the tech printed a new label.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007888,
+              "latency_s": 1.169
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.1967,
+          "cost_usd": 0.007888,
+          "judge_cost_usd": 0.005556,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully restates the mismatch (tag M2 vs. map M1 on C40, rack R01) and the reprint, and adds no new cause, fix or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "label_mismatch",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the label on cable C40 read M2 while the port map says M1, and the tech printed a new label.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007888,
+              "latency_s": 1.196
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n07",
+      "group": "robot",
+      "title": "While routing C12 the arm caught the BMC cable next to it, t",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "summary_faithful"
+          ],
+          "error": "",
+          "latency_s": 1.3918,
+          "cost_usd": 0.008588,
+          "judge_cost_usd": 0.005916,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "fail",
+              "reason": "The note only says \"Reseated\" without naming who did it, and the robot could have done it, so attributing it to \"the tech\" adds an actor the note does not state or clearly imply."
+            }
+          },
+          "output": {
+            "failure_mode": "live_disturbance",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "While routing cable C12 on rack R01, the robot arm caught the neighboring BMC cable, which was already up, and pulled it half out; the tech reseated it and the link came back after about 30 seconds.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008588,
+              "latency_s": 1.392
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": false,
+          "failed_checks": [
+            "summary_faithful"
+          ],
+          "error": "",
+          "latency_s": 1.6543,
+          "cost_usd": 0.008588,
+          "judge_cost_usd": 0.007896,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "fail",
+              "reason": "The summary credits the tech with reseating the cable, but the note just says \"Reseated\" without saying who did it, and the robot makes the connections, so this adds an actor the note does not state or clearly imply."
+            }
+          },
+          "output": {
+            "failure_mode": "live_disturbance",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "While routing cable C12 on rack R01, the robot arm caught the neighboring BMC cable, which was already up, and pulled it half out; the tech reseated it and the link came back after about 30 seconds.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008588,
+              "latency_s": 1.654
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4822,
+          "cost_usd": 0.008548,
+          "judge_cost_usd": 0.003908,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary faithfully restates the note (arm caught the adjacent live BMC cable while routing C12, which was pulled half out, then reseated with the link back after ~30s), and adds only the rack name and \"robot,\" both allowed by the context."
+            }
+          },
+          "output": {
+            "failure_mode": "live_disturbance",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "While routing cable C12 on rack R01, the robot arm caught the neighboring BMC cable, which was already up, and pulled it half out; it was reseated and the link came back after about 30 seconds.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008548,
+              "latency_s": 1.482
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n08",
+      "group": "robot",
+      "title": "C47 took about 4 min, arm kept re-planning around the bundle",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8997,
+          "cost_usd": 0.0083,
+          "judge_cost_usd": 0.00588,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary faithfully restates the 4-minute re-planning delay and that the tech didn't intervene, adding nothing unsupported."
+            }
+          },
+          "output": {
+            "failure_mode": "slow_cycle",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R09, the robot took about 4 minutes to complete cable C47 as the arm kept re-planning around the bundle, but it finished without the tech stepping in.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.0083,
+              "latency_s": 1.899
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.879,
+          "cost_usd": 0.00826,
+          "judge_cost_usd": 0.004932,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence faithfully paraphrases the note (4 min, re-planning around the bundle, no tech intervention) and adds only the rack name, which is allowed."
+            }
+          },
+          "output": {
+            "failure_mode": "slow_cycle",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R09, the robot took about 4 minutes to complete cable C47 as the arm kept re-planning around the bundle, but it finished without the technician's help.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00826,
+              "latency_s": 1.879
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.7371,
+          "cost_usd": 0.00836,
+          "judge_cost_usd": 0.005532,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "single sentence faithfully restating the note's timing, re-planning cause, and no tech intervention without adding unsupported details."
+            }
+          },
+          "output": {
+            "failure_mode": "slow_cycle",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R09, the robot took about 4 minutes to complete cable C47 as the arm kept re-planning around the bundle, but it finished on its own without the tech stepping in.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00836,
+              "latency_s": 1.737
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n09",
+      "group": "robot",
+      "title": "camera lost the port on F31 twice under the aisle LEDs, thir",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.6676,
+          "cost_usd": 0.008028,
+          "judge_cost_usd": 0.003004,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single-sentence paraphrase of the note that names the rack and adds no cause, fix, actor or outcome beyond the note."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R06, the robot's camera lost track of port F31 twice under the aisle LEDs, and the third attempt succeeded.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008028,
+              "latency_s": 1.667
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8155,
+          "cost_usd": 0.007948,
+          "judge_cost_usd": 0.003388,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note, names the rack, and adds no unstated cause, fix, or outcome; attributing the camera to the robot is clearly implied by the context."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R06, the robot's camera lost the port on F31 twice under the aisle LEDs, and the third try worked.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007948,
+              "latency_s": 1.815
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.738,
+          "cost_usd": 0.007948,
+          "judge_cost_usd": 0.003248,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that restates the note, names the rack, and adds no new cause, number, fix, or outcome; calling it \"the robot's camera\" is clearly implied by the context."
+            }
+          },
+          "output": {
+            "failure_mode": "robot_fault",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R06, the robot's camera lost the port on F31 twice under the aisle LEDs, and the third try worked.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007948,
+              "latency_s": 1.738
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n10",
+      "group": "robot",
+      "title": "F28 tag printed for the P1 port, cable is on P2. swapped tag",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.3355,
+          "cost_usd": 0.009828,
+          "judge_cost_usd": 0.005932,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary faithfully restates the tag/port mismatch on F28 and the tag swap. It names rack R05 and attributes the swap to the tech who wrote the note, which the note clearly implies, without adding unsupported details."
+            }
+          },
+          "output": {
+            "failure_mode": "label_mismatch",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R05, the F28 cable carried a tag printed for port P1 while the cable was on port P2, and the tech swapped the tags.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.009828,
+              "latency_s": 2.335
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.6493,
+          "cost_usd": 0.010328,
+          "judge_cost_usd": 0.005832,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is a single faithful sentence, and attributing the tag swap to the tech is clearly implied by the tech's own shorthand note."
+            }
+          },
+          "output": {
+            "failure_mode": "label_mismatch",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R05, the F28 cable carried a tag printed for port P1 while the cable was on port P2, and the tech swapped the tags.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.010328,
+              "latency_s": 2.649
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.6602,
+          "cost_usd": 0.010708,
+          "judge_cost_usd": 0.007336,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully paraphrases the note (F28 tag printed for P1, cable on P2, tags swapped), and the tech as actor is clearly implied by the tech's own note."
+            }
+          },
+          "output": {
+            "failure_mode": "label_mismatch",
+            "owner": "robot_team",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R05, the cable on port P2 carried tag F28, which was printed for port P1, and the tech swapped the tags.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.010708,
+              "latency_s": 2.66
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n11",
+      "group": "site",
+      "title": "F03 scope fail, cleaned, passed second inspection",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.6639,
+          "cost_usd": 0.00794,
+          "judge_cost_usd": 0.0035,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single faithful paraphrase naming the rack, and expanding \"scope fail\" to a fiber end-face inspection failure is a clear implication of F03 being fiber, with no added cause, actor, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "dirty_endface",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the fiber end face at F03 failed scope inspection, was cleaned, and passed a second inspection.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00794,
+              "latency_s": 1.664
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.9315,
+          "cost_usd": 0.00794,
+          "judge_cost_usd": 0.00514,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a faithful one-sentence paraphrase that names the rack and expands F03 as a fiber connection, and \"end face\" is clearly implied by a fiber scope inspection, so it adds no cause, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "dirty_endface",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the fiber end face on F03 failed scope inspection, was cleaned, and passed the second inspection.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00794,
+              "latency_s": 1.931
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.5043,
+          "cost_usd": 0.00786,
+          "judge_cost_usd": 0.004444,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary faithfully paraphrases the note: \"scope fail\" clearly means a failed end-face inspection, and it adds no new cause, actor, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "dirty_endface",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, fiber F03 failed end face inspection, was cleaned, and passed a second inspection.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00786,
+              "latency_s": 1.504
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n12",
+      "group": "site",
+      "title": "F17 dust on ferrule again - these jumpers came out of the ba",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4147,
+          "cost_usd": 0.008056,
+          "judge_cost_usd": 0.005012,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully restates the dust on F17's ferrule and the uncapped jumpers, naming the rack and adding no cause, fix, actor or outcome the note doesn't state."
+            }
+          },
+          "output": {
+            "failure_mode": "dirty_endface",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, fiber F17 had dust on the ferrule, and the tech noted these jumpers came out of the bag without caps.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008056,
+              "latency_s": 1.414
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4439,
+          "cost_usd": 0.008136,
+          "judge_cost_usd": 0.005208,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence restates the dust on the F17 ferrule and the uncapped jumpers, names rack R01, and adds no cause, fix, actor or outcome beyond the note."
+            }
+          },
+          "output": {
+            "failure_mode": "dirty_endface",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the fiber end face at F17 had dust on the ferrule, and the tech noted these jumpers came out of the bag without caps.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008136,
+              "latency_s": 1.444
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4709,
+          "cost_usd": 0.008136,
+          "judge_cost_usd": 0.005108,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence faithfully paraphrases the note: dust on the F17 ferrule, and jumpers out of the bag without caps. \"Dust caps\" clearly expands \"caps,\" and nothing is added or contradicted."
+            }
+          },
+          "output": {
+            "failure_mode": "dirty_endface",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R01, the fiber at F17 had dust on the ferrule, and the tech noted these jumpers came out of the bag without dust caps.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008136,
+              "latency_s": 1.471
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n13",
+      "group": "site",
+      "title": "F09 jacket kinked right behind the connector, swapped in a n",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "summary_faithful"
+          ],
+          "error": "",
+          "latency_s": 1.8296,
+          "cost_usd": 0.008096,
+          "judge_cost_usd": 0.00724,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "fail",
+              "reason": "The note does not say who swapped in the new jumper (the robot makes connections), so attributing the swap to \"the tech\" adds an actor the note does not state."
+            }
+          },
+          "output": {
+            "failure_mode": "damaged_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R02, the cable for F09 had a kinked jacket right behind the connector, and the tech swapped in a new jumper from spares.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008096,
+              "latency_s": 1.829
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": false,
+          "failed_checks": [
+            "summary_faithful"
+          ],
+          "error": "",
+          "latency_s": 1.8434,
+          "cost_usd": 0.008076,
+          "judge_cost_usd": 0.006856,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "fail",
+              "reason": "The summary credits the tech with the swap, but the note never says who swapped the jumper, and in a supervised robot shift the robot could have done it, so this adds an actor."
+            }
+          },
+          "output": {
+            "failure_mode": "damaged_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R02, cable F09 had a kinked jacket right behind the connector, and the tech replaced it with a new jumper from spares.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008076,
+              "latency_s": 1.843
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.089,
+          "cost_usd": 0.008076,
+          "judge_cost_usd": 0.005636,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully restates the kinked F09 jacket and the replacement jumper from spares, and attributing the swap to the tech is clearly implied by the tech's own note."
+            }
+          },
+          "output": {
+            "failure_mode": "damaged_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R02, cable F09 had a kinked jacket right behind the connector, and the tech replaced it with a new jumper from spares.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008076,
+              "latency_s": 2.089
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n14",
+      "group": "site",
+      "title": "Kit for this rack came 2 copper patch cords short, pulled fr",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.9354,
+          "cost_usd": 0.008072,
+          "judge_cost_usd": 0.003456,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that accurately restates the note: the kit was two copper patch cords short, they were pulled from spares, and there was a 15-minute wait. It names the rack and adds nothing unsupported."
+            }
+          },
+          "output": {
+            "failure_mode": "missing_or_short_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "The cable kit for rack R03 was missing two copper patch cords, which were replaced from spares with a 15-minute wait.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008072,
+              "latency_s": 2.935
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8699,
+          "cost_usd": 0.008072,
+          "judge_cost_usd": 0.003296,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note (two copper cords short, pulled from spares, 15-minute wait), names the rack, and adds nothing unstated."
+            }
+          },
+          "output": {
+            "failure_mode": "missing_or_short_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "The cable kit for rack R03 was missing two copper patch cords, which were pulled from spares with a 15-minute wait.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008072,
+              "latency_s": 1.87
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.9552,
+          "cost_usd": 0.008152,
+          "judge_cost_usd": 0.006032,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one sentence faithfully restates the shortage, the use of spares and the 15-minute wait, names the rack, and adds no unsupported cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "missing_or_short_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "The cable kit for rack R03 was missing two copper patch cords, which were pulled from spares, resulting in a 15-minute wait.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008152,
+              "latency_s": 1.955
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n15",
+      "group": "site",
+      "title": "Rear door locked, waited on a security badge for 20 min",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.9652,
+          "cost_usd": 0.00778,
+          "judge_cost_usd": 0.005812,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is a single sentence that faithfully paraphrases the note (locked rear door, 20-minute wait for a security badge), names the rack, and adds no new cause, fix, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "The rear door of rack R06 was locked, and the tech waited 20 minutes for a security badge.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00778,
+              "latency_s": 1.965
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8428,
+          "cost_usd": 0.00776,
+          "judge_cost_usd": 0.005408,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully paraphrases the locked rear door and the 20-minute wait for a badge, naming the rack without adding any cause, fix or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "The rear door of rack R06 was locked, and work waited about 20 minutes for a security badge.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00776,
+              "latency_s": 1.843
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.61,
+          "cost_usd": 0.00778,
+          "judge_cost_usd": 0.005692,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully paraphrases the locked rear door and the 20-minute wait for a security badge, adding nothing beyond naming the rack."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "The rear door of rack R06 was locked, and the work waited about 20 minutes for a security badge.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.00778,
+              "latency_s": 2.61
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n16",
+      "group": "site",
+      "title": "Somebody left a laptop cart in the aisle, robot sat for 4 mi",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.3707,
+          "cost_usd": 0.008216,
+          "judge_cost_usd": 0.00528,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one sentence restates the note faithfully (cart in the aisle, robot waited about 4 minutes until it was moved, nobody near it) and adds only the rack name and the clearly implied blocking."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "A laptop cart left in the aisle blocked the robot at rack R08, and it waited about 4 minutes until the cart was moved, with nobody near it.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008216,
+              "latency_s": 1.37
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4102,
+          "cost_usd": 0.008076,
+          "judge_cost_usd": 0.005992,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary paraphrases the note faithfully (cart in the aisle, robot waited about 4 minutes until the cart was moved), names the rack, and adds no unsupported cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "A laptop cart left in the aisle at rack R08 blocked the robot, which waited about 4 minutes until the cart was moved.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008076,
+              "latency_s": 1.41
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.2805,
+          "cost_usd": 0.008076,
+          "judge_cost_usd": 0.005192,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one faithful sentence: the cart in the aisle blocking the robot is clearly implied, the 4-minute wait until the cart was moved matches the note, and naming rack R08 is allowed."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "A laptop cart left in the aisle blocked the robot at rack R08, and it waited about 4 minutes until the cart was moved.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008076,
+              "latency_s": 1.28
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n17",
+      "group": "site",
+      "title": "cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch wi",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.4824,
+          "cost_usd": 0.008096,
+          "judge_cost_usd": 0.003124,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully paraphrases the note, names the rack, and expands \"mgmt\" without adding any cause, fix, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "missing_or_short_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R05, the cord for C33 was 0.5 m long but needs to be 1 m to reach the management switch without strain.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008096,
+              "latency_s": 2.482
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.6213,
+          "cost_usd": 0.008156,
+          "judge_cost_usd": 0.003596,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note: the 0.5 m cord is too short and a 1 m cord is needed, with only the rack named and \"mgmt\" expanded, and nothing unstated is added."
+            }
+          },
+          "output": {
+            "failure_mode": "missing_or_short_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R05, the 0.5 m cord for C33 was too short; a 1 m cord is needed to reach the management switch without strain.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008156,
+              "latency_s": 1.621
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.9008,
+          "cost_usd": 0.008176,
+          "judge_cost_usd": 0.00576,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary restates the note faithfully: \"too short\" is clearly implied, and naming the rack and expanding \"mgmt\" are allowed, with no added cause, fix or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "missing_or_short_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R05, the 0.5 m cord for port C33 was too short; a 1 m cord is needed to reach the management switch without strain.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008176,
+              "latency_s": 1.901
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n18",
+      "group": "site",
+      "title": "F14 bend radius blown near the boot, cable came that way out",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8193,
+          "cost_usd": 0.007844,
+          "judge_cost_usd": 0.00528,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully paraphrases the note (F14 bend radius exceeded near the boot, cable came that way from the bundle) and adds no cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "damaged_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R06, cable F14 arrived out of the bundle bent past its bend radius near the boot.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007844,
+              "latency_s": 1.819
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8366,
+          "cost_usd": 0.007884,
+          "judge_cost_usd": 0.005828,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is a faithful one-sentence paraphrase: the bend radius on F14 was exceeded near the boot, and the cable came out of the bundle that way, with nothing added."
+            }
+          },
+          "output": {
+            "failure_mode": "damaged_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R06, cable F14 arrived out of the bundle bent past its bend radius near the connector boot.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007884,
+              "latency_s": 1.836
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8575,
+          "cost_usd": 0.007924,
+          "judge_cost_usd": 0.003316,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence paraphrase faithfully restates that F14's bend radius was exceeded near the boot and that the cable came that way out of the bundle, naming the rack and adding nothing."
+            }
+          },
+          "output": {
+            "failure_mode": "damaged_cable",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R06, cable F14 was bent past its bend radius near the boot and arrived that way out of the bundle.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007924,
+              "latency_s": 1.857
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n19",
+      "group": "site",
+      "title": "Tray 9 not in the rack yet when the robot got there, it skip",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "summary_faithful"
+          ],
+          "error": "",
+          "latency_s": 2.1289,
+          "cost_usd": 0.008172,
+          "judge_cost_usd": 0.006052,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "fail",
+              "reason": "The summary says the robot returned \"to complete them,\" but the note only says it came back after install and never says the connections were completed, so this adds an outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Tray 9 was not yet installed in rack R08 when the robot arrived, so it skipped those slots and returned to complete them after the tray was installed.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008172,
+              "latency_s": 2.129
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.3075,
+          "cost_usd": 0.008132,
+          "judge_cost_usd": 0.003104,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note, names the rack, and adds no unstated cause, fix, actor, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Tray 9 was not yet installed in rack R08 when the robot arrived, so the robot skipped those slots and came back after the tray was installed.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008132,
+              "latency_s": 2.307
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8663,
+          "cost_usd": 0.008132,
+          "judge_cost_usd": 0.002964,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully paraphrases the note, naming the rack and adding no cause, actor, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "access_blocked",
+            "owner": "site_ops",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Tray 9 was not yet installed in rack R08 when the robot arrived, so it skipped those slots and returned to them after the tray was installed.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008132,
+              "latency_s": 1.866
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n20",
+      "group": "customer",
+      "title": "F30 no link. Robot did it right per the map but the map had ",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.3546,
+          "cost_usd": 0.008364,
+          "judge_cost_usd": 0.005672,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully paraphrases the note (F30 no link, swapped P1/P2 in the tray 15 map, Network fixed the map, robot re-ran) and adds nothing unsupported."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Cable F30 on rack R02 had no link because the port map had P1 and P2 swapped for tray 15; the network team corrected the map and the robot re-ran the connection.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008364,
+              "latency_s": 1.354
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.5102,
+          "cost_usd": 0.008584,
+          "judge_cost_usd": 0.003256,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully restates the note (no link, map swap, network fixed the map, robot re-ran) without adding anything unsupported."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Cable F30 on rack R02 had no link because the port map had P1 and P2 swapped for tray 15; the robot had followed the map correctly, network corrected the map, and the robot re-ran the connection.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008584,
+              "latency_s": 1.51
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.051,
+          "cost_usd": 0.008624,
+          "judge_cost_usd": 0.005684,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence faithfully restates the no-link issue, the swapped P1/P2 map entry for tray 15, the network team's map fix and the robot's re-run, without adding any unstated outcome or detail."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "Cable F30 on rack R02 had no link because the port map had P1 and P2 swapped for tray 15; the robot had followed the map correctly, the network team fixed the map, and the robot re-ran the connection.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008624,
+              "latency_s": 2.051
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n21",
+      "group": "customer",
+      "title": "F35 leaf port was admin-down, network team enabled it, link ",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.3707,
+          "cost_usd": 0.007852,
+          "judge_cost_usd": 0.0031,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary paraphrases the note faithfully (admin-down port, network team enabled it, link up) and adds nothing beyond naming the rack."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R08, the leaf switch port for F35 was administratively down; the network team enabled it and the link came up.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007852,
+              "latency_s": 1.37
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4142,
+          "cost_usd": 0.007852,
+          "judge_cost_usd": 0.0031,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully paraphrases the note (admin-down port, network team enabled it, link up) and adds nothing beyond naming the rack."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R08, the leaf switch port for F35 was administratively down; the network team enabled it and the link came up.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007852,
+              "latency_s": 1.414
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.3655,
+          "cost_usd": 0.007892,
+          "judge_cost_usd": 0.003028,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully paraphrases the note (admin-down port, network team enabled it, link up) and names the rack without adding anything."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R08, the leaf switch port for F35 was administratively disabled; the network team enabled it and the link came up.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007892,
+              "latency_s": 1.365
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n22",
+      "group": "customer",
+      "title": "MGMT-SW2 uplink not patched yet at shift start, network team",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.2313,
+          "cost_usd": 0.009928,
+          "judge_cost_usd": 0.0032,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully paraphrases the note, names rack R03, and adds no cause, fix, actor, or outcome beyond what the note states."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "At shift start on rack R03, the MGMT-SW2 uplink was not yet patched, and the network team finished it before the robot reached those ports.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.009928,
+              "latency_s": 2.231
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.2009,
+          "cost_usd": 0.009648,
+          "judge_cost_usd": 0.00298,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note, names the rack, and adds nothing the note doesn't say."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R03, the MGMT-SW2 uplink was not yet patched at shift start, and the network team finished it before the robot reached those ports.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.009648,
+              "latency_s": 2.201
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.668,
+          "cost_usd": 0.008208,
+          "judge_cost_usd": 0.002996,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully paraphrases the note, names the rack and shift, and adds nothing the note does not state."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R03, the MGMT-SW2 uplink was not yet patched at the start of shift 3, and the network team finished it before the robot reached those ports.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008208,
+              "latency_s": 1.668
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n23",
+      "group": "customer",
+      "title": "Map rev C on the tablet and rev D on the rack sheet disagree",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.0,
+          "cost_usd": 0.008568,
+          "judge_cost_usd": 0.0044,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is a single faithful sentence: it names the rack, expands \"map\" to port map and \"network\" to the network team, and adds no cause, fix or outcome beyond the note."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R04, the port map revision on the tablet (rev C) and on the rack sheet (rev D) disagreed for FE-LEAF2, so the fiber was held until the network team confirmed rev D.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008568,
+              "latency_s": 2.0
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.4271,
+          "cost_usd": 0.008568,
+          "judge_cost_usd": 0.00486,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is a single sentence that faithfully restates the rev C/rev D mismatch on FE-LEAF2 and the hold on fiber until network confirmed rev D, adding nothing beyond allowed expansions."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R04, the port map revision on the tablet (rev C) and on the rack sheet (rev D) disagreed for FE-LEAF2, so the fiber was held until the network team confirmed rev D.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008568,
+              "latency_s": 2.427
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.1931,
+          "cost_usd": 0.008508,
+          "judge_cost_usd": 0.005068,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully paraphrases the note: the rev C/rev D mismatch on FE-LEAF2, and fiber held until network confirmed rev D, without adding unstated facts."
+            }
+          },
+          "output": {
+            "failure_mode": "customer_config",
+            "owner": "customer_network",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "On rack R04, the port map revision on the tablet (rev C) did not match the rack sheet (rev D) for FE-LEAF2, so the fiber was held until the network team confirmed rev D.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008508,
+              "latency_s": 2.193
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n24",
+      "group": "safety",
+      "title": "Contractor walked into the aisle behind the rack while the a",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.148,
+          "cost_usd": 0.008204,
+          "judge_cost_usd": 0.003544,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that paraphrases the note faithfully (\"arm was out\" becomes extended, \"went again\" becomes resumed, and the rack is named) and adds no cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "site_ops",
+            "safety": true,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "A contractor walked into the aisle behind rack R02 while the robot arm was extended; the robot froze within a second and resumed once he left, with no contact.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008204,
+              "latency_s": 1.148
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.1553,
+          "cost_usd": 0.008204,
+          "judge_cost_usd": 0.003424,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note (arm out \u2192 extended, went again \u2192 resumed, rack R02 named) and adds no cause, number, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "site_ops",
+            "safety": true,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "A contractor walked into the aisle behind rack R02 while the robot arm was extended; the robot froze within a second and resumed once he left, with no contact.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008204,
+              "latency_s": 1.155
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.2948,
+          "cost_usd": 0.008244,
+          "judge_cost_usd": 0.004692,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note: the contractor in the aisle, the arm out, the freeze within a second, the resume, and no contact. It names rack R02 and adds no unstated cause, fix or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "site_ops",
+            "safety": true,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "A contractor walked into the aisle behind rack R02 while the robot arm was extended; the robot froze within a second, resumed once he left, and there was no contact.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008244,
+              "latency_s": 1.295
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n25",
+      "group": "safety",
+      "title": "Arm swung toward my hand when I reached in to clear a zip ti",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.18,
+          "cost_usd": 0.008428,
+          "judge_cost_usd": 0.003492,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence paraphrases the note (arm swung toward the hand while clearing a zip tie, e-stop pressed, close but no contact), names the rack, and adds nothing unsupported."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "robot_team",
+            "safety": true,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "At rack R03, the robot arm swung toward a technician's hand as they reached in to clear a zip tie; the technician pressed the e-stop, and the arm came close but did not touch them.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008428,
+              "latency_s": 2.18
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.0432,
+          "cost_usd": 0.008408,
+          "judge_cost_usd": 0.003308,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence faithfully paraphrases the note (arm swung, zip tie, e-stop, close but no contact) and only adds the rack name, which is allowed."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "robot_team",
+            "safety": true,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "At rack R03 the robot arm swung toward the tech's hand as they reached in to clear a zip tie; the tech hit the e-stop, and the arm came close but did not touch them.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008408,
+              "latency_s": 2.043
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.6928,
+          "cost_usd": 0.008428,
+          "judge_cost_usd": 0.003572,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The summary is one sentence that accurately paraphrases the note (arm swung toward the hand, the tech hit the e-stop, the arm came close without contact) and names the rack, adding nothing unsupported."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "robot_team",
+            "safety": true,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "On rack R03, the robot arm swung toward the tech's hand as they reached in to clear a zip tie; the tech pressed the e-stop, and the arm came close but did not touch them.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008428,
+              "latency_s": 2.692
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n26",
+      "group": "safety",
+      "title": "Robot pinched my glove on the fiber tray door while I was ho",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.7338,
+          "cost_usd": 0.008216,
+          "judge_cost_usd": 0.003424,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully paraphrases the note: it names the rack, describes the pinch on the fiber tray door, and states there was no injury and no glove damage, adding nothing new."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "robot_team",
+            "safety": true,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "At rack R04, the robot pinched a technician's glove on the fiber tray door while the technician was holding it open; there was no injury and the glove was not damaged.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008216,
+              "latency_s": 1.734
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.2828,
+          "cost_usd": 0.008196,
+          "judge_cost_usd": 0.00304,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is one sentence that faithfully restates the note, names the rack, and adds no unsupported cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "robot_team",
+            "safety": true,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "At rack R04, the robot pinched a technician's glove on the fiber tray door while the technician was holding the door open; there was no injury and the glove was fine.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008196,
+              "latency_s": 2.283
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.8851,
+          "cost_usd": 0.008236,
+          "judge_cost_usd": 0.003108,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "na",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully restates the note, names the rack, and adds no cause, fix, actor, or outcome beyond what the note says."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "robot_team",
+            "safety": true,
+            "blocks_unsupervised": true,
+            "needs_review": false,
+            "summary": "At rack R04, the robot pinched the tech's glove on the fiber tray door while the tech was holding the door open; there was no injury and the glove was not damaged.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008236,
+              "latency_s": 1.885
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n27",
+      "group": "safety",
+      "title": "Electrician working the PDU in this row pressed the stop as ",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.9785,
+          "cost_usd": 0.008048,
+          "judge_cost_usd": 0.00334,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note (\"not about the robot\" becomes \"not because of anything the robot did\") and adds no cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "site_ops",
+            "safety": true,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "An electrician working on the PDU in this row pressed the stop as a precaution while he opened the panel, not because of anything the robot did.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008048,
+              "latency_s": 1.978
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.7575,
+          "cost_usd": 0.008048,
+          "judge_cost_usd": 0.00314,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note, expanding PDU without adding any cause, actor, or outcome the note doesn't state."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "site_ops",
+            "safety": true,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "An electrician working on the power distribution unit in this row pressed the stop as a precaution while he opened the panel, not because of the robot.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008048,
+              "latency_s": 1.757
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.0165,
+          "cost_usd": 0.008048,
+          "judge_cost_usd": 0.0032,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "na",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note, expanding PDU to power distribution unit, and adds no cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "safety_stop",
+            "owner": "site_ops",
+            "safety": true,
+            "blocks_unsupervised": false,
+            "needs_review": false,
+            "summary": "An electrician working on the power distribution unit in this row pressed the stop as a precaution while opening the panel; it was not about the robot.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008048,
+              "latency_s": 2.016
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n28",
+      "group": "unclear",
+      "title": "something off with the fiber on this one, ask Dana",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 2.8851,
+          "cost_usd": 0.007768,
+          "judge_cost_usd": 0.005372,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The single sentence faithfully paraphrases the note (a fiber issue, ask Dana), adds no cause, fix or outcome, and naming the shift and rack is allowed."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "On shift 9 at rack R09, the tech noted something was off with the fiber and referred questions to Dana.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007768,
+              "latency_s": 2.885
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.9986,
+          "cost_usd": 0.007788,
+          "judge_cost_usd": 0.004876,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary faithfully restates the note (fiber issue, ask Dana) without adding a cause, fix, number or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "On shift 9 at rack R09, the tech reported something off with the fiber and suggested asking Dana for details.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007788,
+              "latency_s": 1.998
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.9416,
+          "cost_usd": 0.007768,
+          "judge_cost_usd": 0.005432,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is a single-sentence paraphrase of the note that adds no cause, fix, actor or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "On rack R09 during shift 9, the tech noted something was off with a fiber and referred questions to Dana.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007768,
+              "latency_s": 1.941
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n29",
+      "group": "unclear",
+      "title": "few ports flapping after lunch, not sure if it's us or the s",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.4203,
+          "cost_usd": 0.008092,
+          "judge_cost_usd": 0.005076,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "It is one sentence that faithfully paraphrases the note (\"after lunch\" as afternoon, \"us\" as the robot work) and names the rack without adding any cause, fix, number or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "On rack R11 during shift 11, a few ports were flapping in the afternoon, and the tech was not sure whether the robot work or the switch was the cause.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.008092,
+              "latency_s": 1.42
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.7096,
+          "cost_usd": 0.007932,
+          "judge_cost_usd": 0.005484,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The one-sentence summary restates the note faithfully: it names the rack and reads \"us\" as the robot cabling work, which the context clearly implies, without adding any cause, fix or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "On rack R11 a few ports were flapping after lunch, and the tech was not sure whether the robot work or the switch was the cause.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007932,
+              "latency_s": 1.709
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 1.7416,
+          "cost_usd": 0.007932,
+          "judge_cost_usd": 0.005244,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "pass",
+              "reason": "The output is a single sentence that faithfully paraphrases the note, reasonably reading \"us\" as the robot cabling work, and adds no unstated cause, fix, or outcome."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "On rack R11, a few ports were flapping after lunch, and the tech was not sure whether the robot work or the switch was the cause.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007932,
+              "latency_s": 1.741
+            }
+          }
+        }
+      ]
+    },
+    {
+      "id": "n30",
+      "group": "unclear",
+      "title": "see photo",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "summary_faithful"
+          ],
+          "error": "",
+          "latency_s": 1.5898,
+          "cost_usd": 0.007676,
+          "judge_cost_usd": 0.003632,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "fail",
+              "reason": "The note says only \"see photo,\" but the summary adds that the tech stepped in, an action the note does not state or imply."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "On shift 13 at rack R13, the tech stepped in and referred to a photo without describing what happened.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007676,
+              "latency_s": 1.59
+            }
+          }
+        },
+        {
+          "run": 2,
+          "passed": false,
+          "failed_checks": [
+            "summary_faithful"
+          ],
+          "error": "",
+          "latency_s": 1.8575,
+          "cost_usd": 0.007776,
+          "judge_cost_usd": 0.003692,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "fail",
+              "reason": "The summary claims \"the tech stepped in,\" but the note says only \"see photo,\" so it adds an action the note neither states nor implies."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "The tech stepped in at rack R13 during shift 13, but the note only says to see a photo and does not describe what happened.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007776,
+              "latency_s": 1.857
+            }
+          }
+        },
+        {
+          "run": 3,
+          "passed": false,
+          "failed_checks": [
+            "summary_faithful"
+          ],
+          "error": "",
+          "latency_s": 1.7627,
+          "cost_usd": 0.007756,
+          "judge_cost_usd": 0.00402,
+          "verdicts": {
+            "mode_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "owner_correct": {
+              "result": "pass",
+              "reason": ""
+            },
+            "safety_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_safety": {
+              "result": "pass",
+              "reason": ""
+            },
+            "blocker_caught": {
+              "result": "na",
+              "reason": ""
+            },
+            "no_false_blocker": {
+              "result": "pass",
+              "reason": ""
+            },
+            "review_when_unclear": {
+              "result": "pass",
+              "reason": ""
+            },
+            "summary_faithful": {
+              "result": "fail",
+              "reason": "The summary claims \"the tech stepped in,\" which the note (\"see photo\") does not state or clearly imply."
+            }
+          },
+          "output": {
+            "failure_mode": "unclear",
+            "owner": "unknown",
+            "safety": false,
+            "blocks_unsupervised": false,
+            "needs_review": true,
+            "summary": "On shift 13 at rack R13, the tech stepped in and noted only \"see photo\" without describing what happened.",
+            "_meta": {
+              "model": "claude-opus-5-5",
+              "cost_usd": 0.007756,
+              "latency_s": 1.763
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

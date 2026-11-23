@@ -1,0 +1,6502 @@
+{
+  "agent": "robot log, shift 5",
+  "gate": "Robot cabling shift gate",
+  "runs": 1,
+  "decision": "partial",
+  "summary": {
+    "by_run": [
+      {
+        "run": 1,
+        "passed": 87,
+        "total": 90,
+        "critical": 0
+      }
+    ],
+    "total_cost_usd": 0.0,
+    "total_judge_cost_usd": 0.0,
+    "mean_latency_s": 5e-06
+  },
+  "gate_result": {
+    "decision": "partial",
+    "reasons": [
+      "run 1: front-end fiber connections passed 34 of 36, needs 35 (partial)"
+    ],
+    "rules": [
+      {
+        "name": "copper management connections",
+        "run": 1,
+        "passed": 53,
+        "total": 54,
+        "required": 53,
+        "held": true,
+        "on_fail": "no-go"
+      },
+      {
+        "name": "front-end fiber connections",
+        "run": 1,
+        "passed": 34,
+        "total": 36,
+        "required": 35,
+        "held": false,
+        "on_fail": "partial"
+      }
+    ],
+    "critical_failures": {}
+  },
+  "checks": [
+    {
+      "id": "right_port",
+      "text": "The cable lands in the switch port the port map names.",
+      "critical": false
+    },
+    {
+      "id": "latched",
+      "text": "The connector is fully seated and latched.",
+      "critical": false
+    },
+    {
+      "id": "link_up",
+      "text": "The link comes up on the switch after the connection.",
+      "critical": false
+    },
+    {
+      "id": "label_match",
+      "text": "The scanned label matches the rack and the port map label.",
+      "critical": false
+    },
+    {
+      "id": "endface_clean",
+      "text": "Fiber only: the end face passes inspection before insertion, with no cleaning.",
+      "critical": false
+    },
+    {
+      "id": "light_level",
+      "text": "Fiber only: receive power is at or above -7.0 dBm once the link is up.",
+      "critical": false
+    },
+    {
+      "id": "within_cycle_time",
+      "text": "The connection finishes inside its cycle-time ceiling.",
+      "critical": false
+    },
+    {
+      "id": "no_intervention",
+      "text": "Nobody had to step in: the robot finished the connection on its own.",
+      "critical": false
+    },
+    {
+      "id": "no_live_disturbance",
+      "text": "The robot never knocks loose a live cable (one already linked up, on this rack or a neighbor).",
+      "critical": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "C01",
+      "group": "copper",
+      "title": "T01-MGMT1 to MGMT-SW1/1",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0004,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 109.0,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T01-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C01",
+            "switch_port": "MGMT-SW1/1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C02",
+      "group": "copper",
+      "title": "T01-MGMT2 to MGMT-SW1/2",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 78.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T01-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C02",
+            "switch_port": "MGMT-SW1/2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C03",
+      "group": "copper",
+      "title": "T01-MGMT3 to MGMT-SW1/3",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 119.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T01-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C03",
+            "switch_port": "MGMT-SW1/3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C04",
+      "group": "copper",
+      "title": "T02-MGMT1 to MGMT-SW1/4",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 105.5,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T02-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C04",
+            "switch_port": "MGMT-SW1/4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C05",
+      "group": "copper",
+      "title": "T02-MGMT2 to MGMT-SW1/5",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 97.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T02-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C05",
+            "switch_port": "MGMT-SW1/5"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C06",
+      "group": "copper",
+      "title": "T02-MGMT3 to MGMT-SW1/6",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 87.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T02-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C06",
+            "switch_port": "MGMT-SW1/6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C07",
+      "group": "copper",
+      "title": "T03-MGMT1 to MGMT-SW1/7",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 115.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T03-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C07",
+            "switch_port": "MGMT-SW1/7"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C08",
+      "group": "copper",
+      "title": "T03-MGMT2 to MGMT-SW1/8",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 116.0,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T03-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C08",
+            "switch_port": "MGMT-SW1/8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C09",
+      "group": "copper",
+      "title": "T03-MGMT3 to MGMT-SW1/9",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 95.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T03-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C09",
+            "switch_port": "MGMT-SW1/9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C10",
+      "group": "copper",
+      "title": "T04-MGMT1 to MGMT-SW1/10",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 108.4,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T04-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C10",
+            "switch_port": "MGMT-SW1/10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C11",
+      "group": "copper",
+      "title": "T04-MGMT2 to MGMT-SW1/11",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 99.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T04-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C11",
+            "switch_port": "MGMT-SW1/11"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C12",
+      "group": "copper",
+      "title": "T04-MGMT3 to MGMT-SW1/12",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 107.8,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T04-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C12",
+            "switch_port": "MGMT-SW1/12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C13",
+      "group": "copper",
+      "title": "T05-MGMT1 to MGMT-SW1/13",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 117.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T05-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C13",
+            "switch_port": "MGMT-SW1/13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C14",
+      "group": "copper",
+      "title": "T05-MGMT2 to MGMT-SW1/14",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 94.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T05-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C14",
+            "switch_port": "MGMT-SW1/14"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C15",
+      "group": "copper",
+      "title": "T05-MGMT3 to MGMT-SW1/15",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 115.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T05-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C15",
+            "switch_port": "MGMT-SW1/15"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C16",
+      "group": "copper",
+      "title": "T06-MGMT1 to MGMT-SW1/16",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 110.0,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T06-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C16",
+            "switch_port": "MGMT-SW1/16"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C17",
+      "group": "copper",
+      "title": "T06-MGMT2 to MGMT-SW1/17",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 102.8,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T06-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C17",
+            "switch_port": "MGMT-SW1/17"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C18",
+      "group": "copper",
+      "title": "T06-MGMT3 to MGMT-SW1/18",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 109.0,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T06-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C18",
+            "switch_port": "MGMT-SW1/18"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C19",
+      "group": "copper",
+      "title": "T07-MGMT1 to MGMT-SW1/19",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 97.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T07-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C19",
+            "switch_port": "MGMT-SW1/19"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C20",
+      "group": "copper",
+      "title": "T07-MGMT2 to MGMT-SW1/20",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 115.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T07-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C20",
+            "switch_port": "MGMT-SW1/20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C21",
+      "group": "copper",
+      "title": "T07-MGMT3 to MGMT-SW1/21",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 80.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T07-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C21",
+            "switch_port": "MGMT-SW1/21"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C22",
+      "group": "copper",
+      "title": "T08-MGMT1 to MGMT-SW1/22",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 89.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T08-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C22",
+            "switch_port": "MGMT-SW1/22"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C23",
+      "group": "copper",
+      "title": "T08-MGMT2 to MGMT-SW1/23",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 112.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T08-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C23",
+            "switch_port": "MGMT-SW1/23"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C24",
+      "group": "copper",
+      "title": "T08-MGMT3 to MGMT-SW1/24",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 81.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T08-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C24",
+            "switch_port": "MGMT-SW1/24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C25",
+      "group": "copper",
+      "title": "T09-MGMT1 to MGMT-SW1/25",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 111.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T09-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C25",
+            "switch_port": "MGMT-SW1/25"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C26",
+      "group": "copper",
+      "title": "T09-MGMT2 to MGMT-SW1/26",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 112.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T09-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C26",
+            "switch_port": "MGMT-SW1/26"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C27",
+      "group": "copper",
+      "title": "T09-MGMT3 to MGMT-SW1/27",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 103.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T09-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C27",
+            "switch_port": "MGMT-SW1/27"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C28",
+      "group": "copper",
+      "title": "T10-MGMT1 to MGMT-SW2/1",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 119.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T10-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C28",
+            "switch_port": "MGMT-SW2/1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C29",
+      "group": "copper",
+      "title": "T10-MGMT2 to MGMT-SW2/2",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 117.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T10-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C29",
+            "switch_port": "MGMT-SW2/2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C30",
+      "group": "copper",
+      "title": "T10-MGMT3 to MGMT-SW2/3",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 84.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T10-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C30",
+            "switch_port": "MGMT-SW2/3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C31",
+      "group": "copper",
+      "title": "T11-MGMT1 to MGMT-SW2/4",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 98.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T11-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C31",
+            "switch_port": "MGMT-SW2/4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C32",
+      "group": "copper",
+      "title": "T11-MGMT2 to MGMT-SW2/5",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 93.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T11-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C32",
+            "switch_port": "MGMT-SW2/5"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C33",
+      "group": "copper",
+      "title": "T11-MGMT3 to MGMT-SW2/6",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "no_intervention"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "fail",
+              "reason": "tech swapped in a longer cord from spares"
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 99.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": {
+              "action": "swapped in a longer cord from spares",
+              "by": "tech"
+            },
+            "kind": "copper",
+            "label_scanned": "R05-T11-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C33",
+            "switch_port": "MGMT-SW2/6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C34",
+      "group": "copper",
+      "title": "T12-MGMT1 to MGMT-SW2/7",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 116.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T12-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C34",
+            "switch_port": "MGMT-SW2/7"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C35",
+      "group": "copper",
+      "title": "T12-MGMT2 to MGMT-SW2/8",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 89.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T12-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C35",
+            "switch_port": "MGMT-SW2/8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C36",
+      "group": "copper",
+      "title": "T12-MGMT3 to MGMT-SW2/9",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 84.4,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T12-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C36",
+            "switch_port": "MGMT-SW2/9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C37",
+      "group": "copper",
+      "title": "T13-MGMT1 to MGMT-SW2/10",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 113.4,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T13-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C37",
+            "switch_port": "MGMT-SW2/10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C38",
+      "group": "copper",
+      "title": "T13-MGMT2 to MGMT-SW2/11",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 79.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T13-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C38",
+            "switch_port": "MGMT-SW2/11"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C39",
+      "group": "copper",
+      "title": "T13-MGMT3 to MGMT-SW2/12",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 105.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T13-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C39",
+            "switch_port": "MGMT-SW2/12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C40",
+      "group": "copper",
+      "title": "T14-MGMT1 to MGMT-SW2/13",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 82.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T14-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C40",
+            "switch_port": "MGMT-SW2/13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C41",
+      "group": "copper",
+      "title": "T14-MGMT2 to MGMT-SW2/14",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 86.3,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T14-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C41",
+            "switch_port": "MGMT-SW2/14"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C42",
+      "group": "copper",
+      "title": "T14-MGMT3 to MGMT-SW2/15",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 89.0,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T14-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C42",
+            "switch_port": "MGMT-SW2/15"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C43",
+      "group": "copper",
+      "title": "T15-MGMT1 to MGMT-SW2/16",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 118.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T15-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C43",
+            "switch_port": "MGMT-SW2/16"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C44",
+      "group": "copper",
+      "title": "T15-MGMT2 to MGMT-SW2/17",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 72.5,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T15-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C44",
+            "switch_port": "MGMT-SW2/17"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C45",
+      "group": "copper",
+      "title": "T15-MGMT3 to MGMT-SW2/18",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 94.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T15-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C45",
+            "switch_port": "MGMT-SW2/18"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C46",
+      "group": "copper",
+      "title": "T16-MGMT1 to MGMT-SW2/19",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 102.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T16-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C46",
+            "switch_port": "MGMT-SW2/19"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C47",
+      "group": "copper",
+      "title": "T16-MGMT2 to MGMT-SW2/20",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 90.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T16-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C47",
+            "switch_port": "MGMT-SW2/20"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C48",
+      "group": "copper",
+      "title": "T16-MGMT3 to MGMT-SW2/21",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 75.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T16-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C48",
+            "switch_port": "MGMT-SW2/21"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C49",
+      "group": "copper",
+      "title": "T17-MGMT1 to MGMT-SW2/22",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 89.3,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T17-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C49",
+            "switch_port": "MGMT-SW2/22"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C50",
+      "group": "copper",
+      "title": "T17-MGMT2 to MGMT-SW2/23",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 78.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T17-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C50",
+            "switch_port": "MGMT-SW2/23"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C51",
+      "group": "copper",
+      "title": "T17-MGMT3 to MGMT-SW2/24",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 90.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T17-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C51",
+            "switch_port": "MGMT-SW2/24"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C52",
+      "group": "copper",
+      "title": "T18-MGMT1 to MGMT-SW2/25",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 114.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T18-M1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C52",
+            "switch_port": "MGMT-SW2/25"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C53",
+      "group": "copper",
+      "title": "T18-MGMT2 to MGMT-SW2/26",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 79.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T18-M2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C53",
+            "switch_port": "MGMT-SW2/26"
+          }
+        }
+      ]
+    },
+    {
+      "id": "C54",
+      "group": "copper",
+      "title": "T18-MGMT3 to MGMT-SW2/27",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "na",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "na",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 73.8,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": null,
+            "intervention": null,
+            "kind": "copper",
+            "label_scanned": "R05-T18-M3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": null,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "C54",
+            "switch_port": "MGMT-SW2/27"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F01",
+      "group": "fiber",
+      "title": "T01-DPU-P1 to FE-LEAF1/1",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 180.3,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T01-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.8,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F01",
+            "switch_port": "FE-LEAF1/1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F02",
+      "group": "fiber",
+      "title": "T01-DPU-P2 to FE-LEAF1/2",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 130.8,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T01-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.74,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F02",
+            "switch_port": "FE-LEAF1/2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F03",
+      "group": "fiber",
+      "title": "T02-DPU-P1 to FE-LEAF1/3",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 173.3,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T02-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.73,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F03",
+            "switch_port": "FE-LEAF1/3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F04",
+      "group": "fiber",
+      "title": "T02-DPU-P2 to FE-LEAF1/4",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 133.3,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T02-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.6,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F04",
+            "switch_port": "FE-LEAF1/4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F05",
+      "group": "fiber",
+      "title": "T03-DPU-P1 to FE-LEAF1/5",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "endface_clean",
+            "no_intervention"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "fail",
+              "reason": "end face failed inspection and had to be cleaned"
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "fail",
+              "reason": "tech cleaned the end face and re-inspected"
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 201.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "fail_cleaned",
+            "intervention": {
+              "action": "cleaned the end face and re-inspected",
+              "by": "tech"
+            },
+            "kind": "fiber",
+            "label_scanned": "R05-T03-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.41,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F05",
+            "switch_port": "FE-LEAF1/5"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F06",
+      "group": "fiber",
+      "title": "T03-DPU-P2 to FE-LEAF1/6",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 123.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T03-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.26,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F06",
+            "switch_port": "FE-LEAF1/6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F07",
+      "group": "fiber",
+      "title": "T04-DPU-P1 to FE-LEAF1/7",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 141.3,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T04-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.1,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F07",
+            "switch_port": "FE-LEAF1/7"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F08",
+      "group": "fiber",
+      "title": "T04-DPU-P2 to FE-LEAF1/8",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 150.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T04-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.66,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F08",
+            "switch_port": "FE-LEAF1/8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F09",
+      "group": "fiber",
+      "title": "T05-DPU-P1 to FE-LEAF1/9",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 202.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T05-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.84,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F09",
+            "switch_port": "FE-LEAF1/9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F10",
+      "group": "fiber",
+      "title": "T05-DPU-P2 to FE-LEAF1/10",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 157.5,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T05-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.04,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F10",
+            "switch_port": "FE-LEAF1/10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F11",
+      "group": "fiber",
+      "title": "T06-DPU-P1 to FE-LEAF1/11",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 186.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T06-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.66,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F11",
+            "switch_port": "FE-LEAF1/11"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F12",
+      "group": "fiber",
+      "title": "T06-DPU-P2 to FE-LEAF1/12",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 194.0,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T06-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.79,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F12",
+            "switch_port": "FE-LEAF1/12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F13",
+      "group": "fiber",
+      "title": "T07-DPU-P1 to FE-LEAF1/13",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 189.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T07-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.73,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F13",
+            "switch_port": "FE-LEAF1/13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F14",
+      "group": "fiber",
+      "title": "T07-DPU-P2 to FE-LEAF1/14",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 164.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T07-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.64,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F14",
+            "switch_port": "FE-LEAF1/14"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F15",
+      "group": "fiber",
+      "title": "T08-DPU-P1 to FE-LEAF1/15",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 163.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T08-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.05,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F15",
+            "switch_port": "FE-LEAF1/15"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F16",
+      "group": "fiber",
+      "title": "T08-DPU-P2 to FE-LEAF1/16",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 145.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T08-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.44,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F16",
+            "switch_port": "FE-LEAF1/16"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F17",
+      "group": "fiber",
+      "title": "T09-DPU-P1 to FE-LEAF1/17",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 191.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T09-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.5,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F17",
+            "switch_port": "FE-LEAF1/17"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F18",
+      "group": "fiber",
+      "title": "T09-DPU-P2 to FE-LEAF1/18",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 130.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T09-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.64,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F18",
+            "switch_port": "FE-LEAF1/18"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F19",
+      "group": "fiber",
+      "title": "T10-DPU-P1 to FE-LEAF2/1",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 204.4,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T10-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.08,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F19",
+            "switch_port": "FE-LEAF2/1"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F20",
+      "group": "fiber",
+      "title": "T10-DPU-P2 to FE-LEAF2/2",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 122.8,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T10-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.58,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F20",
+            "switch_port": "FE-LEAF2/2"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F21",
+      "group": "fiber",
+      "title": "T11-DPU-P1 to FE-LEAF2/3",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 133.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T11-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.31,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F21",
+            "switch_port": "FE-LEAF2/3"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F22",
+      "group": "fiber",
+      "title": "T11-DPU-P2 to FE-LEAF2/4",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 155.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T11-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.95,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F22",
+            "switch_port": "FE-LEAF2/4"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F23",
+      "group": "fiber",
+      "title": "T12-DPU-P1 to FE-LEAF2/5",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 191.1,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T12-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.51,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F23",
+            "switch_port": "FE-LEAF2/5"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F24",
+      "group": "fiber",
+      "title": "T12-DPU-P2 to FE-LEAF2/6",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 198.9,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T12-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.51,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F24",
+            "switch_port": "FE-LEAF2/6"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F25",
+      "group": "fiber",
+      "title": "T13-DPU-P1 to FE-LEAF2/7",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 160.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T13-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.91,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F25",
+            "switch_port": "FE-LEAF2/7"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F26",
+      "group": "fiber",
+      "title": "T13-DPU-P2 to FE-LEAF2/8",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 163.5,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T13-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.28,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F26",
+            "switch_port": "FE-LEAF2/8"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F27",
+      "group": "fiber",
+      "title": "T14-DPU-P1 to FE-LEAF2/9",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 154.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T14-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.65,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F27",
+            "switch_port": "FE-LEAF2/9"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F28",
+      "group": "fiber",
+      "title": "T14-DPU-P2 to FE-LEAF2/10",
+      "runs": [
+        {
+          "run": 1,
+          "passed": false,
+          "failed_checks": [
+            "label_match",
+            "no_intervention"
+          ],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "fail",
+              "reason": "label R05-T14-F3, should be R05-T14-F2"
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "fail",
+              "reason": "tech replaced the label"
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 149.5,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": {
+              "action": "replaced the label",
+              "by": "tech"
+            },
+            "kind": "fiber",
+            "label_scanned": "R05-T14-F3",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.16,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F28",
+            "switch_port": "FE-LEAF2/10"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F29",
+      "group": "fiber",
+      "title": "T15-DPU-P1 to FE-LEAF2/11",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 160.6,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T15-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.53,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F29",
+            "switch_port": "FE-LEAF2/11"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F30",
+      "group": "fiber",
+      "title": "T15-DPU-P2 to FE-LEAF2/12",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 193.5,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T15-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.5,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F30",
+            "switch_port": "FE-LEAF2/12"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F31",
+      "group": "fiber",
+      "title": "T16-DPU-P1 to FE-LEAF2/13",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 203.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T16-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.11,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F31",
+            "switch_port": "FE-LEAF2/13"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F32",
+      "group": "fiber",
+      "title": "T16-DPU-P2 to FE-LEAF2/14",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 154.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T16-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.78,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F32",
+            "switch_port": "FE-LEAF2/14"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F33",
+      "group": "fiber",
+      "title": "T17-DPU-P1 to FE-LEAF2/15",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 181.7,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T17-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.61,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F33",
+            "switch_port": "FE-LEAF2/15"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F34",
+      "group": "fiber",
+      "title": "T17-DPU-P2 to FE-LEAF2/16",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 144.0,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T17-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.37,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F34",
+            "switch_port": "FE-LEAF2/16"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F35",
+      "group": "fiber",
+      "title": "T18-DPU-P1 to FE-LEAF2/17",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 145.5,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T18-F1",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -2.99,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F35",
+            "switch_port": "FE-LEAF2/17"
+          }
+        }
+      ]
+    },
+    {
+      "id": "F36",
+      "group": "fiber",
+      "title": "T18-DPU-P2 to FE-LEAF2/18",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.0,
+          "judge_cost_usd": 0.0,
+          "verdicts": {
+            "right_port": {
+              "result": "pass",
+              "reason": ""
+            },
+            "latched": {
+              "result": "pass",
+              "reason": ""
+            },
+            "link_up": {
+              "result": "pass",
+              "reason": ""
+            },
+            "label_match": {
+              "result": "pass",
+              "reason": ""
+            },
+            "endface_clean": {
+              "result": "pass",
+              "reason": ""
+            },
+            "light_level": {
+              "result": "pass",
+              "reason": ""
+            },
+            "within_cycle_time": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_intervention": {
+              "result": "pass",
+              "reason": ""
+            },
+            "no_live_disturbance": {
+              "result": "pass",
+              "reason": ""
+            }
+          },
+          "output": {
+            "cycle_s": 192.2,
+            "disturbed_live_neighbor": false,
+            "endface_inspection": "pass",
+            "intervention": null,
+            "kind": "fiber",
+            "label_scanned": "R05-T18-F2",
+            "latched": true,
+            "link_up": true,
+            "rack": "R05",
+            "robot_retries": 0,
+            "rx_dbm": -3.79,
+            "safety_stop": false,
+            "shift": 5,
+            "slot": "F36",
+            "switch_port": "FE-LEAF2/18"
+          }
+        }
+      ]
+    }
+  ]
+}
