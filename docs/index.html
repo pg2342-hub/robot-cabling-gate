@@ -1,15 +1,23 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Robot cabling go-live gate</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet"><style>
-:root{--fg:#000;--bg:#fff;--mute:#555;--line:#ddd}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
-main{max-width:980px;margin:0 auto;padding:32px 16px 64px}
-h1{font-size:26px;margin:0 0 6px}h2{font-size:18px;margin:36px 0 8px}p{margin:8px 0}
-a{color:#000}.mute{color:var(--mute)}.tag{display:inline-block;border:1px solid #000;padding:0 6px;font-size:12px;
-font-weight:600}.tag.go{background:#000;color:#fff}.tag.partial{border-style:dashed}
-.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
-th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;white-space:nowrap}
-td.w{white-space:normal}th{font-weight:600}.card{border:1px solid #000;padding:12px 14px;margin:10px 0}
-.card h3{font-size:15px;margin:0 0 4px}
-</style></head><body><main>
+<!doctype html><html lang="en"><head>
+<!-- demo-chrome --><meta name="theme-color" content="#f4f2ec"><link rel="icon" href="https://pranavgudise.dev/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="https://pranavgudise.dev/kit/demo.css"><!-- /demo-chrome -->
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Robot cabling go-live gate</title><style>
+main{padding-bottom:24px}
+p{margin:8px 0;max-width:46em}
+.mute{color:var(--ink-2)}
+h1+.mute{font-size:18px}
+.tag{display:inline-flex;align-items:center;min-height:24px;padding:0 10px;border-radius:999px;border:1px solid var(--ink);
+font:500 12px/1 var(--mono);letter-spacing:.03em;background:var(--ink);color:var(--paper);white-space:nowrap}
+.tag.go{background:var(--green-wash);border-color:var(--green-wash);color:var(--green)}
+.tag.partial{background:transparent;color:var(--ink);border-style:dashed}
+.wrap{overflow-x:auto;margin:16px 0}
+td{white-space:nowrap}
+th{white-space:normal;min-width:4em}
+td.w{white-space:normal}
+.card{margin:16px 0}
+.card h3{font:400 20px/1.25 var(--serif);margin:0 0 6px}
+</style></head><body>
+<!-- demo-chrome --><header class="demo-top"><a class="demo-brand" href="https://pranavgudise.dev/"><svg class="demo-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.25"/><g class="n"><path class="f" d="M15.5 8.5 L 13.4 13.4 L 8.5 15.5 L 10.6 10.6 Z"/></g><circle class="p" cx="12" cy="12" r=".7"/></svg><span>Pranav Gudise</span></a><a class="pill" href="https://github.com/pg2342-hub/robot-cabling-gate">Code on GitHub</a></header><!-- /demo-chrome -->
+<main>
 <h1>Robot cabling go-live gate</h1>
 <p class="mute">Simulated data. A supervised pilot where a robot cables one rack per shift (54 copper management
 and 36 front-end fiber connections) for 15 shifts.</p>
@@ -19,8 +27,7 @@ live cable disturbed. The gate says GO only when 53 of 54 copper and 35 of 36 fi
 first time with no live cable (one already linked up, on this rack or a neighbor) disturbed. Misses the
 customer's network team fixed are reported but not counted against the robot. Ten GO shifts in a row, with no
 tech note that blocks unsupervised work, moves the robot to unsupervised shifts; a fiber-only miss lets copper
-go first. Built on <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>. <a href="https://github.com/pg2342-hub/robot-cabling-gate">Code
-on GitHub</a>.</p>
+go first. Built on <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>.</p>
 <h2>Stage timeline</h2>
 <p>A PARTIAL shift is a fiber-only miss, so the copper streak kept going: copper reaches 10 in a row first, which is why the plan can promote copper alone at the readout while fiber stays supervised. After shift 15 the GO streak reaches 10, so the robot works unsupervised from shift 16. <span class="mute">Blocking notes from Claude triage (recorded run, notes gate GO).</span></p>
 <div class="wrap"><table><tr><th>Shift</th><th>Rack</th><th>Gate</th><th>Copper first pass</th>
@@ -31,4 +38,5 @@ on GitHub</a>.</p>
 <p>Claude writes each week's update from that week's fact sheet; a rule check holds any number not in the sheet, and a Claude judge holds any unsupported claim. Gate: <span class="tag go">GO</span> (<a href='summary/'>details</a>).</p><div class='card'><h3>Robot cabling pilot, week 1 (shifts 1-5): supervised next week</h3><p>Week 1 covered shifts 1-5. The robot cabled 5 racks and 450 connections. First-pass results were 259 of 270 on copper and 173 of 180 on fiber, for 96.0% overall. There were 17 interventions, or 3.8 per 100 connections, and 1 miss was customer-caused. We recorded 1 live disturbance and 3 safety stops. Against the gate, the week had 0 go shifts, 1 partial and 4 no-go, and 3 shifts carried a blocking note. The go streak stands at 0, and 10 consecutive go shifts are needed before unsupervised work. The robot will work supervised next week because the gate has not been met.</p><p class='mute'>Gate: sent (all checks passed)</p></div><div class='card'><h3>Robot cabling pilot, week 2 (shifts 6-10): supervised next week</h3><p>This week the robot cabled 5 racks, 450 connections. First-pass success was 268 of 270 on copper and 179 of 180 on fiber, 99.3 percent overall. There were 2 interventions, 0.4 per 100 connections, and 1 miss was customer-caused. There were 0 live disturbances and 0 safety stops. All 5 shifts passed the gate as go, with 0 partial, 0 no-go, and 0 shifts carrying a blocking note. The go streak stands at 5 against the 10 required to move to unsupervised work. Because the streak has not reached 10, the robot stays supervised next week.</p><p class='mute'>Gate: sent (all checks passed)</p></div><div class='card'><h3>Week 3 cabling pilot update: robot moves to unsupervised work next week</h3><p>Week 3 covered shifts 11-15. The robot cabled 5 racks and 450 connections. First-pass results were 268 of 270 copper and 178 of 180 fiber, for 99.1 percent overall. There were 4 interventions (0.9 per 100 connections), 0 customer-caused misses, 0 live disturbances and 1 safety stop. All 5 shifts were gate go, with 0 partial, 0 no-go and 0 shifts carrying a blocking note. The go streak ended the week at 10, which meets the 10 required by the gate. The robot will therefore work unsupervised next week.</p><p class='mute'>Gate: sent (all checks passed)</p></div>
 <h2>Tech note triage</h2>
 <p>30 constructed tech notes, 3 runs each. Claude tags each note (failure mode, owner, safety, blocks unsupervised work, needs review) and writes a one-line summary; rules grade the tags and a Claude judge grades the summary. Gate: <span class="tag go">GO</span> (<a href='notes/'>every note and verdict</a>).</p><p class='mute'>90 triage calls, mean 1.9 s and $0.0082 per note; judge $0.43 in total.</p><div class='wrap'><table><tr><th>Group</th><th>Passed every check (notes x 3 runs)</th></tr><tr><td>robot</td><td>30 of 30</td></tr><tr><td>site</td><td>26 of 27</td></tr><tr><td>customer</td><td>12 of 12</td></tr><tr><td>safety</td><td>12 of 12</td></tr><tr><td>unclear</td><td>6 of 9</td></tr></table></div><p>The same gate blocks a keyword tagger: <span class="tag ">NO-GO</span>. It misses safety notes that never say “e-stop” (<a href='notes-baseline/'>see why</a>).</p>
-</main></body></html>
+</main><!-- demo-chrome --><footer class="demo-foot"><span>A working build by <a href="https://pranavgudise.dev/">Pranav Gudise</a>. Synthetic or public data only.</span><a href="https://github.com/pg2342-hub/robot-cabling-gate">github.com/pg2342-hub/robot-cabling-gate</a></footer><!-- /demo-chrome -->
+</body></html>

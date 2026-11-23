@@ -59,16 +59,20 @@ def stats(result) -> dict:
 
 
 CSS = """
-:root{--fg:#000;--bg:#fff;--mute:#555;--line:#ddd}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.55 Inter,system-ui,sans-serif}
-main{max-width:980px;margin:0 auto;padding:32px 16px 64px}
-h1{font-size:26px;margin:0 0 6px}h2{font-size:18px;margin:36px 0 8px}p{margin:8px 0}
-a{color:#000}.mute{color:var(--mute)}.tag{display:inline-block;border:1px solid #000;padding:0 6px;font-size:12px;
-font-weight:600}.tag.go{background:#000;color:#fff}.tag.partial{border-style:dashed}
-.wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
-th,td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;white-space:nowrap}
-td.w{white-space:normal}th{font-weight:600}.card{border:1px solid #000;padding:12px 14px;margin:10px 0}
-.card h3{font-size:15px;margin:0 0 4px}
+main{padding-bottom:24px}
+p{margin:8px 0;max-width:46em}
+.mute{color:var(--ink-2)}
+h1+.mute{font-size:18px}
+.tag{display:inline-flex;align-items:center;min-height:24px;padding:0 10px;border-radius:999px;border:1px solid var(--ink);
+font:500 12px/1 var(--mono);letter-spacing:.03em;background:var(--ink);color:var(--paper);white-space:nowrap}
+.tag.go{background:var(--green-wash);border-color:var(--green-wash);color:var(--green)}
+.tag.partial{background:transparent;color:var(--ink);border-style:dashed}
+.wrap{overflow-x:auto;margin:16px 0}
+td{white-space:nowrap}
+th{white-space:normal;min-width:4em}
+td.w{white-space:normal}
+.card{margin:16px 0}
+.card h3{font:400 20px/1.25 var(--serif);margin:0 0 6px}
 """
 
 
@@ -82,8 +86,6 @@ def page(body: str) -> str:
         '<!doctype html><html lang="en"><head><meta charset="utf-8">'
         '<meta name="viewport" content="width=device-width,initial-scale=1">'
         "<title>Robot cabling go-live gate</title>"
-        '<link rel="preconnect" href="https://fonts.googleapis.com">'
-        '<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">'
         f"<style>{CSS}</style></head><body><main>{body}</main></body></html>"
     )
 
@@ -186,8 +188,7 @@ live cable disturbed. The gate says GO only when 53 of 54 copper and 35 of 36 fi
 first time with no live cable (one already linked up, on this rack or a neighbor) disturbed. Misses the
 customer's network team fixed are reported but not counted against the robot. Ten GO shifts in a row, with no
 tech note that blocks unsupervised work, moves the robot to unsupervised shifts; a fiber-only miss lets copper
-go first. Built on <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>. <a href="{REPO}">Code
-on GitHub</a>.</p>
+go first. Built on <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>.</p>
 <h2>Stage timeline</h2>
 <p>{e(stage_line)} <span class="mute">Blocking notes from {e(pilot["blocking_notes_from"])}.</span></p>
 <div class="wrap"><table><tr><th>Shift</th><th>Rack</th><th>Gate</th><th>Copper first pass</th>
@@ -200,6 +201,9 @@ on GitHub</a>.</p>
 {triage}
 """
     (DOCS / "index.html").write_text(page(body))
+    import subprocess
+    pages = sorted(str(p) for p in DOCS.rglob("index.html"))
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "demo_chrome.py"), *pages, "--repo", "robot-cabling-gate"], check=True)
     print(f"demo written to docs/ (notes recorded: {have_notes}, summaries recorded: {have_summary})")
 
 
