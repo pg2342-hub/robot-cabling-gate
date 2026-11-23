@@ -43,9 +43,16 @@ jobs:
           test "$(wc -l < recordings/summary_judge.jsonl)" -eq 3
       - name: Publish only a passing run
         run: |
-          cat reports/notes/report.md reports/summary/report.md >> "$GITHUB_STEP_SUMMARY"
+          cat reports/notes/report.md reports/summary/report.md | tee -a "$GITHUB_STEP_SUMMARY"
           if [ "$NOTES_RC" != "0" ] || [ "$SUMMARY_RC" != "0" ]; then
-            echo "A live gate did not pass (see the reports above); nothing committed or published." && exit 1
+            # Keep the failed run for diagnosis on its own branch; main and Pages stay as they were.
+            git config user.name "Pranav Gudise"
+            git config user.email "273664482+pg2342-hub@users.noreply.github.com"
+            git checkout -b record/last-failed
+            git add -f recordings reports/notes reports/summary
+            git commit -qm "Failed live run, kept for diagnosis (not published)"
+            git push -f origin record/last-failed
+            echo "A live gate did not pass (see the reports above); nothing published." && exit 1
           fi
       - name: Rebuild the demo page from the recordings
         run: python scripts/build_demo.py
