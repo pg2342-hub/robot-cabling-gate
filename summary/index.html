@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Weekly customer update gate: GO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--fg:#111;--bg:#fff;--muted:#666;--line:#ddd;--soft:#f5f5f5}
+@media (prefers-color-scheme:dark){:root{--fg:#eee;--bg:#111;--muted:#999;--line:#333;--soft:#1b1b1b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font:15px/1.5 Inter,system-ui,sans-serif}main{max-width:880px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:28px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}
+.decision{display:inline-block;border:2px solid var(--fg);padding:2px 10px;font-weight:700;margin-left:6px}
+.muted{color:var(--muted)}table{border-collapse:collapse;width:100%;font-size:14px}
+td,th{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+.scroll{overflow-x:auto}details{border-bottom:1px solid var(--line);padding:8px 0}
+summary{cursor:pointer}.mark{display:inline-block;width:18px;font-weight:700}.bad{color:var(--fg)}
+.run{margin:8px 0 8px 22px}.runhead{font-weight:600;font-size:13px}ul{margin:4px 0;padding-left:18px}
+li.fail{font-weight:600}li.na{color:var(--muted)}pre{background:var(--soft);padding:8px;overflow-x:auto;
+font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size:13px}
+</style></head><body><main>
+<h1>Weekly customer update gate <span class="decision">GO</span></h1>
+<p class="muted">Agent <code>agent:recorded_summary</code>, 3 cases, 1 run(s). Agent cost $0.0232, judge cost $0.0196, mean latency 0.1 ms per case.</p>
+<ul><li>every rule held on all 1 run(s), no critical failures</li></ul>
+<h2>Pass counts by run</h2><div class="scroll"><table><tr><th>Run</th><th>Passed</th>
+<th>Critical failures</th></tr><tr><td>1</td><td>3 of 3</td><td>0</td></tr></table></div>
+<h2>Gate rules</h2><div class="scroll"><table><tr><th>Rule</th><th>Run</th><th>Passed</th><th>Needs</th>
+<th>Result</th></tr><tr><td>weekly updates</td><td>1</td><td>3 of 3</td><td>3</td><td>held</td></tr></table></div>
+<h2>Cases</h2><details><summary><span class='mark ok'>✓</span> <b>Week 1 update</b> <span class='muted'>default · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>numbers_from_facts</code> PASS (critical)</li><li class='pass'><code>stage_stated</code> PASS</li><li class='pass'><code>short</code> PASS</li><li class='pass'><code>claims_supported</code> PASS (critical): Every figure matches the fact sheet, and the supervised-next-week stage is correctly explained by the 0 go streak against the 10 needed, with no added dates, savings or results.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008008,
+  &quot;latency_s&quot;: 3.278,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;body&quot;: &quot;Week 1 covered shifts 1-5. The robot cabled 5 racks and 450 connections. First-pass results were 259 of 270 on copper and 173 of 180 on fiber, for 96.0% overall. There were 17 interventions, or 3.8 per 100 connections, and 1 miss was customer-caused. We recorded 1 live disturbance and 3 safety stops. Against the gate, the week had 0 go shifts, 1 partial and 4 no-go, and 3 shifts carried a blocking note. The go streak stands at 0, and 10 consecutive go shifts are needed before unsupervised work. The robot will work supervised next week because the gate has not been met.&quot;,
+ &quot;subject&quot;: &quot;Robot cabling pilot, week 1 (shifts 1-5): supervised next week&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Week 2 update</b> <span class='muted'>default · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>numbers_from_facts</code> PASS (critical)</li><li class='pass'><code>stage_stated</code> PASS</li><li class='pass'><code>short</code> PASS</li><li class='pass'><code>claims_supported</code> PASS (critical): Every figure and the supervised-next-week decision, including the 5-of-10 go-streak reason, match the fact sheet, and the update promises no dates, savings or results.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007648,
+  &quot;latency_s&quot;: 3.767,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;body&quot;: &quot;This week the robot cabled 5 racks, 450 connections. First-pass success was 268 of 270 on copper and 179 of 180 on fiber, 99.3 percent overall. There were 2 interventions, 0.4 per 100 connections, and 1 miss was customer-caused. There were 0 live disturbances and 0 safety stops. All 5 shifts passed the gate as go, with 0 partial, 0 no-go, and 0 shifts carrying a blocking note. The go streak stands at 5 against the 10 required to move to unsupervised work. Because the streak has not reached 10, the robot stays supervised next week.&quot;,
+ &quot;subject&quot;: &quot;Robot cabling pilot, week 2 (shifts 6-10): supervised next week&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Week 3 update</b> <span class='muted'>default · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>numbers_from_facts</code> PASS (critical)</li><li class='pass'><code>stage_stated</code> PASS</li><li class='pass'><code>short</code> PASS</li><li class='pass'><code>claims_supported</code> PASS (critical): Every figure, the gate outcome and the streak-based reason for unsupervised work next week match the fact sheet, and the update promises no dates, savings or results beyond it.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007516,
+  &quot;latency_s&quot;: 2.901,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;body&quot;: &quot;Week 3 covered shifts 11-15. The robot cabled 5 racks and 450 connections. First-pass results were 268 of 270 copper and 178 of 180 fiber, for 99.1 percent overall. There were 4 interventions (0.9 per 100 connections), 0 customer-caused misses, 0 live disturbances and 1 safety stop. All 5 shifts were gate go, with 0 partial, 0 no-go and 0 shifts carrying a blocking note. The go streak ended the week at 10, which meets the 10 required by the gate. The robot will therefore work unsupervised next week.&quot;,
+ &quot;subject&quot;: &quot;Week 3 cabling pilot update: robot moves to unsupervised work next week&quot;
+}</pre></div></details>
+<h2>Checks</h2><div class="scroll"><table><tr><td><code>numbers_from_facts</code></td><td>critical</td><td>Every number in the update appears in the week&#x27;s fact sheet.</td></tr><tr><td><code>stage_stated</code></td><td></td><td>The update says whether next week is supervised or unsupervised.</td></tr><tr><td><code>short</code></td><td></td><td>The update is under 120 words, with no bullet points.</td></tr><tr><td><code>claims_supported</code></td><td>critical</td><td>Every claim in the update is supported by the fact sheet, including what the gate decided and why the robot is or is not working unsupervised next week. It does not promise dates, savings or results the fact sheet does not contain.</td></tr></table></div>
+<footer class="muted">Made with <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>.</footer>
+</main></body></html>
