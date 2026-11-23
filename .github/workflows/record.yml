@@ -36,6 +36,7 @@ jobs:
           echo "SUMMARY_RC=$rc" >> "$GITHUB_ENV"
       - name: Refuse partial recordings
         run: |
+          cat reports/notes/report.md reports/summary/report.md 2>/dev/null | grep -iE "error" | head -20 || true
           set -e
           test "$(wc -l < recordings/notes_agent.jsonl)" -eq 90
           test "$(wc -l < recordings/notes_judge.jsonl)" -eq 90
@@ -45,13 +46,6 @@ jobs:
         run: |
           cat reports/notes/report.md reports/summary/report.md | tee -a "$GITHUB_STEP_SUMMARY"
           if [ "$NOTES_RC" != "0" ] || [ "$SUMMARY_RC" != "0" ]; then
-            # Keep the failed run for diagnosis on its own branch; main and Pages stay as they were.
-            git config user.name "Pranav Gudise"
-            git config user.email "273664482+pg2342-hub@users.noreply.github.com"
-            git checkout -b record/last-failed
-            git add -f recordings reports/notes reports/summary
-            git commit -qm "Failed live run, kept for diagnosis (not published)"
-            git push -f origin record/last-failed
             echo "A live gate did not pass (see the reports above); nothing published." && exit 1
           fi
       - name: Rebuild the demo page from the recordings
@@ -69,3 +63,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run ci.yml --ref "${{ github.ref_name }}"
+      - name: Keep a failed run for diagnosis on its own branch (main and Pages stay as they were)
+        if: failure()
+        run: |
+          git config user.name "Pranav Gudise"
+          git config user.email "273664482+pg2342-hub@users.noreply.github.com"
+          git checkout -B record/last-failed
+          git add -f recordings reports || true
+          git commit -qm "Failed live run, kept for diagnosis (not published)" || true
+          git push -f origin record/last-failed
