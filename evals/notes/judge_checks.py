@@ -36,9 +36,15 @@ checks = CheckSet(rule_checks)
 _faithful = judge_check(
     "summary_faithful",
     "The summary is one sentence that states what the tech note says happened and what was done, and adds no "
-    "cause, number, fix or outcome that the note does not state.",
+    "cause, number, fix or outcome that the note and its context do not state.",
     judge=judge,
-    render_case=lambda case: f"Tech note: {case.input['note']}",
+    # The judge sees exactly what the triage step saw: the shift, the rack and the setting, so naming the rack,
+    # the robot doing the work or the tech stepping in is context, not an added detail.
+    render_case=lambda case: (
+        f"Context: a field tech wrote this note after stepping in during supervised robot cabling shift "
+        f"{case.input['shift']}, rack {case.input['rack']}. The robot makes the connections and the tech "
+        f"watches.\nTech note: {case.input['note']}"
+    ),
     render_output=lambda out: out["summary"],
 )
 

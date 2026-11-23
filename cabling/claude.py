@@ -28,8 +28,9 @@ TRIAGE_SYSTEM = (
 SUMMARY_SYSTEM = (
     "You write the weekly update a robotics deployment lead sends to the customer's data center operations "
     "executive during a supervised robot cabling pilot. Use only the numbers in the fact sheet, written exactly "
-    "as they appear there; do not compute new ones such as percentages or differences. Say plainly whether the "
-    "robot works supervised or unsupervised next week and why, in terms of the gate. Under 120 words, no bullet "
+    "as they appear there; do not compute new ones such as percentages or differences, and do not forecast "
+    "when the streak will reach the threshold or how many shifts are left. Say plainly whether the robot "
+    "works supervised or unsupervised next week and why, in terms of the gate. Under 120 words, no bullet "
     "points, no greeting or sign-off, plain and factual."
 )
 
