@@ -1,32 +1,56 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en"><head>
+<!-- demo-chrome --><meta name="theme-color" content="#f4f2ec"><link rel="icon" href="https://pranavgudise.dev/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="https://pranavgudise.dev/kit/demo.css"><!-- /demo-chrome -->
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4f2ec">
 <title>Robot cabling shift gate: GO</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--fg:#111;--bg:#fff;--muted:#666;--line:#ddd;--soft:#f5f5f5}
-@media (prefers-color-scheme:dark){:root{--fg:#eee;--bg:#111;--muted:#999;--line:#333;--soft:#1b1b1b}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
-font:15px/1.5 Inter,system-ui,sans-serif}main{max-width:880px;margin:0 auto;padding:32px 16px 64px}
-h1{font-size:28px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}
-.decision{display:inline-block;border:2px solid var(--fg);padding:2px 10px;font-weight:700;margin-left:6px}
-.muted{color:var(--muted)}table{border-collapse:collapse;width:100%;font-size:14px}
-td,th{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
-.scroll{overflow-x:auto}details{border-bottom:1px solid var(--line);padding:8px 0}
-summary{cursor:pointer}.mark{display:inline-block;width:18px;font-weight:700}.bad{color:var(--fg)}
-.run{margin:8px 0 8px 22px}.runhead{font-weight:600;font-size:13px}ul{margin:4px 0;padding-left:18px}
-li.fail{font-weight:600}li.na{color:var(--muted)}pre{background:var(--soft);padding:8px;overflow-x:auto;
-font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size:13px}
-</style></head><body><main>
-<h1>Robot cabling shift gate <span class="decision">GO</span></h1>
-<p class="muted">Agent <code>robot log, shift 14</code>, 90 cases, 1 run(s). Agent cost $0.0000, judge cost $0.0000, mean latency 0.0 ms per case.</p>
-<ul><li>every rule held on all 1 run(s), no critical failures</li></ul>
+:root{--paper:#f4f2ec;--ink:#1b1a17;--ink-2:#57544c;--rule:rgb(27 26 23/.14);--green:#24513c;--wash:#dce6dc;
+--serif:"Libre Caslon Display",Georgia,serif;--sans:"General Sans","Helvetica Neue",Arial,sans-serif;
+--mono:"Red Hat Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--sans)}
+::selection{background:var(--wash)}a{color:var(--green);text-underline-offset:3px}
+main{width:min(1080px,calc(100% - 64px));margin:0 auto;padding:0 0 64px}
+h1{font:400 clamp(30px,3.6vw,46px)/1.15 var(--serif);letter-spacing:-.01em;margin:56px 0 18px;text-wrap:balance}
+h2{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid var(--ink);
+border-radius:999px;font:400 21px/1.1 var(--serif);margin:56px 0 20px}
+.lead,h1+p{font-size:18px;color:var(--ink-2);max-width:42em}.muted{color:var(--ink-2)}
+.reasons{padding-left:20px;margin:16px 0 0}.reasons li{margin:6px 0}
+.decision{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;
+font:500 15px/1 var(--mono);letter-spacing:.04em;vertical-align:.25em;margin-left:8px;border:1px solid var(--ink)}
+.decision.go{background:var(--wash);border-color:var(--wash);color:var(--green)}
+.decision.no-go{background:var(--ink);color:var(--paper)}.decision.partial{border-style:dashed}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:tabular-nums}
+th{font:400 12.5px/1.4 var(--mono);letter-spacing:.02em;color:var(--ink-2);text-align:left;padding:10px 12px 10px 0;
+border-bottom:1px solid var(--ink);white-space:nowrap}
+td{text-align:left;border-bottom:1px solid var(--rule);padding:12px 12px 12px 0;vertical-align:top}
+details{border-bottom:1px solid var(--rule);padding:12px 0}summary{cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+.mark{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;
+font-size:12px;margin-right:4px}.mark.ok{background:var(--wash);color:var(--green)}
+.mark.bad{background:var(--ink);color:var(--paper)}
+.mark svg{width:12px;height:12px}.mark path{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;
+stroke-linejoin:round}summary b{font-weight:500}
+.run{margin:10px 0 10px 28px}.runhead{font:400 12.5px/1.4 var(--mono);letter-spacing:.02em;color:var(--ink-2)}
+ul{margin:4px 0;padding-left:18px}li.pass::marker{color:var(--green)}li.fail{font-weight:500}li.na{color:var(--ink-2)}
+pre{font:400 12.5px/1.55 var(--mono);background:rgb(27 26 23/.045);border-radius:8px;padding:12px 14px;
+overflow-x:auto;margin:6px 0;white-space:pre-wrap;word-break:break-word}
+code{font-family:var(--mono);font-size:.86em}
+footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);font:400 13px/1.5 var(--mono)}
+@media (max-width:700px){main{width:calc(100% - 40px)}h1{margin-top:32px}h2{font-size:19px;margin-top:44px}
+.lead,h1+p{font-size:16.5px}.run{margin-left:12px}}
+</style></head><body>
+<!-- demo-chrome --><header class="demo-top"><a class="demo-brand" href="https://pranavgudise.dev/"><svg class="demo-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.25"/><g class="n"><path class="f" d="M15.5 8.5 L 13.4 13.4 L 8.5 15.5 L 10.6 10.6 Z"/></g><circle class="p" cx="12" cy="12" r=".7"/></svg><span>Pranav Gudise</span></a><a class="pill" href="https://github.com/pg2342-hub/robot-cabling-gate">Code on GitHub</a></header><!-- /demo-chrome -->
+<main>
+<h1>Robot cabling shift gate <span class="decision go">GO</span></h1>
+<p class="lead">Agent <code>robot log, shift 14</code>, 90 cases, 1 run(s). Agent cost $0.0000, judge cost $0.0000, mean latency 0.0 ms per case.</p>
+<ul class="reasons"><li>every rule held on all 1 run(s), no critical failures</li></ul>
 <h2>Pass counts by run</h2><div class="scroll"><table><tr><th>Run</th><th>Passed</th>
 <th>Critical failures</th></tr><tr><td>1</td><td>89 of 90</td><td>0</td></tr></table></div>
 <h2>Gate rules</h2><div class="scroll"><table><tr><th>Rule</th><th>Run</th><th>Passed</th><th>Needs</th>
 <th>Result</th></tr><tr><td>copper management connections</td><td>1</td><td>54 of 54</td><td>53</td><td>held</td></tr><tr><td>front-end fiber connections</td><td>1</td><td>35 of 36</td><td>35</td><td>held</td></tr></table></div>
-<h2>Cases</h2><details><summary><span class='mark ok'>✓</span> <b>T01-MGMT1 to MGMT-SW1/1</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+<h2>Cases</h2><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T01-MGMT1 to MGMT-SW1/1</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 1 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 87.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -42,7 +66,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C01&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/1&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T01-MGMT2 to MGMT-SW1/2</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T01-MGMT2 to MGMT-SW1/2</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 74.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -58,7 +82,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C02&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/2&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T01-MGMT3 to MGMT-SW1/3</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T01-MGMT3 to MGMT-SW1/3</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 117.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -74,7 +98,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C03&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/3&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T02-MGMT1 to MGMT-SW1/4</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T02-MGMT1 to MGMT-SW1/4</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 96.9,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -90,7 +114,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C04&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/4&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T02-MGMT2 to MGMT-SW1/5</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T02-MGMT2 to MGMT-SW1/5</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 78.9,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -106,7 +130,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C05&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/5&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T02-MGMT3 to MGMT-SW1/6</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T02-MGMT3 to MGMT-SW1/6</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 85.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -122,7 +146,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C06&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/6&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T03-MGMT1 to MGMT-SW1/7</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T03-MGMT1 to MGMT-SW1/7</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 110.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -138,7 +162,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C07&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/7&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T03-MGMT2 to MGMT-SW1/8</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T03-MGMT2 to MGMT-SW1/8</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 86.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -154,7 +178,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C08&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/8&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T03-MGMT3 to MGMT-SW1/9</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T03-MGMT3 to MGMT-SW1/9</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 84.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -170,7 +194,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C09&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/9&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T04-MGMT1 to MGMT-SW1/10</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T04-MGMT1 to MGMT-SW1/10</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 98.6,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -186,7 +210,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C10&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/10&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T04-MGMT2 to MGMT-SW1/11</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T04-MGMT2 to MGMT-SW1/11</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 75.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -202,7 +226,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C11&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/11&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T04-MGMT3 to MGMT-SW1/12</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T04-MGMT3 to MGMT-SW1/12</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 106.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -218,7 +242,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C12&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/12&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T05-MGMT1 to MGMT-SW1/13</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T05-MGMT1 to MGMT-SW1/13</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 80.7,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -234,7 +258,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C13&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/13&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T05-MGMT2 to MGMT-SW1/14</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T05-MGMT2 to MGMT-SW1/14</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 96.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -250,7 +274,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C14&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/14&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T05-MGMT3 to MGMT-SW1/15</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T05-MGMT3 to MGMT-SW1/15</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 104.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -266,7 +290,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C15&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/15&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T06-MGMT1 to MGMT-SW1/16</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T06-MGMT1 to MGMT-SW1/16</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 86.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -282,7 +306,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C16&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/16&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T06-MGMT2 to MGMT-SW1/17</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T06-MGMT2 to MGMT-SW1/17</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 87.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -298,7 +322,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C17&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/17&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T06-MGMT3 to MGMT-SW1/18</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T06-MGMT3 to MGMT-SW1/18</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 74.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -314,7 +338,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C18&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/18&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T07-MGMT1 to MGMT-SW1/19</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T07-MGMT1 to MGMT-SW1/19</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 92.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -330,7 +354,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C19&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/19&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T07-MGMT2 to MGMT-SW1/20</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T07-MGMT2 to MGMT-SW1/20</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 103.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -346,7 +370,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C20&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/20&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T07-MGMT3 to MGMT-SW1/21</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T07-MGMT3 to MGMT-SW1/21</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 117.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -362,7 +386,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C21&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/21&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T08-MGMT1 to MGMT-SW1/22</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T08-MGMT1 to MGMT-SW1/22</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 71.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -378,7 +402,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C22&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/22&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T08-MGMT2 to MGMT-SW1/23</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T08-MGMT2 to MGMT-SW1/23</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 83.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -394,7 +418,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C23&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/23&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T08-MGMT3 to MGMT-SW1/24</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T08-MGMT3 to MGMT-SW1/24</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 72.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -410,7 +434,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C24&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/24&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T09-MGMT1 to MGMT-SW1/25</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T09-MGMT1 to MGMT-SW1/25</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 112.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -426,7 +450,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C25&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/25&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T09-MGMT2 to MGMT-SW1/26</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T09-MGMT2 to MGMT-SW1/26</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 113.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -442,7 +466,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C26&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/26&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T09-MGMT3 to MGMT-SW1/27</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T09-MGMT3 to MGMT-SW1/27</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 84.2,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -458,7 +482,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C27&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW1/27&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T10-MGMT1 to MGMT-SW2/1</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T10-MGMT1 to MGMT-SW2/1</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 105.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -474,7 +498,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C28&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/1&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T10-MGMT2 to MGMT-SW2/2</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T10-MGMT2 to MGMT-SW2/2</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 90.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -490,7 +514,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C29&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/2&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T10-MGMT3 to MGMT-SW2/3</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T10-MGMT3 to MGMT-SW2/3</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 101.9,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -506,7 +530,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C30&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/3&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T11-MGMT1 to MGMT-SW2/4</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T11-MGMT1 to MGMT-SW2/4</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 102.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -522,7 +546,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C31&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/4&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T11-MGMT2 to MGMT-SW2/5</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T11-MGMT2 to MGMT-SW2/5</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 105.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -538,7 +562,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C32&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/5&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T11-MGMT3 to MGMT-SW2/6</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T11-MGMT3 to MGMT-SW2/6</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 100.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -554,7 +578,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C33&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/6&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T12-MGMT1 to MGMT-SW2/7</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T12-MGMT1 to MGMT-SW2/7</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 82.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -570,7 +594,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C34&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/7&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T12-MGMT2 to MGMT-SW2/8</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T12-MGMT2 to MGMT-SW2/8</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 104.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -586,7 +610,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C35&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/8&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T12-MGMT3 to MGMT-SW2/9</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T12-MGMT3 to MGMT-SW2/9</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 116.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -602,7 +626,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C36&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/9&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T13-MGMT1 to MGMT-SW2/10</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T13-MGMT1 to MGMT-SW2/10</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 119.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -618,7 +642,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C37&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/10&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T13-MGMT2 to MGMT-SW2/11</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T13-MGMT2 to MGMT-SW2/11</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 103.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -634,7 +658,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C38&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/11&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T13-MGMT3 to MGMT-SW2/12</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T13-MGMT3 to MGMT-SW2/12</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 77.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -650,7 +674,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C39&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/12&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T14-MGMT1 to MGMT-SW2/13</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T14-MGMT1 to MGMT-SW2/13</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 78.7,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -666,7 +690,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C40&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/13&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T14-MGMT2 to MGMT-SW2/14</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T14-MGMT2 to MGMT-SW2/14</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 84.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -682,7 +706,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C41&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/14&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T14-MGMT3 to MGMT-SW2/15</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T14-MGMT3 to MGMT-SW2/15</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 71.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -698,7 +722,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C42&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/15&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T15-MGMT1 to MGMT-SW2/16</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T15-MGMT1 to MGMT-SW2/16</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 101.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -714,7 +738,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C43&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/16&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T15-MGMT2 to MGMT-SW2/17</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T15-MGMT2 to MGMT-SW2/17</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 87.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -730,7 +754,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C44&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/17&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T15-MGMT3 to MGMT-SW2/18</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T15-MGMT3 to MGMT-SW2/18</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 89.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -746,7 +770,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C45&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/18&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T16-MGMT1 to MGMT-SW2/19</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T16-MGMT1 to MGMT-SW2/19</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 107.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -762,7 +786,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C46&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/19&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T16-MGMT2 to MGMT-SW2/20</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T16-MGMT2 to MGMT-SW2/20</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 92.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -778,7 +802,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C47&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/20&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T16-MGMT3 to MGMT-SW2/21</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T16-MGMT3 to MGMT-SW2/21</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 107.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -794,7 +818,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C48&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/21&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T17-MGMT1 to MGMT-SW2/22</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T17-MGMT1 to MGMT-SW2/22</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 71.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -810,7 +834,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C49&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/22&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T17-MGMT2 to MGMT-SW2/23</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T17-MGMT2 to MGMT-SW2/23</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 100.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -826,7 +850,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C50&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/23&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T17-MGMT3 to MGMT-SW2/24</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T17-MGMT3 to MGMT-SW2/24</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 110.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -842,7 +866,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C51&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/24&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T18-MGMT1 to MGMT-SW2/25</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T18-MGMT1 to MGMT-SW2/25</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 103.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -858,7 +882,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C52&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/25&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T18-MGMT2 to MGMT-SW2/26</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T18-MGMT2 to MGMT-SW2/26</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 102.7,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -874,7 +898,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C53&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/26&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T18-MGMT3 to MGMT-SW2/27</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T18-MGMT3 to MGMT-SW2/27</b> <span class='muted'>copper · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='na'><code>endface_clean</code> NA</li><li class='na'><code>light_level</code> NA</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 114.7,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: null,
@@ -890,7 +914,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;C54&quot;,
  &quot;switch_port&quot;: &quot;MGMT-SW2/27&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T01-DPU-P1 to FE-LEAF1/1</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T01-DPU-P1 to FE-LEAF1/1</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 184.9,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -906,7 +930,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F01&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/1&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>T01-DPU-P2 to FE-LEAF1/2</b> <span class='muted'>fiber · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='fail'><code>endface_clean</code> FAIL: end face failed inspection and had to be cleaned</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='fail'><code>no_intervention</code> FAIL: tech cleaned the end face and re-inspected</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>T01-DPU-P2 to FE-LEAF1/2</b> <span class='muted'>fiber · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='fail'><code>endface_clean</code> FAIL: end face failed inspection and had to be cleaned</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='fail'><code>no_intervention</code> FAIL: tech cleaned the end face and re-inspected</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 206.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;fail_cleaned&quot;,
@@ -925,7 +949,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F02&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/2&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T02-DPU-P1 to FE-LEAF1/3</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T02-DPU-P1 to FE-LEAF1/3</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 196.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -941,7 +965,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F03&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/3&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T02-DPU-P2 to FE-LEAF1/4</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T02-DPU-P2 to FE-LEAF1/4</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 135.7,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -957,7 +981,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F04&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/4&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T03-DPU-P1 to FE-LEAF1/5</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T03-DPU-P1 to FE-LEAF1/5</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 129.9,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -973,7 +997,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F05&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/5&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T03-DPU-P2 to FE-LEAF1/6</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T03-DPU-P2 to FE-LEAF1/6</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 146.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -989,7 +1013,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F06&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/6&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T04-DPU-P1 to FE-LEAF1/7</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T04-DPU-P1 to FE-LEAF1/7</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 152.7,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1005,7 +1029,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F07&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/7&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T04-DPU-P2 to FE-LEAF1/8</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T04-DPU-P2 to FE-LEAF1/8</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 128.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1021,7 +1045,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F08&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/8&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T05-DPU-P1 to FE-LEAF1/9</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T05-DPU-P1 to FE-LEAF1/9</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 173.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1037,7 +1061,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F09&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/9&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T05-DPU-P2 to FE-LEAF1/10</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T05-DPU-P2 to FE-LEAF1/10</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 165.2,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1053,7 +1077,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F10&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/10&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T06-DPU-P1 to FE-LEAF1/11</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T06-DPU-P1 to FE-LEAF1/11</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 170.6,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1069,7 +1093,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F11&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/11&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T06-DPU-P2 to FE-LEAF1/12</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T06-DPU-P2 to FE-LEAF1/12</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 203.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1085,7 +1109,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F12&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/12&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T07-DPU-P1 to FE-LEAF1/13</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T07-DPU-P1 to FE-LEAF1/13</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 187.2,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1101,7 +1125,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F13&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/13&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T07-DPU-P2 to FE-LEAF1/14</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T07-DPU-P2 to FE-LEAF1/14</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 150.9,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1117,7 +1141,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F14&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/14&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T08-DPU-P1 to FE-LEAF1/15</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T08-DPU-P1 to FE-LEAF1/15</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 148.6,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1133,7 +1157,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F15&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/15&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T08-DPU-P2 to FE-LEAF1/16</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T08-DPU-P2 to FE-LEAF1/16</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 136.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1149,7 +1173,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F16&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/16&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T09-DPU-P1 to FE-LEAF1/17</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T09-DPU-P1 to FE-LEAF1/17</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 139.6,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1165,7 +1189,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F17&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/17&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T09-DPU-P2 to FE-LEAF1/18</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T09-DPU-P2 to FE-LEAF1/18</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 207.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1181,7 +1205,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F18&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF1/18&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T10-DPU-P1 to FE-LEAF2/1</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T10-DPU-P1 to FE-LEAF2/1</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 177.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1197,7 +1221,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F19&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/1&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T10-DPU-P2 to FE-LEAF2/2</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T10-DPU-P2 to FE-LEAF2/2</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 158.2,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1213,7 +1237,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F20&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/2&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T11-DPU-P1 to FE-LEAF2/3</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T11-DPU-P1 to FE-LEAF2/3</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 204.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1229,7 +1253,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F21&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/3&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T11-DPU-P2 to FE-LEAF2/4</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T11-DPU-P2 to FE-LEAF2/4</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 131.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1245,7 +1269,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F22&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/4&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T12-DPU-P1 to FE-LEAF2/5</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T12-DPU-P1 to FE-LEAF2/5</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 169.5,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1261,7 +1285,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F23&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/5&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T12-DPU-P2 to FE-LEAF2/6</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T12-DPU-P2 to FE-LEAF2/6</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 151.4,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1277,7 +1301,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F24&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/6&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T13-DPU-P1 to FE-LEAF2/7</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T13-DPU-P1 to FE-LEAF2/7</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 192.6,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1293,7 +1317,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F25&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/7&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T13-DPU-P2 to FE-LEAF2/8</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T13-DPU-P2 to FE-LEAF2/8</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 169.7,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1309,7 +1333,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F26&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/8&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T14-DPU-P1 to FE-LEAF2/9</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T14-DPU-P1 to FE-LEAF2/9</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 171.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1325,7 +1349,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F27&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/9&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T14-DPU-P2 to FE-LEAF2/10</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T14-DPU-P2 to FE-LEAF2/10</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 185.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1341,7 +1365,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F28&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/10&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T15-DPU-P1 to FE-LEAF2/11</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T15-DPU-P1 to FE-LEAF2/11</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 162.3,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1357,7 +1381,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F29&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/11&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T15-DPU-P2 to FE-LEAF2/12</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T15-DPU-P2 to FE-LEAF2/12</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 207.8,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1373,7 +1397,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F30&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/12&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T16-DPU-P1 to FE-LEAF2/13</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T16-DPU-P1 to FE-LEAF2/13</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 164.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1389,7 +1413,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F31&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/13&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T16-DPU-P2 to FE-LEAF2/14</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T16-DPU-P2 to FE-LEAF2/14</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 145.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1405,7 +1429,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F32&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/14&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T17-DPU-P1 to FE-LEAF2/15</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T17-DPU-P1 to FE-LEAF2/15</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 153.1,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1421,7 +1445,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F33&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/15&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T17-DPU-P2 to FE-LEAF2/16</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T17-DPU-P2 to FE-LEAF2/16</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 154.7,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1437,7 +1461,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F34&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/16&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T18-DPU-P1 to FE-LEAF2/17</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T18-DPU-P1 to FE-LEAF2/17</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 123.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1453,7 +1477,7 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
  &quot;shift&quot;: 14,
  &quot;slot&quot;: &quot;F35&quot;,
  &quot;switch_port&quot;: &quot;FE-LEAF2/17&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>T18-DPU-P2 to FE-LEAF2/18</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>T18-DPU-P2 to FE-LEAF2/18</b> <span class='muted'>fiber · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>right_port</code> PASS</li><li class='pass'><code>latched</code> PASS</li><li class='pass'><code>link_up</code> PASS</li><li class='pass'><code>label_match</code> PASS</li><li class='pass'><code>endface_clean</code> PASS</li><li class='pass'><code>light_level</code> PASS</li><li class='pass'><code>within_cycle_time</code> PASS</li><li class='pass'><code>no_intervention</code> PASS</li><li class='pass'><code>no_live_disturbance</code> PASS (critical)</li></ul><pre>{
  &quot;cycle_s&quot;: 183.0,
  &quot;disturbed_live_neighbor&quot;: false,
  &quot;endface_inspection&quot;: &quot;pass&quot;,
@@ -1472,4 +1496,5 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
 }</pre></div></details>
 <h2>Checks</h2><div class="scroll"><table><tr><td><code>right_port</code></td><td></td><td>The cable lands in the switch port the port map names.</td></tr><tr><td><code>latched</code></td><td></td><td>The connector is fully seated and latched.</td></tr><tr><td><code>link_up</code></td><td></td><td>The link comes up on the switch after the connection.</td></tr><tr><td><code>label_match</code></td><td></td><td>The scanned label matches the rack and the port map label.</td></tr><tr><td><code>endface_clean</code></td><td></td><td>Fiber only: the end face passes inspection before insertion, with no cleaning.</td></tr><tr><td><code>light_level</code></td><td></td><td>Fiber only: receive power is at or above -7.0 dBm once the link is up.</td></tr><tr><td><code>within_cycle_time</code></td><td></td><td>The connection finishes inside its cycle-time ceiling.</td></tr><tr><td><code>no_intervention</code></td><td></td><td>Nobody had to step in: the robot finished the connection on its own.</td></tr><tr><td><code>no_live_disturbance</code></td><td>critical</td><td>The robot never knocks loose a live cable (one already linked up, on this rack or a neighbor).</td></tr></table></div>
 <footer class="muted">Made with <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>.</footer>
-</main></body></html>
+</main><!-- demo-chrome --><footer class="demo-foot"><span>A working build by <a href="https://pranavgudise.dev/">Pranav Gudise</a>. Synthetic or public data only.</span><a href="https://github.com/pg2342-hub/robot-cabling-gate">github.com/pg2342-hub/robot-cabling-gate</a></footer><!-- /demo-chrome -->
+</body></html>

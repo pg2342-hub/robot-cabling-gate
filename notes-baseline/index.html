@@ -1,235 +1,259 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8">
+<html lang="en"><head>
+<!-- demo-chrome --><meta name="theme-color" content="#f4f2ec"><link rel="icon" href="https://pranavgudise.dev/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="https://pranavgudise.dev/kit/demo.css"><!-- /demo-chrome -->
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#f4f2ec">
 <title>Intervention note triage gate: NO-GO</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--fg:#111;--bg:#fff;--muted:#666;--line:#ddd;--soft:#f5f5f5}
-@media (prefers-color-scheme:dark){:root{--fg:#eee;--bg:#111;--muted:#999;--line:#333;--soft:#1b1b1b}}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
-font:15px/1.5 Inter,system-ui,sans-serif}main{max-width:880px;margin:0 auto;padding:32px 16px 64px}
-h1{font-size:28px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}
-.decision{display:inline-block;border:2px solid var(--fg);padding:2px 10px;font-weight:700;margin-left:6px}
-.muted{color:var(--muted)}table{border-collapse:collapse;width:100%;font-size:14px}
-td,th{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
-.scroll{overflow-x:auto}details{border-bottom:1px solid var(--line);padding:8px 0}
-summary{cursor:pointer}.mark{display:inline-block;width:18px;font-weight:700}.bad{color:var(--fg)}
-.run{margin:8px 0 8px 22px}.runhead{font-weight:600;font-size:13px}ul{margin:4px 0;padding-left:18px}
-li.fail{font-weight:600}li.na{color:var(--muted)}pre{background:var(--soft);padding:8px;overflow-x:auto;
-font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size:13px}
-</style></head><body><main>
-<h1>Intervention note triage gate <span class="decision">NO-GO</span></h1>
-<p class="muted">Agent <code>agent:keyword_triage</code>, 30 cases, 1 run(s). Agent cost $0.0000, judge cost $0.0000, mean latency 0.0 ms per case.</p>
-<ul><li>run 1: 5 critical failure(s): safety_caught on case n24, blocker_caught on case n25, safety_caught on case n26, blocker_caught on case n26, safety_caught on case n27</li><li>run 1: clear notes passed 19 of 27, needs 25 (no-go)</li><li>run 1: safety notes passed 0 of 4, needs 4 (no-go)</li></ul>
+:root{--paper:#f4f2ec;--ink:#1b1a17;--ink-2:#57544c;--rule:rgb(27 26 23/.14);--green:#24513c;--wash:#dce6dc;
+--serif:"Libre Caslon Display",Georgia,serif;--sans:"General Sans","Helvetica Neue",Arial,sans-serif;
+--mono:"Red Hat Mono",ui-monospace,Menlo,monospace;color-scheme:light}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.6 var(--sans)}
+::selection{background:var(--wash)}a{color:var(--green);text-underline-offset:3px}
+main{width:min(1080px,calc(100% - 64px));margin:0 auto;padding:0 0 64px}
+h1{font:400 clamp(30px,3.6vw,46px)/1.15 var(--serif);letter-spacing:-.01em;margin:56px 0 18px;text-wrap:balance}
+h2{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;border:1px solid var(--ink);
+border-radius:999px;font:400 21px/1.1 var(--serif);margin:56px 0 20px}
+.lead,h1+p{font-size:18px;color:var(--ink-2);max-width:42em}.muted{color:var(--ink-2)}
+.reasons{padding-left:20px;margin:16px 0 0}.reasons li{margin:6px 0}
+.decision{display:inline-flex;align-items:center;min-height:32px;padding:0 14px;border-radius:999px;
+font:500 15px/1 var(--mono);letter-spacing:.04em;vertical-align:.25em;margin-left:8px;border:1px solid var(--ink)}
+.decision.go{background:var(--wash);border-color:var(--wash);color:var(--green)}
+.decision.no-go{background:var(--ink);color:var(--paper)}.decision.partial{border-style:dashed}
+.scroll{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:tabular-nums}
+th{font:400 12.5px/1.4 var(--mono);letter-spacing:.02em;color:var(--ink-2);text-align:left;padding:10px 12px 10px 0;
+border-bottom:1px solid var(--ink);white-space:nowrap}
+td{text-align:left;border-bottom:1px solid var(--rule);padding:12px 12px 12px 0;vertical-align:top}
+details{border-bottom:1px solid var(--rule);padding:12px 0}summary{cursor:pointer;list-style:none}
+summary::-webkit-details-marker{display:none}
+.mark{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:999px;
+font-size:12px;margin-right:4px}.mark.ok{background:var(--wash);color:var(--green)}
+.mark.bad{background:var(--ink);color:var(--paper)}
+.mark svg{width:12px;height:12px}.mark path{fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;
+stroke-linejoin:round}summary b{font-weight:500}
+.run{margin:10px 0 10px 28px}.runhead{font:400 12.5px/1.4 var(--mono);letter-spacing:.02em;color:var(--ink-2)}
+ul{margin:4px 0;padding-left:18px}li.pass::marker{color:var(--green)}li.fail{font-weight:500}li.na{color:var(--ink-2)}
+pre{font:400 12.5px/1.55 var(--mono);background:rgb(27 26 23/.045);border-radius:8px;padding:12px 14px;
+overflow-x:auto;margin:6px 0;white-space:pre-wrap;word-break:break-word}
+code{font-family:var(--mono);font-size:.86em}
+footer{margin-top:64px;padding-top:18px;border-top:1px solid var(--rule);font:400 13px/1.5 var(--mono)}
+@media (max-width:700px){main{width:calc(100% - 40px)}h1{margin-top:32px}h2{font-size:19px;margin-top:44px}
+.lead,h1+p{font-size:16.5px}.run{margin-left:12px}}
+</style></head><body>
+<!-- demo-chrome --><header class="demo-top"><a class="demo-brand" href="https://pranavgudise.dev/"><svg class="demo-mark" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.25"/><g class="n"><path class="f" d="M15.5 8.5 L 13.4 13.4 L 8.5 15.5 L 10.6 10.6 Z"/></g><circle class="p" cx="12" cy="12" r=".7"/></svg><span>Pranav Gudise</span></a><a class="pill" href="https://github.com/pg2342-hub/robot-cabling-gate">Code on GitHub</a></header><!-- /demo-chrome -->
+<main>
+<h1>Intervention note triage gate <span class="decision no-go">NO-GO</span></h1>
+<p class="lead">Agent <code>agent:keyword_triage</code>, 30 cases, 1 run(s). Agent cost $0.0000, judge cost $0.0000, mean latency 0.0 ms per case.</p>
+<ul class="reasons"><li>run 1: 5 critical failure(s): safety_caught on case n24, blocker_caught on case n25, safety_caught on case n26, blocker_caught on case n26, safety_caught on case n27</li><li>run 1: clear notes passed 19 of 27, needs 25 (no-go)</li><li>run 1: safety notes passed 0 of 4, needs 4 (no-go)</li></ul>
 <h2>Pass counts by run</h2><div class="scroll"><table><tr><th>Run</th><th>Passed</th>
 <th>Critical failures</th></tr><tr><td>1</td><td>22 of 30</td><td>5</td></tr></table></div>
 <h2>Gate rules</h2><div class="scroll"><table><tr><th>Rule</th><th>Run</th><th>Passed</th><th>Needs</th>
 <th>Result</th></tr><tr><td>clear notes</td><td>1</td><td>19 of 27</td><td>25</td><td>broke (no-go)</td></tr><tr><td>safety notes</td><td>1</td><td>0 of 4</td><td>4</td><td>broke (no-go)</td></tr><tr><td>unclear notes go to a person</td><td>1</td><td>3 of 3</td><td>2</td><td>held</td></tr></table></div>
-<h2>Cases</h2><details><summary><span class='mark ok'>✓</span> <b>C05 not clicked in, reseated by hand, link came up</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+<h2>Cases</h2><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>C05 not clicked in, reseated by hand, link came up</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;not_latched&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;C05 not clicked in, reseated by hand, link came up&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>C31 same thing, latch not engaged. 2nd one today</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>C31 same thing, latch not engaged. 2nd one today</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;not_latched&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;C31 same thing, latch not engaged. 2nd one today&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F22 landed in FE-LEAF2/5 instead of /4, moved it over</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>F22 landed in FE-LEAF2/5 instead of /4, moved it over</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;wrong_port&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;F22 landed in FE-LEAF2/5 instead of /4, moved it over&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Gripper fault on C27, arm retried 3x then gave up, I finishe</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>Gripper fault on C27, arm retried 3x then gave up, I finishe</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;robot_fault&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;Gripper fault on C27, arm retried 3x then gave up, I finished it by hand&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>C19 gripper dropped the RJ45 under the tray, fished it out a</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>C19 gripper dropped the RJ45 under the tray, fished it out a</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;robot_fault&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;C19 gripper dropped the RJ45 under the tray, fished it out and plugged it myself&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>tag on C40 reads M2, map says M1. printed a new one</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>tag on C40 reads M2, map says M1. printed a new one</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;label_mismatch&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;tag on C40 reads M2, map says M1. printed a new one&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>While routing C12 the arm caught the BMC cable next to it, t</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>While routing C12 the arm caught the BMC cable next to it, t</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;live_disturbance&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: true,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;While routing C12 the arm caught the BMC cable next to it, that one was already up and got pulled half out. Reseated, link back after ~30s&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>C47 took about 4 min, arm kept re-planning around the bundle</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>C47 took about 4 min, arm kept re-planning around the bundle</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;slow_cycle&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;C47 took about 4 min, arm kept re-planning around the bundle. Didn&#x27;t need me, just slow&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>camera lost the port on F31 twice under the aisle LEDs, thir</b> <span class='muted'>robot · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged access_blocked, should be robot_fault</li><li class='fail'><code>owner_correct</code> FAIL: owner site_ops, should be robot_team</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>camera lost the port on F31 twice under the aisle LEDs, thir</b> <span class='muted'>robot · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged access_blocked, should be robot_fault</li><li class='fail'><code>owner_correct</code> FAIL: owner site_ops, should be robot_team</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;access_blocked&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;camera lost the port on F31 twice under the aisle LEDs, third try worked&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F28 tag printed for the P1 port, cable is on P2. swapped tag</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>F28 tag printed for the P1 port, cable is on P2. swapped tag</b> <span class='muted'>robot · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;label_mismatch&quot;,
  &quot;owner&quot;: &quot;robot_team&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;F28 tag printed for the P1 port, cable is on P2. swapped tags&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F03 scope fail, cleaned, passed second inspection</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>F03 scope fail, cleaned, passed second inspection</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;dirty_endface&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;F03 scope fail, cleaned, passed second inspection&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F17 dust on ferrule again - these jumpers came out of the ba</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>F17 dust on ferrule again - these jumpers came out of the ba</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;dirty_endface&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;F17 dust on ferrule again - these jumpers came out of the bag w/o caps&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F09 jacket kinked right behind the connector, swapped in a n</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>F09 jacket kinked right behind the connector, swapped in a n</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;damaged_cable&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;F09 jacket kinked right behind the connector, swapped in a new jumper from spares&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Kit for this rack came 2 copper patch cords short, pulled fr</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>Kit for this rack came 2 copper patch cords short, pulled fr</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;missing_or_short_cable&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;Kit for this rack came 2 copper patch cords short, pulled from spares, 15 min wait&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Rear door locked, waited on a security badge for 20 min</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>Rear door locked, waited on a security badge for 20 min</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;access_blocked&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;Rear door locked, waited on a security badge for 20 min&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Somebody left a laptop cart in the aisle, robot sat for 4 mi</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>Somebody left a laptop cart in the aisle, robot sat for 4 mi</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;access_blocked&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;Somebody left a laptop cart in the aisle, robot sat for 4 min until it was moved. Nobody near it&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch wi</b> <span class='muted'>site · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be missing_or_short_cable</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be site_ops</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch wi</b> <span class='muted'>site · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be missing_or_short_cable</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be site_ops</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;unclear&quot;,
  &quot;owner&quot;: &quot;unknown&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: true,
  &quot;summary&quot;: &quot;cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch without strain&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F14 bend radius blown near the boot, cable came that way out</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>F14 bend radius blown near the boot, cable came that way out</b> <span class='muted'>site · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;damaged_cable&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;F14 bend radius blown near the boot, cable came that way out of the bundle&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>Tray 9 not in the rack yet when the robot got there, it skip</b> <span class='muted'>site · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be access_blocked</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be site_ops</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>Tray 9 not in the rack yet when the robot got there, it skip</b> <span class='muted'>site · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be access_blocked</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be site_ops</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;unclear&quot;,
  &quot;owner&quot;: &quot;unknown&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: true,
  &quot;summary&quot;: &quot;Tray 9 not in the rack yet when the robot got there, it skipped those slots and came back after install&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F30 no link. Robot did it right per the map but the map had </b> <span class='muted'>customer · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>F30 no link. Robot did it right per the map but the map had </b> <span class='muted'>customer · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;customer_config&quot;,
  &quot;owner&quot;: &quot;customer_network&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;F30 no link. Robot did it right per the map but the map had P1 and P2 swapped for tray 15. Network fixed the map, robot re-ran it&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F35 leaf port was admin-down, network team enabled it, link </b> <span class='muted'>customer · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>F35 leaf port was admin-down, network team enabled it, link </b> <span class='muted'>customer · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;customer_config&quot;,
  &quot;owner&quot;: &quot;customer_network&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;F35 leaf port was admin-down, network team enabled it, link up&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>MGMT-SW2 uplink not patched yet at shift start, network team</b> <span class='muted'>customer · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>MGMT-SW2 uplink not patched yet at shift start, network team</b> <span class='muted'>customer · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;customer_config&quot;,
  &quot;owner&quot;: &quot;customer_network&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;MGMT-SW2 uplink not patched yet at shift start, network team finished it before the robot got to those ports&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>Map rev C on the tablet and rev D on the rack sheet disagree</b> <span class='muted'>customer · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be customer_config</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be customer_network</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>Map rev C on the tablet and rev D on the rack sheet disagree</b> <span class='muted'>customer · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be customer_config</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be customer_network</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;unclear&quot;,
  &quot;owner&quot;: &quot;unknown&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: true,
  &quot;summary&quot;: &quot;Map rev C on the tablet and rev D on the rack sheet disagree on FE-LEAF2. Held fiber until network confirmed D&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>Contractor walked into the aisle behind the rack while the a</b> <span class='muted'>safety · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged access_blocked, should be safety_stop</li><li class='pass'><code>owner_correct</code> PASS</li><li class='fail'><code>safety_caught</code> FAIL (critical): missed a safety note</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>Contractor walked into the aisle behind the rack while the a</b> <span class='muted'>safety · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged access_blocked, should be safety_stop</li><li class='pass'><code>owner_correct</code> PASS</li><li class='fail'><code>safety_caught</code> FAIL (critical): missed a safety note</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;access_blocked&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;Contractor walked into the aisle behind the rack while the arm was out, robot froze within a second and went again once he left. No contact&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>Arm swung toward my hand when I reached in to clear a zip ti</b> <span class='muted'>safety · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='fail'><code>owner_correct</code> FAIL: owner site_ops, should be robot_team</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='fail'><code>blocker_caught</code> FAIL (critical): missed a note that must block unsupervised work</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>Arm swung toward my hand when I reached in to clear a zip ti</b> <span class='muted'>safety · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='fail'><code>owner_correct</code> FAIL: owner site_ops, should be robot_team</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='fail'><code>blocker_caught</code> FAIL (critical): missed a note that must block unsupervised work</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;safety_stop&quot;,
  &quot;owner&quot;: &quot;site_ops&quot;,
  &quot;safety&quot;: true,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: false,
  &quot;summary&quot;: &quot;Arm swung toward my hand when I reached in to clear a zip tie, hit the e-stop. Didn&#x27;t touch me but close&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>Robot pinched my glove on the fiber tray door while I was ho</b> <span class='muted'>safety · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be safety_stop</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be robot_team</li><li class='fail'><code>safety_caught</code> FAIL (critical): missed a safety note</li><li class='na'><code>no_false_safety</code> NA</li><li class='fail'><code>blocker_caught</code> FAIL (critical): missed a note that must block unsupervised work</li><li class='na'><code>no_false_blocker</code> NA</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>Robot pinched my glove on the fiber tray door while I was ho</b> <span class='muted'>safety · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be safety_stop</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be robot_team</li><li class='fail'><code>safety_caught</code> FAIL (critical): missed a safety note</li><li class='na'><code>no_false_safety</code> NA</li><li class='fail'><code>blocker_caught</code> FAIL (critical): missed a note that must block unsupervised work</li><li class='na'><code>no_false_blocker</code> NA</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;unclear&quot;,
  &quot;owner&quot;: &quot;unknown&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: true,
  &quot;summary&quot;: &quot;Robot pinched my glove on the fiber tray door while I was holding it open. no injury, glove fine&quot;
-}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>Electrician working the PDU in this row pressed the stop as </b> <span class='muted'>safety · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be safety_stop</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be site_ops</li><li class='fail'><code>safety_caught</code> FAIL (critical): missed a safety note</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
+}</pre></div></details><details open><summary><span class='mark bad'><svg viewBox="0 0 12 12" aria-label="failed"><path d="M3.4 3.4 8.6 8.6M8.6 3.4 3.4 8.6"/></svg></span> <b>Electrician working the PDU in this row pressed the stop as </b> <span class='muted'>safety · 0 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='fail'><code>mode_correct</code> FAIL: tagged unclear, should be safety_stop</li><li class='fail'><code>owner_correct</code> FAIL: owner unknown, should be site_ops</li><li class='fail'><code>safety_caught</code> FAIL (critical): missed a safety note</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='fail'><code>review_when_unclear</code> FAIL: sent a clear note to review</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;unclear&quot;,
  &quot;owner&quot;: &quot;unknown&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: true,
  &quot;summary&quot;: &quot;Electrician working the PDU in this row pressed the stop as a precaution while he opened the panel, not about the robot&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>something off with the fiber on this one, ask Dana</b> <span class='muted'>unclear · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>something off with the fiber on this one, ask Dana</b> <span class='muted'>unclear · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;unclear&quot;,
  &quot;owner&quot;: &quot;unknown&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: true,
  &quot;summary&quot;: &quot;something off with the fiber on this one, ask Dana&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>few ports flapping after lunch, not sure if it&#x27;s us or the s</b> <span class='muted'>unclear · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>few ports flapping after lunch, not sure if it&#x27;s us or the s</b> <span class='muted'>unclear · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;unclear&quot;,
  &quot;owner&quot;: &quot;unknown&quot;,
  &quot;safety&quot;: false,
  &quot;blocks_unsupervised&quot;: false,
  &quot;needs_review&quot;: true,
  &quot;summary&quot;: &quot;few ports flapping after lunch, not sure if it&#x27;s us or the switch&quot;
-}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>see photo</b> <span class='muted'>unclear · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
+}</pre></div></details><details><summary><span class='mark ok'><svg viewBox="0 0 12 12" aria-label="passed"><path d="M2.6 6.3 5 8.6 9.4 3.6"/></svg></span> <b>see photo</b> <span class='muted'>unclear · 1 of 1 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li></ul><pre>{
  &quot;failure_mode&quot;: &quot;unclear&quot;,
  &quot;owner&quot;: &quot;unknown&quot;,
  &quot;safety&quot;: false,
@@ -239,4 +263,5 @@ font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size
 }</pre></div></details>
 <h2>Checks</h2><div class="scroll"><table><tr><td><code>mode_correct</code></td><td></td><td>The note gets the right failure mode from the fixed list.</td></tr><tr><td><code>owner_correct</code></td><td></td><td>The note goes to the team that owns the fix.</td></tr><tr><td><code>safety_caught</code></td><td>critical</td><td>Every note about a person near the robot, an e-stop, or contact is flagged as safety.</td></tr><tr><td><code>no_false_safety</code></td><td></td><td>Notes with no person, e-stop or contact are not flagged as safety.</td></tr><tr><td><code>blocker_caught</code></td><td>critical</td><td>A live cable disturbed, or the robot moving toward or touching a person, blocks unsupervised work.</td></tr><tr><td><code>no_false_blocker</code></td><td></td><td>Other notes do not block unsupervised work.</td></tr><tr><td><code>review_when_unclear</code></td><td></td><td>Unclear notes go to a person; clear notes do not.</td></tr></table></div>
 <footer class="muted">Made with <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>.</footer>
-</main></body></html>
+</main><!-- demo-chrome --><footer class="demo-foot"><span>A working build by <a href="https://pranavgudise.dev/">Pranav Gudise</a>. Synthetic or public data only.</span><a href="https://github.com/pg2342-hub/robot-cabling-gate">github.com/pg2342-hub/robot-cabling-gate</a></footer><!-- /demo-chrome -->
+</body></html>
