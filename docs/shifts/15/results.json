@@ -14,7 +14,7 @@
     ],
     "total_cost_usd": 0.0,
     "total_judge_cost_usd": 0.0,
-    "mean_latency_s": 5e-06
+    "mean_latency_s": 1e-05
   },
   "gate_result": {
     "decision": "go",
@@ -101,7 +101,7 @@
           "passed": true,
           "failed_checks": [],
           "error": "",
-          "latency_s": 0.0004,
+          "latency_s": 0.0008,
           "cost_usd": 0.0,
           "judge_cost_usd": 0.0,
           "verdicts": {

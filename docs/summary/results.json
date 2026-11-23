@@ -1,0 +1,190 @@
+{
+  "agent": "agent:recorded_summary",
+  "gate": "Weekly customer update gate",
+  "runs": 1,
+  "decision": "go",
+  "summary": {
+    "by_run": [
+      {
+        "run": 1,
+        "passed": 3,
+        "total": 3,
+        "critical": 0
+      }
+    ],
+    "total_cost_usd": 0.023172,
+    "total_judge_cost_usd": 0.019612,
+    "mean_latency_s": 5.7e-05
+  },
+  "gate_result": {
+    "decision": "go",
+    "reasons": [
+      "every rule held on all 1 run(s), no critical failures"
+    ],
+    "rules": [
+      {
+        "name": "weekly updates",
+        "run": 1,
+        "passed": 3,
+        "total": 3,
+        "required": 3,
+        "held": true,
+        "on_fail": "no-go"
+      }
+    ],
+    "critical_failures": {}
+  },
+  "checks": [
+    {
+      "id": "numbers_from_facts",
+      "text": "Every number in the update appears in the week's fact sheet.",
+      "critical": true
+    },
+    {
+      "id": "stage_stated",
+      "text": "The update says whether next week is supervised or unsupervised.",
+      "critical": false
+    },
+    {
+      "id": "short",
+      "text": "The update is under 120 words, with no bullet points.",
+      "critical": false
+    },
+    {
+      "id": "claims_supported",
+      "text": "Every claim in the update is supported by the fact sheet, including what the gate decided and why the robot is or is not working unsupervised next week. It does not promise dates, savings or results the fact sheet does not contain.",
+      "critical": true
+    }
+  ],
+  "cases": [
+    {
+      "id": "week1",
+      "group": "default",
+      "title": "Week 1 update",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0001,
+          "cost_usd": 0.008008,
+          "judge_cost_usd": 0.006452,
+          "verdicts": {
+            "numbers_from_facts": {
+              "result": "pass",
+              "reason": ""
+            },
+            "stage_stated": {
+              "result": "pass",
+              "reason": ""
+            },
+            "short": {
+              "result": "pass",
+              "reason": ""
+            },
+            "claims_supported": {
+              "result": "pass",
+              "reason": "Every figure matches the fact sheet, and the supervised-next-week stage is correctly explained by the 0 go streak against the 10 needed, with no added dates, savings or results."
+            }
+          },
+          "output": {
+            "_meta": {
+              "cost_usd": 0.008008,
+              "latency_s": 3.278,
+              "model": "claude-opus-5-5"
+            },
+            "body": "Week 1 covered shifts 1-5. The robot cabled 5 racks and 450 connections. First-pass results were 259 of 270 on copper and 173 of 180 on fiber, for 96.0% overall. There were 17 interventions, or 3.8 per 100 connections, and 1 miss was customer-caused. We recorded 1 live disturbance and 3 safety stops. Against the gate, the week had 0 go shifts, 1 partial and 4 no-go, and 3 shifts carried a blocking note. The go streak stands at 0, and 10 consecutive go shifts are needed before unsupervised work. The robot will work supervised next week because the gate has not been met.",
+            "subject": "Robot cabling pilot, week 1 (shifts 1-5): supervised next week"
+          }
+        }
+      ]
+    },
+    {
+      "id": "week2",
+      "group": "default",
+      "title": "Week 2 update",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.007648,
+          "judge_cost_usd": 0.0075,
+          "verdicts": {
+            "numbers_from_facts": {
+              "result": "pass",
+              "reason": ""
+            },
+            "stage_stated": {
+              "result": "pass",
+              "reason": ""
+            },
+            "short": {
+              "result": "pass",
+              "reason": ""
+            },
+            "claims_supported": {
+              "result": "pass",
+              "reason": "Every figure and the supervised-next-week decision, including the 5-of-10 go-streak reason, match the fact sheet, and the update promises no dates, savings or results."
+            }
+          },
+          "output": {
+            "_meta": {
+              "cost_usd": 0.007648,
+              "latency_s": 3.767,
+              "model": "claude-opus-5-5"
+            },
+            "body": "This week the robot cabled 5 racks, 450 connections. First-pass success was 268 of 270 on copper and 179 of 180 on fiber, 99.3 percent overall. There were 2 interventions, 0.4 per 100 connections, and 1 miss was customer-caused. There were 0 live disturbances and 0 safety stops. All 5 shifts passed the gate as go, with 0 partial, 0 no-go, and 0 shifts carrying a blocking note. The go streak stands at 5 against the 10 required to move to unsupervised work. Because the streak has not reached 10, the robot stays supervised next week.",
+            "subject": "Robot cabling pilot, week 2 (shifts 6-10): supervised next week"
+          }
+        }
+      ]
+    },
+    {
+      "id": "week3",
+      "group": "default",
+      "title": "Week 3 update",
+      "runs": [
+        {
+          "run": 1,
+          "passed": true,
+          "failed_checks": [],
+          "error": "",
+          "latency_s": 0.0,
+          "cost_usd": 0.007516,
+          "judge_cost_usd": 0.00566,
+          "verdicts": {
+            "numbers_from_facts": {
+              "result": "pass",
+              "reason": ""
+            },
+            "stage_stated": {
+              "result": "pass",
+              "reason": ""
+            },
+            "short": {
+              "result": "pass",
+              "reason": ""
+            },
+            "claims_supported": {
+              "result": "pass",
+              "reason": "Every figure, the gate outcome and the streak-based reason for unsupervised work next week match the fact sheet, and the update promises no dates, savings or results beyond it."
+            }
+          },
+          "output": {
+            "_meta": {
+              "cost_usd": 0.007516,
+              "latency_s": 2.901,
+              "model": "claude-opus-5-5"
+            },
+            "body": "Week 3 covered shifts 11-15. The robot cabled 5 racks and 450 connections. First-pass results were 268 of 270 copper and 178 of 180 fiber, for 99.1 percent overall. There were 4 interventions (0.9 per 100 connections), 0 customer-caused misses, 0 live disturbances and 1 safety stop. All 5 shifts were gate go, with 0 partial, 0 no-go and 0 shifts carrying a blocking note. The go streak ended the week at 10, which meets the 10 required by the gate. The robot will therefore work unsupervised next week.",
+            "subject": "Week 3 cabling pilot update: robot moves to unsupervised work next week"
+          }
+        }
+      ]
+    }
+  ]
+}

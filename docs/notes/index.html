@@ -1,0 +1,1112 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Intervention note triage gate: GO</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--fg:#111;--bg:#fff;--muted:#666;--line:#ddd;--soft:#f5f5f5}
+@media (prefers-color-scheme:dark){:root{--fg:#eee;--bg:#111;--muted:#999;--line:#333;--soft:#1b1b1b}}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font:15px/1.5 Inter,system-ui,sans-serif}main{max-width:880px;margin:0 auto;padding:32px 16px 64px}
+h1{font-size:28px;margin:0 0 4px}h2{font-size:18px;margin:32px 0 8px}
+.decision{display:inline-block;border:2px solid var(--fg);padding:2px 10px;font-weight:700;margin-left:6px}
+.muted{color:var(--muted)}table{border-collapse:collapse;width:100%;font-size:14px}
+td,th{text-align:left;border-bottom:1px solid var(--line);padding:6px 8px;vertical-align:top}
+.scroll{overflow-x:auto}details{border-bottom:1px solid var(--line);padding:8px 0}
+summary{cursor:pointer}.mark{display:inline-block;width:18px;font-weight:700}.bad{color:var(--fg)}
+.run{margin:8px 0 8px 22px}.runhead{font-weight:600;font-size:13px}ul{margin:4px 0;padding-left:18px}
+li.fail{font-weight:600}li.na{color:var(--muted)}pre{background:var(--soft);padding:8px;overflow-x:auto;
+font-size:12px;margin:4px 0}code{font-size:13px}footer{margin-top:40px;font-size:13px}
+</style></head><body><main>
+<h1>Intervention note triage gate <span class="decision">GO</span></h1>
+<p class="muted">Agent <code>agent:recorded_triage</code>, 30 cases, 3 run(s). Agent cost $0.7380, judge cost $0.4321, mean latency 0.0 ms per case.</p>
+<ul><li>every rule held on all 3 run(s), no critical failures</li></ul>
+<h2>Pass counts by run</h2><div class="scroll"><table><tr><th>Run</th><th>Passed</th>
+<th>Critical failures</th></tr><tr><td>1</td><td>28 of 30</td><td>0</td></tr><tr><td>2</td><td>29 of 30</td><td>0</td></tr><tr><td>3</td><td>29 of 30</td><td>0</td></tr></table></div>
+<h2>Gate rules</h2><div class="scroll"><table><tr><th>Rule</th><th>Run</th><th>Passed</th><th>Needs</th>
+<th>Result</th></tr><tr><td>clear notes</td><td>1</td><td>26 of 27</td><td>25</td><td>held</td></tr><tr><td>safety notes</td><td>1</td><td>4 of 4</td><td>4</td><td>held</td></tr><tr><td>unclear notes go to a person</td><td>1</td><td>2 of 3</td><td>2</td><td>held</td></tr><tr><td>clear notes</td><td>2</td><td>27 of 27</td><td>25</td><td>held</td></tr><tr><td>safety notes</td><td>2</td><td>4 of 4</td><td>4</td><td>held</td></tr><tr><td>unclear notes go to a person</td><td>2</td><td>2 of 3</td><td>2</td><td>held</td></tr><tr><td>clear notes</td><td>3</td><td>27 of 27</td><td>25</td><td>held</td></tr><tr><td>safety notes</td><td>3</td><td>4 of 4</td><td>4</td><td>held</td></tr><tr><td>unclear notes go to a person</td><td>3</td><td>2 of 3</td><td>2</td><td>held</td></tr></table></div>
+<h2>Cases</h2><details><summary><span class='mark ok'>✓</span> <b>C05 not clicked in, reseated by hand, link came up</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary restates the note faithfully: C05 wasn&#x27;t clicked in, the tech (implied by the shorthand) reseated it by hand, and the link came up; naming rack R01 is allowed and nothing unsupported is added.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00784,
+  &quot;latency_s&quot;: 1.515,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;not_latched&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, cable C05 was not fully clicked in; the tech reseated it by hand and the link came up.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary paraphrases the note faithfully, attributes the unnamed action to the tech as the context directs, names the rack, and adds nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00786,
+  &quot;latency_s&quot;: 1.319,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;not_latched&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, cable C05 was not fully clicked in, so the tech reseated it by hand and the link came up.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully restates the note, attributes the reseat to the tech as the context indicates, names the rack, and adds nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.0078,
+  &quot;latency_s&quot;: 1.477,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;not_latched&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, cable C05 was not clicked in; the tech reseated it by hand and the link came up.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>C31 same thing, latch not engaged. 2nd one today</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully restates the note (C31 not latched, second occurrence today, rack R01) without adding any cause, fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007744,
+  &quot;latency_s&quot;: 1.701,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;not_latched&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the connector at C31 was not latched; the tech noted this was the second such case today.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully restates the note (C31 latch not engaged, second today) and names the rack without adding a cause, fix, actor, or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007644,
+  &quot;latency_s&quot;: 1.674,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;not_latched&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the connector at C31 was not latched, the second such case noted today.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note: C31&#x27;s latch was not engaged, it was the second case today, and it names the rack, with no added cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007644,
+  &quot;latency_s&quot;: 1.876,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;not_latched&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the connector at C31 was not latched, the second such case reported today.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F22 landed in FE-LEAF2/5 instead of /4, moved it over</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary faithfully restates that F22 was landed (by the robot, which the context says makes connections) in /5 instead of /4 and was moved to the correct port, adding nothing unstated.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008252,
+  &quot;latency_s&quot;: 1.528,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;wrong_port&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the robot landed cable F22 in port FE-LEAF2/5 instead of FE-LEAF2/4, and it was moved to the correct port.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully paraphrases the note, and it adds only what the context clearly implies: the robot made the connection and /4 was the intended port.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008252,
+  &quot;latency_s&quot;: 1.418,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;wrong_port&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the robot landed cable F22 in port FE-LEAF2/5 instead of FE-LEAF2/4, and it was moved to the correct port.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The summary is a faithful one-sentence paraphrase. Robot placement is implied by the context, &quot;correct port&quot; follows from &quot;instead of /4&quot;, and it adds no unstated cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008252,
+  &quot;latency_s&quot;: 1.535,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;wrong_port&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the robot landed cable F22 in port FE-LEAF2/5 instead of FE-LEAF2/4, and it was moved to the correct port.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Gripper fault on C27, arm retried 3x then gave up, I finishe</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note: the gripper fault on C27, the stop after three retries, and the tech finishing by hand, on rack R02, with nothing added.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00802,
+  &quot;latency_s&quot;: 1.823,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R02, the robot had a gripper fault on C27 and stopped after three retries, and the tech finished the connection by hand.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one faithful sentence: rack R02, gripper fault on C27, three retries before giving up, and the tech finishing by hand, with nothing added or contradicted.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00806,
+  &quot;latency_s&quot;: 2.027,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R02, the robot had a gripper fault on cable C27 and stopped after three retries, so the tech finished the connection by hand.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully restates the note (fault on C27, three retries then gave up, tech finished by hand) and adds nothing beyond naming the rack.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00806,
+  &quot;latency_s&quot;: 1.927,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R02, the robot had a gripper fault on cable C27 and stopped after three retries, so the technician finished the connection by hand.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>C19 gripper dropped the RJ45 under the tray, fished it out a</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary faithfully restates the drop and the tech&#x27;s manual retrieval and plug-in, naming the rack and slot without adding unstated details.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008248,
+  &quot;latency_s&quot;: 1.456,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R04 at position C19, the robot&#x27;s gripper dropped an RJ45 cable under the tray, and the tech retrieved it and plugged it in by hand.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note (the gripper dropped the C19 RJ45 under the tray and the tech retrieved and plugged it), names the rack, and adds nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008228,
+  &quot;latency_s&quot;: 1.683,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R04, the robot&#x27;s gripper dropped an RJ45 cable for C19 under the tray, and the tech retrieved it and plugged it in by hand.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single sentence that faithfully paraphrases the note, covering the robot gripper dropping the C19 RJ45 under the tray and the tech retrieving it and plugging it in by hand, with no added cause, fix, or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008228,
+  &quot;latency_s&quot;: 1.786,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R04, the robot&#x27;s gripper dropped the RJ45 cable for C19 under the tray, and the tech retrieved it and plugged it in by hand.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>tag on C40 reads M2, map says M1. printed a new one</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully restates the mismatch (tag M2 vs map M1) and the tech&#x27;s action of printing a new label, adding nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007888,
+  &quot;latency_s&quot;: 1.289,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;label_mismatch&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the label on cable C40 read M2 while the port map says M1, and the tech printed a new label.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single sentence that faithfully restates the mismatch and the tech&#x27;s reprint without adding unstated details.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007888,
+  &quot;latency_s&quot;: 1.179,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;label_mismatch&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the label on cable C40 read M2 while the port map says M1, and the tech printed a new label.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note: C40&#x27;s tag read M2, the map says M1, and the tech printed a new label, with nothing unsupported added.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007888,
+  &quot;latency_s&quot;: 1.399,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;label_mismatch&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the label on cable C40 read M2 while the port map says M1, and the tech printed a new label.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>While routing C12 the arm caught the BMC cable next to it, t</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single sentence that faithfully paraphrases the note: the arm caught the neighboring BMC cable during C12 routing, it was reseated, and the link returned after ~30s, with no added cause, fix, actor, or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008628,
+  &quot;latency_s&quot;: 1.573,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;live_disturbance&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;While the robot was routing cable C12 on rack R01, its arm caught the neighboring BMC cable, which was already up, and pulled it half out; the cable was reseated and the link came back after about 30 seconds.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note (arm caught the adjacent BMC cable, pulled it half out, reseated, link back after ~30s) and adds nothing beyond naming the rack; the passive &quot;was reseated&quot; adds no actor.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008548,
+  &quot;latency_s&quot;: 1.567,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;live_disturbance&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;While routing cable C12 on rack R01, the robot arm caught the adjacent BMC cable, which was already up, and pulled it half out; it was reseated and the link came back after about 30 seconds.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary paraphrases the note faithfully, and the tech as actor of the reseat is implied by convention, so nothing is added.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008588,
+  &quot;latency_s&quot;: 1.485,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;live_disturbance&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;While routing cable C12 on rack R01, the robot arm caught the neighboring BMC cable, which was already up, and pulled it half out; the tech reseated it and the link came back after about 30 seconds.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>C47 took about 4 min, arm kept re-planning around the bundle</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully paraphrases the note (about 4 min on C47, arm re-planning around the bundle, no tech help needed), and &quot;finished&quot; is clearly implied by &quot;just slow.&quot;</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00822,
+  &quot;latency_s&quot;: 1.839,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;slow_cycle&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R09, the robot took about 4 minutes on cable C47 as its arm kept re-planning around the cable bundle, but it finished without tech help.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one sentence faithfully restates the note (about 4 min on C47, arm re-planning around the bundle, no tech intervention needed) without adding unsupported details.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00836,
+  &quot;latency_s&quot;: 1.742,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;slow_cycle&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R09, the robot took about 4 minutes to complete cable C47 as its arm kept re-planning around the bundle, but it finished on its own without the technician stepping in.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully restates the note. &quot;Took about 4 min&quot; and &quot;didn&#x27;t need me&quot; clearly imply the robot completed C47 without the tech&#x27;s help, and nothing unstated is added.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00818,
+  &quot;latency_s&quot;: 1.992,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;slow_cycle&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R09, cable C47 took about 4 minutes as the arm kept re-planning around the bundle, but the robot finished without the tech&#x27;s help.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>camera lost the port on F31 twice under the aisle LEDs, thir</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one sentence restates the note, names the rack, and attributes the camera to the robot, which the context clearly implies; it adds no cause, fix or outcome the note doesn&#x27;t state.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007948,
+  &quot;latency_s&quot;: 1.862,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R06 the robot&#x27;s camera lost the port on F31 twice under the aisle LEDs, and the third try worked.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is a single faithful sentence that names the rack and restates the two camera losses on F31 under the aisle LEDs and the successful third try, adding no cause, fix or outcome beyond the note.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008028,
+  &quot;latency_s&quot;: 1.759,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R06, the robot&#x27;s camera lost track of port F31 twice under the aisle LEDs, and the third attempt succeeded.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully restates the note, names rack R06, and adds no cause or actor beyond the clearly implied robot camera.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007948,
+  &quot;latency_s&quot;: 1.426,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;robot_fault&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R06, the robot&#x27;s camera lost the port on F31 twice under the aisle LEDs, and the third try worked.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F28 tag printed for the P1 port, cable is on P2. swapped tag</b> <span class='muted'>robot · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully restates the note (F28 tag printed for P1, cable on P2, tech swapped the tags), names the rack, and adds nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.010568,
+  &quot;latency_s&quot;: 2.653,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;label_mismatch&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R05, the cable tag F28 was printed for port P1 but the cable was on port P2, and the tech swapped the tags.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that restates the note: the F28 tag was printed for P1 while the cable was on P2, and the tech swapped the tags; it adds nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.010068,
+  &quot;latency_s&quot;: 2.423,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;label_mismatch&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R05, the F28 cable tag was printed for port P1 but the cable was on port P2, and the tech swapped the tags.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully restates the note (F28 tag printed for P1, cable on P2, tech swapped tags) and adds no cause, number, actor or outcome beyond it.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.009968,
+  &quot;latency_s&quot;: 2.415,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;label_mismatch&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R05, the F28 cable&#x27;s tag was printed for port P1 while the cable was on port P2, and the tech swapped the tags.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F03 scope fail, cleaned, passed second inspection</b> <span class='muted'>site · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: One sentence that faithfully paraphrases the note, reasonably expanding &quot;scope fail&quot; as a failed end face inspection, and adds no unstated cause, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00786,
+  &quot;latency_s&quot;: 1.607,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;dirty_endface&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, fiber F03 failed end face inspection, was cleaned, and passed a second inspection.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary names rack R01 and faithfully paraphrases the note: &quot;scope fail&quot; means a failed end face inspection, then cleaning and a passed second inspection, with nothing added or contradicted.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00786,
+  &quot;latency_s&quot;: 1.735,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;dirty_endface&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, fiber F03 failed end face inspection, was cleaned, and passed the second inspection.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary paraphrases the note faithfully, and &quot;fiber end face&quot; is clearly implied by a scope inspection on fiber slot F03, so it adds no new cause, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00794,
+  &quot;latency_s&quot;: 1.958,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;dirty_endface&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the fiber end face on F03 failed scope inspection, was cleaned, and passed the second inspection.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F17 dust on ferrule again - these jumpers came out of the ba</b> <span class='muted'>site · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully paraphrases the note (dust on the F17 ferrule, jumpers uncapped) on rack R01, without adding any cause, fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008136,
+  &quot;latency_s&quot;: 1.408,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;dirty_endface&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the fiber end face on F17 had dust on the ferrule, and the tech noted these jumpers came out of the bag without caps.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that restates the note (dust on the F17 ferrule, jumpers arrived without caps), adding only the rack and fiber context, with no invented cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008156,
+  &quot;latency_s&quot;: 1.422,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;dirty_endface&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the fiber jumper at F17 had dust on its ferrule, and the tech noted these jumpers came out of the bag without caps.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The single sentence restates the dust on F17&#x27;s ferrule and the uncapped jumpers without adding any cause, fix, actor or outcome the note does not state.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008136,
+  &quot;latency_s&quot;: 1.485,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;dirty_endface&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R01, the fiber end face on F17 had dust on the ferrule, and the tech noted these jumpers came out of the bag without caps.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F09 jacket kinked right behind the connector, swapped in a n</b> <span class='muted'>site · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is a single sentence that faithfully restates the kinked jacket at F09 on R02 and the tech&#x27;s swap to a spare jumper, adding nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008076,
+  &quot;latency_s&quot;: 2.114,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;damaged_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R02, cable F09 had a kinked jacket right behind the connector, and the tech replaced it with a new jumper from spares.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully paraphrases the kink and the tech&#x27;s replacement from spares, names the rack, and adds no unsupported cause, outcome or actor.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008096,
+  &quot;latency_s&quot;: 1.87,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;damaged_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;The jacket on cable F09 at rack R02 was kinked right behind the connector, and the tech replaced it with a new jumper from spares.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully restates the kink and the tech&#x27;s jumper swap, names the rack, and adds nothing the note does not state or clearly imply.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008076,
+  &quot;latency_s&quot;: 1.97,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;damaged_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R02, cable F09 had a kinked jacket right behind the connector, and the tech replaced it with a new jumper from spares.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Kit for this rack came 2 copper patch cords short, pulled fr</b> <span class='muted'>site · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single sentence that faithfully paraphrases the note (two copper patch cords short, pulled from spares, 15-minute wait) and names the rack without adding any unstated cause, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008072,
+  &quot;latency_s&quot;: 2.294,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;missing_or_short_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;The cable kit for rack R03 was missing two copper patch cords, which were pulled from spares with a 15-minute wait.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary faithfully restates the note (kit two copper cords short, pulled from spares, 15-minute wait) and adds nothing beyond what the note clearly implies.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008112,
+  &quot;latency_s&quot;: 1.977,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;missing_or_short_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;The cable kit for rack R03 was missing two copper patch cords, which were pulled from spares, causing a 15-minute wait.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary faithfully restates the shortage, the use of spares and the 15-minute wait, naming only the rack and adding nothing the note does not state.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008072,
+  &quot;latency_s&quot;: 2.073,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;missing_or_short_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;The cable kit for rack R03 was missing two copper patch cords, which were pulled from spares with a 15-minute wait.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Rear door locked, waited on a security badge for 20 min</b> <span class='muted'>site · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note (locked rear door, tech waited 20 minutes for a badge) and adds nothing beyond naming the rack.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00778,
+  &quot;latency_s&quot;: 1.8,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;The rear door on rack R06 was locked, and the tech waited 20 minutes for a security badge.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully restates the locked rear door and the 20-minute wait for a badge, adding nothing beyond naming the rack.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.0078,
+  &quot;latency_s&quot;: 1.902,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;The rear door on rack R06 was locked, and the tech waited about 20 minutes for a security badge.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that accurately restates the note, naming the rack and the tech who waited, and it adds no unstated cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.00778,
+  &quot;latency_s&quot;: 1.82,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;The rear door of rack R06 was locked, and the tech waited 20 minutes for a security badge.&quot;
+}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>Somebody left a laptop cart in the aisle, robot sat for 4 mi</b> <span class='muted'>site · 2 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='fail'><code>summary_faithful</code> FAIL: The note&#x27;s &quot;Nobody near it&quot; most naturally refers to the cart (the last thing mentioned), but the summary resolves it as &quot;nobody was near the robot,&quot; which changes the note&#x27;s meaning.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008256,
+  &quot;latency_s&quot;: 1.474,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;A laptop cart left in the aisle blocked the robot at rack R08, and it waited about 4 minutes until the cart was moved; nobody was near the robot.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is a faithful one-sentence paraphrase: cart in the aisle, robot waited 4 minutes until it was moved, nobody near it. &quot;Blocked&quot; is clearly implied, and it adds no actor, cause or fix the note lacks.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008216,
+  &quot;latency_s&quot;: 1.506,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;A laptop cart left in the aisle blocked the robot at rack R08, and it waited about 4 minutes until the cart was moved, with nobody near it.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary restates the cart blocking the robot for 4 minutes until it was moved, adding no unstated cause, fix or actor; reading the note&#x27;s ambiguous &quot;Nobody near it&quot; as referring to the robot is plausible rather than a clear contradiction.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008236,
+  &quot;latency_s&quot;: 1.475,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;A laptop cart left in the aisle blocked the robot at rack R08, and it waited about 4 minutes until the cart was moved; no one was near the robot.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>cord for C33 is 0.5 m, needs 1 m to reach the mgmt switch wi</b> <span class='muted'>site · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is a single-sentence paraphrase of the note: the 0.5 m cord for C33 can&#x27;t reach the management switch without strain, so a 1 m cord is needed. It adds no unstated fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008156,
+  &quot;latency_s&quot;: 1.632,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;missing_or_short_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R05, the 0.5 m cord for C33 was too short to reach the management switch without strain; a 1 m cord is needed.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single sentence that faithfully paraphrases the note, names the rack and expands &quot;mgmt,&quot; and adds no cause, fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008156,
+  &quot;latency_s&quot;: 1.611,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;missing_or_short_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R05, the 0.5 m cord for C33 was too short to reach the management switch without strain; a 1 m cord is needed.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output faithfully paraphrases the note (0.5 m cord for C33, 1 m needed to reach the mgmt switch without strain) in one sentence, names the rack, and adds no cause, fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008156,
+  &quot;latency_s&quot;: 1.708,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;missing_or_short_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R05, the 0.5 m cord for C33 was too short; a 1 m cord is needed to reach the management switch without strain.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F14 bend radius blown near the boot, cable came that way out</b> <span class='muted'>site · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The summary is a faithful one-sentence paraphrase: F14 was bent past its radius near the boot and came out of the bundle that way, with no added cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008104,
+  &quot;latency_s&quot;: 1.936,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;damaged_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R06, cable F14 was found bent past its bend radius near the connector boot, and it was already in that condition when taken out of the bundle.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single faithful paraphrase of the note: F14 exceeded its bend radius near the boot and came that way out of the bundle, on rack R06, with no added cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007844,
+  &quot;latency_s&quot;: 1.853,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;damaged_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R06, cable F14 arrived out of the bundle bent past its bend radius near the boot.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The summary is a faithful one-sentence paraphrase: F14&#x27;s bend radius was exceeded near the boot and the cable came out of the bundle that way, on rack R06, with no added cause, fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007884,
+  &quot;latency_s&quot;: 1.874,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;damaged_cable&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R06, cable F14 arrived out of the bundle bent past its bend radius near the connector boot.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Tray 9 not in the rack yet when the robot got there, it skip</b> <span class='muted'>site · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary paraphrases the note faithfully, names the rack, and adds no cause, actor, number, fix, or outcome that the note doesn&#x27;t state.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008172,
+  &quot;latency_s&quot;: 1.884,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;Tray 9 was not yet installed in rack R08 when the robot arrived, so the robot skipped those slots and returned to them after the tray was installed.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note, names rack R08, and adds no unstated cause, fix, actor, or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008172,
+  &quot;latency_s&quot;: 2.981,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;Tray 9 was not yet installed in rack R08 when the robot arrived, so the robot skipped those slots and returned to them after the tray was installed.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The single sentence faithfully paraphrases the note, names the rack, and adds no unstated cause, actor, fix or outcome; &quot;after install&quot; clearly means after the tray was installed.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008172,
+  &quot;latency_s&quot;: 2.132,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;access_blocked&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;Tray 9 was not yet installed in rack R08 when the robot arrived, so the robot skipped those slots and returned to them after the tray was installed.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F30 no link. Robot did it right per the map but the map had </b> <span class='muted'>customer · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that paraphrases the note faithfully. The causal link is clearly implied by the note, and it adds no unstated fix, number, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008564,
+  &quot;latency_s&quot;: 1.776,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;F30 on rack R02 had no link because the port map had P1 and P2 swapped for tray 15; the robot had followed the map correctly, and after the network team fixed the map the robot re-ran the connection.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: faithfully restates the no-link, the swapped-map cause, the network fix and the robot re-run without adding anything.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008364,
+  &quot;latency_s&quot;: 1.775,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;Cable F30 on rack R02 had no link because the port map had P1 and P2 swapped for tray 15; the network team fixed the map and the robot re-ran the connection.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that paraphrases the note faithfully (no link, map swap as the clearly implied cause, network fixed the map, robot re-ran it) and adds nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008624,
+  &quot;latency_s&quot;: 2.059,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;Cable F30 on rack R02 had no link because the port map had P1 and P2 swapped for tray 15; the robot had followed the map correctly, and after the network team fixed the map the robot re-ran the connection.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>F35 leaf port was admin-down, network team enabled it, link </b> <span class='muted'>customer · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single sentence that faithfully paraphrases the note: the port was admin-down, the network team enabled it, and the link came up. It names the rack and adds nothing the note doesn&#x27;t state.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007852,
+  &quot;latency_s&quot;: 1.323,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R08, the leaf switch port for F35 was administratively down; the network team enabled it and the link came up.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note (admin-down port, network team enabled it, link came up), names the rack, and adds nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007852,
+  &quot;latency_s&quot;: 2.39,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R08, the leaf switch port for F35 was administratively down; the network team enabled it and the link came up.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a faithful one-sentence paraphrase that names the rack, expands &quot;admin-down&quot;, and adds no cause, actor or outcome beyond the note.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007852,
+  &quot;latency_s&quot;: 1.485,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R08, the leaf switch port for F35 was administratively down; the network team enabled it and the link came up.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>MGMT-SW2 uplink not patched yet at shift start, network team</b> <span class='muted'>customer · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The single sentence faithfully paraphrases the note, names the rack, and adds no cause, actor, fix or outcome beyond what the note states.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.009608,
+  &quot;latency_s&quot;: 2.525,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R03, the MGMT-SW2 uplink was not yet patched at shift start, and the network team finished it before the robot reached those ports.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully restates the note, names the rack, and adds no unstated cause, actor, or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008128,
+  &quot;latency_s&quot;: 1.816,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R03, the MGMT-SW2 uplink was not yet patched at shift start, and the network team finished it before the robot reached those ports.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note and names the rack, without adding any cause, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.009888,
+  &quot;latency_s&quot;: 2.516,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R03, the MGMT-SW2 uplink was not yet patched at shift start, and the network team finished it before the robot reached those ports.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Map rev C on the tablet and rev D on the rack sheet disagree</b> <span class='muted'>customer · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The single sentence faithfully paraphrases the note (rev C vs rev D mismatch on FE-LEAF2, fiber held until network confirmed D), adding only the allowed rack name and &quot;port map&quot; expansion.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008548,
+  &quot;latency_s&quot;: 2.515,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R04, the port map revision on the tablet (rev C) and the rack sheet (rev D) disagreed for FE-LEAF2, so the fiber was held until the network team confirmed rev D.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is one sentence that faithfully paraphrases the note. It expands &quot;map&quot; to port map and &quot;network&quot; to the network team, names the rack, and adds no cause, fix, or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008548,
+  &quot;latency_s&quot;: 2.405,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R04, the port map revision on the tablet (rev C) disagreed with the rack sheet (rev D) for FE-LEAF2, so the fiber was held until the network team confirmed rev D.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is a single-sentence faithful paraphrase that names the rack and expands &quot;map&quot; and &quot;network&quot; as clearly meant, with no added cause, fix, or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008548,
+  &quot;latency_s&quot;: 3.012,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;customer_config&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;customer_network&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R04, the port map revision on the tablet (rev C) and the rack sheet (rev D) disagreed for FE-LEAF2, so the fiber was held until the network team confirmed rev D.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Contractor walked into the aisle behind the rack while the a</b> <span class='muted'>safety · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single faithful paraphrase that names the rack and adds no cause, fix, actor or outcome beyond what the note states.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008224,
+  &quot;latency_s&quot;: 1.807,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;A contractor walked into the aisle behind rack R02 while the robot arm was extended; the robot stopped within a second and resumed once he left, with no contact.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary faithfully paraphrases the note (&quot;arm was out&quot; → &quot;extended&quot;, &quot;went again&quot; → &quot;resumed&quot;), names the rack, and adds no cause, fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008204,
+  &quot;latency_s&quot;: 1.672,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;A contractor walked into the aisle behind rack R02 while the robot arm was extended; the robot froze within a second and resumed once he left, with no contact.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a one-sentence faithful paraphrase that names the rack and adds no cause, number, fix, actor or outcome beyond the note.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008204,
+  &quot;latency_s&quot;: 1.926,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;A contractor walked into the aisle behind rack R02 while the robot arm was extended; the robot froze within a second and resumed once he left, with no contact.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Arm swung toward my hand when I reached in to clear a zip ti</b> <span class='muted'>safety · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary paraphrases the note faithfully: the arm swung toward the tech&#x27;s hand while they cleared a zip tie, the tech hit the e-stop, and the arm came close without contact, with only the rack named and nothing added or contradicted.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008448,
+  &quot;latency_s&quot;: 1.973,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;On rack R03, the robot&#x27;s arm swung toward the tech&#x27;s hand as they reached in to clear a zip tie, and the tech pressed the e-stop; the arm came close but did not touch them.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The single sentence faithfully restates the note (arm swung toward the tech&#x27;s hand while clearing a zip tie, the tech hit the e-stop, no contact) and adds nothing unsupported.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008368,
+  &quot;latency_s&quot;: 1.883,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;On rack R03, the robot arm swung close to the tech&#x27;s hand while they reached in to clear a zip tie, and the tech pressed the e-stop; the arm did not touch them.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note: the arm swung toward the tech&#x27;s hand during the zip-tie clear, the tech hit the e-stop, and it came close without contact. It adds nothing the note doesn&#x27;t state or imply.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008428,
+  &quot;latency_s&quot;: 2.285,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;At rack R03, the robot arm swung toward a technician&#x27;s hand as they reached in to clear a zip tie; the technician pressed the e-stop, and the arm came close but did not make contact.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Robot pinched my glove on the fiber tray door while I was ho</b> <span class='muted'>safety · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note: it names the rack and states the pinch, no injury, and the undamaged glove, and it adds no cause, fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008236,
+  &quot;latency_s&quot;: 2.169,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;At rack R04, the robot pinched the tech&#x27;s glove on the fiber tray door while the tech was holding the door open; there was no injury and the glove was not damaged.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note, names the rack, and adds no unstated cause, fix, or outcome (&quot;glove fine&quot; → &quot;undamaged&quot; is a plain paraphrase).</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008236,
+  &quot;latency_s&quot;: 2.16,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;At rack R04, the robot pinched the tech&#x27;s glove on the fiber tray door while the tech was holding the door open; there was no injury and the glove was undamaged.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='pass'><code>blocker_caught</code> PASS (critical)</li><li class='na'><code>no_false_blocker</code> NA</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that faithfully paraphrases the note, names the rack, and adds nothing the note doesn&#x27;t state.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008216,
+  &quot;latency_s&quot;: 2.496,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: true,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;robot_team&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;At rack R04, the robot pinched a technician&#x27;s glove on the fiber tray door while the technician was holding it open; there was no injury and the glove was not damaged.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>Electrician working the PDU in this row pressed the stop as </b> <span class='muted'>safety · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single sentence that faithfully paraphrases the note and adds no cause, number, fix, actor or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008008,
+  &quot;latency_s&quot;: 1.738,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;An electrician working on the PDU in this row pressed the stop as a precaution while he opened the panel; it was not about the robot.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single sentence that faithfully paraphrases the note: it expands PDU and renders &quot;not about the robot&quot; as &quot;not because of anything the robot did,&quot; without adding any cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008108,
+  &quot;latency_s&quot;: 2.17,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;An electrician working on the power distribution unit in this row pressed the stop as a precaution while he opened the panel, not because of anything the robot did.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='pass'><code>safety_caught</code> PASS (critical)</li><li class='na'><code>no_false_safety</code> NA</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is a single-sentence plain paraphrase of the note and adds no cause, number, fix, actor or outcome beyond what the note states.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008028,
+  &quot;latency_s&quot;: 1.724,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;safety_stop&quot;,
+ &quot;needs_review&quot;: false,
+ &quot;owner&quot;: &quot;site_ops&quot;,
+ &quot;safety&quot;: true,
+ &quot;summary&quot;: &quot;An electrician working on the PDU in this row pressed the stop as a precaution while he opened the panel; it was not related to the robot.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>something off with the fiber on this one, ask Dana</b> <span class='muted'>unclear · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: It is a single sentence that faithfully paraphrases the note (fiber issue, ask Dana), names the shift and rack, and adds no cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007768,
+  &quot;latency_s&quot;: 2.199,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On shift 9 at rack R09, the tech noted something was off with the fiber and referred questions to Dana.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The output is one sentence that names the rack and faithfully paraphrases the note without adding any cause, fix or outcome; &quot;ask Dana&quot; clearly implies asking her for details.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007708,
+  &quot;latency_s&quot;: 1.899,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R09, the tech reported something off with the fiber and noted that Dana should be asked for details.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The single sentence paraphrases the note: something was off with the fiber, and &quot;ask Dana&quot; becomes referring questions to Dana. It names the rack and shift and adds no cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007788,
+  &quot;latency_s&quot;: 1.999,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R09 during shift 9, the tech noted that something was off with the fiber and referred questions to Dana.&quot;
+}</pre></div></details><details><summary><span class='mark ok'>✓</span> <b>few ports flapping after lunch, not sure if it&#x27;s us or the s</b> <span class='muted'>unclear · 3 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The one-sentence summary paraphrases the note faithfully, reading &quot;us&quot; as the cabling work is a fair reading, and naming the rack and shift is allowed; it adds no cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.008052,
+  &quot;latency_s&quot;: 1.956,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R11 during shift 11, a few ports were flapping after lunch, and the tech was not sure whether the robot work or the switch was the cause.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The single sentence restates the note faithfully, and reading &quot;us&quot; as the robot cabling work is a fair expansion that adds no cause, fix, or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007932,
+  &quot;latency_s&quot;: 3.976,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R11, a few ports were flapping after lunch, and the tech was not sure whether the cause was the robot work or the switch.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: pass · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='pass'><code>summary_faithful</code> PASS: The single sentence restates the flapping ports and the tech&#x27;s uncertainty about the cause, and reading &quot;us&quot; as the robot cabling work is a fair paraphrase that adds no new cause, fix or outcome.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007932,
+  &quot;latency_s&quot;: 1.884,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On rack R11, a few ports were flapping after lunch, and the tech was not sure whether the robot work or the switch was the cause.&quot;
+}</pre></div></details><details open><summary><span class='mark bad'>✗</span> <b>see photo</b> <span class='muted'>unclear · 0 of 3 runs</span></summary><div class='run'><div class='runhead'>Run 1: FAIL · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='fail'><code>summary_faithful</code> FAIL: The output claims the tech &quot;stepped in,&quot; which the note (&quot;see photo&quot;) doesn&#x27;t state or clearly imply, since techs also write notes when they merely see something worth logging.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007796,
+  &quot;latency_s&quot;: 1.586,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On shift 13 at rack R13, the tech stepped in and left a note referring only to a photo, with no description of what happened.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 2: FAIL · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='fail'><code>summary_faithful</code> FAIL: The summary asserts that &quot;a tech stepped in,&quot; which the note (&quot;see photo&quot;) does not state or imply, since techs also log notes when they merely observe something.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007816,
+  &quot;latency_s&quot;: 1.8,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On shift 13 at rack R13, a tech stepped in, but the note only says to see a photo and gives no description of what happened.&quot;
+}</pre></div><div class='run'><div class='runhead'>Run 3: FAIL · 0 ms</div><ul><li class='pass'><code>mode_correct</code> PASS</li><li class='pass'><code>owner_correct</code> PASS</li><li class='na'><code>safety_caught</code> NA (critical)</li><li class='pass'><code>no_false_safety</code> PASS</li><li class='na'><code>blocker_caught</code> NA (critical)</li><li class='pass'><code>no_false_blocker</code> PASS</li><li class='pass'><code>review_when_unclear</code> PASS</li><li class='fail'><code>summary_faithful</code> FAIL: The summary says the tech &quot;stepped in,&quot; an intervention the note never states; &quot;see photo&quot; could just as well mean the tech only observed something worth logging.</li></ul><pre>{
+ &quot;_meta&quot;: {
+  &quot;cost_usd&quot;: 0.007756,
+  &quot;latency_s&quot;: 1.721,
+  &quot;model&quot;: &quot;claude-opus-5-5&quot;
+ },
+ &quot;blocks_unsupervised&quot;: false,
+ &quot;failure_mode&quot;: &quot;unclear&quot;,
+ &quot;needs_review&quot;: true,
+ &quot;owner&quot;: &quot;unknown&quot;,
+ &quot;safety&quot;: false,
+ &quot;summary&quot;: &quot;On shift 13 at rack R13, the tech stepped in and noted only \&quot;see photo\&quot; without describing what happened.&quot;
+}</pre></div></details>
+<h2>Checks</h2><div class="scroll"><table><tr><td><code>mode_correct</code></td><td></td><td>The note gets the right failure mode from the fixed list.</td></tr><tr><td><code>owner_correct</code></td><td></td><td>The note goes to the team that owns the fix.</td></tr><tr><td><code>safety_caught</code></td><td>critical</td><td>Every note about a person near the robot, an e-stop, or contact is flagged as safety.</td></tr><tr><td><code>no_false_safety</code></td><td></td><td>Notes with no person, e-stop or contact are not flagged as safety.</td></tr><tr><td><code>blocker_caught</code></td><td>critical</td><td>A live cable disturbed, or the robot moving toward or touching a person, blocks unsupervised work.</td></tr><tr><td><code>no_false_blocker</code></td><td></td><td>Other notes do not block unsupervised work.</td></tr><tr><td><code>review_when_unclear</code></td><td></td><td>Unclear notes go to a person; clear notes do not.</td></tr><tr><td><code>summary_faithful</code></td><td></td><td>The summary is one sentence that restates the tech note: what happened and, if the note says, what was done. It fails if it adds a cause, number, fix, actor or outcome that the note does not state or clearly imply, or if it contradicts the note. Plain paraphrase, expanding shorthand the note clearly means (a slot name such as C19 is the connection being made; the map is the customer&#x27;s port map) and naming the rack are fine.</td></tr></table></div>
+<footer class="muted">Made with <a href="https://github.com/pg2342-hub/golive-gate">golive-gate</a>.</footer>
+</main></body></html>

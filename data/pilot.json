@@ -428,5 +428,5 @@
       "stage_next_week": "unsupervised"
     }
   ],
-  "blocking_notes_from": "hand labels (no recorded Claude triage yet)"
+  "blocking_notes_from": "Claude triage (recorded run, notes gate GO)"
 }
