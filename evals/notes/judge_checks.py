@@ -42,8 +42,10 @@ _faithful = judge_check(
     judge=judge,
     render_case=lambda case: (
         f"Context: a field tech wrote this note during supervised robot cabling shift {case.input['shift']}, "
-        f"rack {case.input['rack']}. The robot makes the connections and the tech watches and steps in when "
-        f"needed. Slot names like C05 (copper) and F22 (fiber) are connections on the rack.\n"
+        f"rack {case.input['rack']}. The robot makes the connections and the tech watches. Techs write these "
+        f"notes in their own first-person shorthand when they step in or see something worth logging, so an "
+        f'action with no named subject ("reseated", "swapped in a new jumper") was done by the tech. '
+        f"Slot names like C05 (copper) and F22 (fiber) are connections on the rack.\n"
         f"Tech note: {case.input['note']}"
     ),
     render_output=lambda out: out["summary"],
