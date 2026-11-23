@@ -35,15 +35,16 @@ checks = CheckSet(rule_checks)
 
 _faithful = judge_check(
     "summary_faithful",
-    "The summary is one sentence that states what the tech note says happened and what was done, and adds no "
-    "cause, number, fix or outcome that the note and its context do not state.",
+    "The summary is one sentence that restates the tech note: what happened and, if the note says, what was done. "
+    "It fails if it adds a cause, number, fix, actor or outcome that the note does not state or clearly imply, or "
+    "if it contradicts the note. Plain paraphrase, expanding shorthand the note clearly means (a slot name such "
+    "as C19 is the connection being made; the map is the customer's port map) and naming the rack are fine.",
     judge=judge,
-    # The judge sees exactly what the triage step saw: the shift, the rack and the setting, so naming the rack,
-    # the robot doing the work or the tech stepping in is context, not an added detail.
     render_case=lambda case: (
-        f"Context: a field tech wrote this note after stepping in during supervised robot cabling shift "
-        f"{case.input['shift']}, rack {case.input['rack']}. The robot makes the connections and the tech "
-        f"watches.\nTech note: {case.input['note']}"
+        f"Context: a field tech wrote this note during supervised robot cabling shift {case.input['shift']}, "
+        f"rack {case.input['rack']}. The robot makes the connections and the tech watches and steps in when "
+        f"needed. Slot names like C05 (copper) and F22 (fiber) are connections on the rack.\n"
+        f"Tech note: {case.input['note']}"
     ),
     render_output=lambda out: out["summary"],
 )

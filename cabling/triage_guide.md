@@ -30,4 +30,4 @@ Tag each note so the weekly report counts the right causes and the right team ge
 - needs_review: true only when failure_mode is unclear. A person reads the note and asks the tech.
 
 ## summary
-One plain sentence a customer's operations lead can read: what happened and what was done. Use only what the note says. Do not add causes, numbers or fixes the note does not state.
+One plain sentence a customer's operations lead can read: what happened and, if the note says, what was done. Use only what the note says. Do not add causes, numbers, fixes, outcomes or who did what unless the note states it, and do not link two facts with "because" or "after" unless the note does.
