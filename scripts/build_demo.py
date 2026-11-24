@@ -428,8 +428,8 @@ def main() -> None:
     if copper and promoted and copper < promoted:
         answer += f" Copper reached 10 in a row first, after shift {copper}."
     stage_note = (
-        "A PARTIAL shift is a fiber-only miss, so the copper streak kept going: copper reaches 10 in a row first, "
-        "which is why the plan can promote copper alone at the readout while fiber stays supervised."
+        "The copper streak keeps going through a PARTIAL shift, so copper reaches 10 in a row first and can go "
+        "unsupervised while fiber stays supervised."
         if copper
         else ""
     )
@@ -557,9 +557,10 @@ fiber connections) for 15 shifts. When can the robot work without a tech watchin
   <nav aria-label="On this page"><a href="#verdict-h">Verdict</a><a href="#timeline">Stage timeline</a>
   <a href="#rules">How a shift is graded</a><a href="#shifts">Every shift</a><a href="#weekly">Weekly update</a>
   <a href="#triage">Tech note triage</a></nav>
-  <div><h3>Data</h3><p>Simulated. Port names, labels, light levels, cycle-time ceilings and every miss are made up;
-  the 30 tech notes are constructed. Claude runs are replayed from <code>recordings/</code>, so no API key is
-  needed.</p></div>
+  <div><h3>Data</h3><p>Simulated. The rack layout (54 copper management and 36 front-end fiber connections) follows
+  NVIDIA's public GB300 NVL72 reference design. Port names, labels, light levels, cycle-time ceilings and every miss
+  are made up; the 30 tech notes are constructed. Claude runs are replayed from <code>recordings/</code>, so no
+  API key is needed.</p></div>
   <div><h3>Run it yourself</h3><p>Python 3.10+.</p><pre>pip install -e ".[dev]"
 pytest -q
 python scripts/run_shifts.py
